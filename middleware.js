@@ -17,16 +17,6 @@ export async function middleware(req) {
 
   const userRole = token.role; // Extract role from token
 
-  // Redirect authenticated users away from login/register pages
-  if (token && (pathname === "/login" || pathname === "/register")) {
-    return NextResponse.redirect(new URL(userRole === "admin" ? "/admin/dashboard" : "/dashboard", req.url));
-  }
-
-  // Redirect unauthenticated users to login if accessing protected routes
-  if (!token && ["/dashboard", "/profile", "/settings", "/admin"].some((route) => pathname.startsWith(route))) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
   // User restrictions: Can only access /dashboard
   if (userRole === "user") {
     if (url.pathname === "/admin" || url.pathname === "/login" || url.pathname === "/register") {
@@ -44,15 +34,7 @@ export async function middleware(req) {
   return NextResponse.next();
 }
 
-// Apply middleware only to specific routes
+// Apply middleware only to relevant routes
 export const config = {
-  matcher: [
-    "/((?!api|static|.*\\..*|_next).*)",
-    "/dashboard/:path*", // Protect dashboard and its sub-paths
-    "/profile/:path*", // Protect profile and its sub-paths
-    "/settings/:path*", // Protect settings and its sub-paths
-    "/admin/:path*",
-    "/login", // Intercept login
-    "/register", // Intercept register
-  ],
+  matcher: ["/admin", "/dashboard", "/login", "/register"],
 };
