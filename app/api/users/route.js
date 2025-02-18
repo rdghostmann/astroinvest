@@ -9,16 +9,16 @@ export default async function getAllUser() {
     await connectToDB();
     
     // Fetch only required fields
-    const users = await User.find({}, "userID name email walletBalance totalPrice createdAt updatedAt");
+    const users = await User.find({}, "userID name email walletBalance totalPrice");
 
     // Convert all values to strings
     const sanitizedUsers = users.map(user => ({
       id: user._id.toString(),  // Convert _id to string
-      userID: user.userID.toString(),
-      name: user.name.toString(),
-      email: user.email.toString(),
-      walletBalance: user.walletBalance.toString(),
-      totalPrice: user.totalPrice.toString(),
+      userID: user.userID,
+      name: user.name,
+      email: user.email,
+      walletBalance: user.walletBalance,
+      totalPrice: user.totalPrice,
       createdAt: user.createdAt.toISOString(), // Use ISO format for date
       updatedAt: user.updatedAt.toISOString(), // Use ISO format for date
     }));

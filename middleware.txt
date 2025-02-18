@@ -4,9 +4,7 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req) {
   const token = await getToken({ req });
   const url = req.nextUrl.clone();
-  const { pathname } = req.nextUrl;
-
-
+  
   // Redirect unauthenticated users to login
   if (!token) {
     if (url.pathname !== "/login" && url.pathname !== "/register") {
