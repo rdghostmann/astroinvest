@@ -27,9 +27,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import LogOutBtn from "./LogOutBtn/LogOutBtn";
 import { useFetchUser } from "@/hooks/useFetchUser";
 import { useUserStore } from "@/store/userStore";
+import LogOutBtn from "./LogOut/LogOutBtn";
 
 export function NavUser({ userId }) {
   const { isMobile } = useSidebar();

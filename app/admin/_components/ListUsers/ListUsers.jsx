@@ -4,6 +4,9 @@ import { getAllUsers } from "@/lib/actions";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+
 export default function ListUsers() {
   const [users, setUsers] = useState([]);
 
@@ -16,7 +19,7 @@ export default function ListUsers() {
         setUsers(users);
       } catch (error) {
         console.error("Error fetching users:", error);
-      } 
+      }
     }
     fetchUsers();
   }, [setUsers]);
@@ -25,34 +28,39 @@ export default function ListUsers() {
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Users List</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 shadow-md">
-          <thead>
-            <tr className="bg-gray-100 border-b">
-              <th className="py-2 px-4 text-left">Userame</th>
-              <th className="py-2 px-4 text-left">Email</th>
-              <th className="py-2 px-4 text-left">Wallet Balance</th>
-              <th className="py-2 px-4 text-left">Total Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <tr key={user.userID} className="border-b">
-                  <td className="py-2 px-4">{user.name}</td>
-                  <td className="py-2 px-4">{user.email}</td>
-                  <td className="py-2 px-4">${user.walletBalance}</td>
-                  <td className="py-2 px-4">${user.totalPrice}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4" className="py-4 text-center">
-                  No users found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <div className="w-full min-w-xs mx-auto px-0 lg:px-10 ">
+          <div className="rounded-t-lg overflow-x-auto border">
+            <Table className="min-w-full">
+              <TableHeader>
+                <TableRow className="bg-gray-700 hover:bg-gray-800/50">
+                  <TableHead className="text-white">Username</TableHead>
+                  <TableHead className="text-white">Email</TableHead>
+                  <TableHead className="text-white">Wallet Balance</TableHead>
+                  <TableHead className="text-white">Total Profit</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {users.length > 0 ? (
+                  users.map((user) => (
+                    <TableRow key={user.userID} className="hover:bg-blue-950/50">
+                      <TableCell className="text-gray-600">{user.username}</TableCell>
+                      <TableCell className="text-gray-600">{user.email}</TableCell>
+                      <TableCell className="text-gray-600">${user.walletBalance}</TableCell>
+                      <TableCell className="text-gray-600">${user.profitTotal}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="4" className="py-4 text-center">
+                      No users found.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+
+        </div>
       </div>
     </div>
   )
