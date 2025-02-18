@@ -19,8 +19,6 @@ export default async function getAllUser() {
       email: user.email,
       walletBalance: user.walletBalance,
       totalPrice: user.totalPrice,
-      createdAt: user.createdAt.toISOString(), // Use ISO format for date
-      updatedAt: user.updatedAt.toISOString(), // Use ISO format for date
     }));
 
     return NextResponse.json(sanitizedUsers);
