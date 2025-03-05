@@ -28,7 +28,6 @@ export function useFetchUser() {
 
   // }, [setUser, toast]);
 
-
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -36,7 +35,7 @@ export function useFetchUser() {
         const { data } = await axios.get("/api/FetchUserData");
         setUser(data);
       } catch (error) {
-        toast({ title: "Oops error occured" });
+        toast({ title: "Check Internet Connection!" });
       }
     }
     fetchUser();

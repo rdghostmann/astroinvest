@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card } from '@/components/ui/card'
 import { ArrowUpRight, Loader } from 'lucide-react';
 import Link from 'next/link';
-import { useSession, signIn, signOut } from "next-auth/react"
 import { useFetchUser } from "@/hooks/useFetchUser";
 import { useUserStore } from "@/store/userStore";
 import Loading from '@/app/loading';
@@ -32,8 +31,8 @@ const DashboardView = ({ userId }) => {
       <Card className="bg-gradient-to-br from-blue-800 to-blue-900 text-white p-6 rounded-lg shadow-xl">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-            <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarFallback className="rounded-lg">{userEmail[0]}</AvatarFallback>
+            <Avatar className="h-8 w-8 rounded-lg bg-slate-700">
+              <AvatarFallback className="rounded-lg font-semibold text-gray-700">{userEmail[0].toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
           <div>
@@ -43,7 +42,8 @@ const DashboardView = ({ userId }) => {
         </div>
         <div className="flex justify-between mb-6 bg-white shadow-md p-4 rounded-lg">
           <div className="border-r-2 flex-1 p-2 w-1/2 lg:px-2">
-            <p className="text-sm/8 text-gray-500">ACCOUNT BALANCE</p>
+            <p className="text-xs md:hidden text-gray-500">BALANCE</p>
+            <p className="hidden md:block text-sm/8 text-gray-500">ACCOUNT BALANCE</p>
             <div className="flex items-center gap-2">
               {!userBalance ? <Loader className="animate-spin" /> : (
                 <>
@@ -58,7 +58,8 @@ const DashboardView = ({ userId }) => {
             </div>
           </div>
           <div className="flex-1 p-2 w-1/2 lg:px-2">
-            <p className="text-sm/8 text-gray-500">TOTAL PROFIT</p>
+            <p className="text-xs md:hidden text-gray-500">PROFIT</p>
+            <p className="hidden md:block text-sm/8 text-gray-500">TOTAL PROFIT</p>
             <div className="flex items-center gap-2">
               {!userTotalProfit ? <Loader className="animate-spin" /> : (
                 <>

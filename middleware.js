@@ -13,7 +13,7 @@ export async function middleware(req) {
     return NextResponse.next();
   }
 
-  const userRole = token.role; // Extract role from token
+  const userRole = token.role; 
 
   // User restrictions: Can only access /dashboard
   if (userRole === "user") {

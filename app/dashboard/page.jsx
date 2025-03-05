@@ -19,7 +19,7 @@ import DashboardView from "./_components/DashboardView/DashboardView";
 export default async function Page() {
 
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -46,12 +46,12 @@ export default async function Page() {
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
             <DashboardView />
-          
+
           </div>
 
 
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }

@@ -6,6 +6,7 @@ import InvestorsActivity from "@/components/InvestorActivity/InvestorActivity";
 import Hero1 from "@/components/Jumbotron/Jumbotron2";
 import OurAmazingFeatures from "@/components/OurAmazingFeatures/OurAmazingFeatures";
 import CoinPriceMarqueeWidget from "@/components/CoinPriceMarqueeWidget/CoinPriceMarqueeWidget";
+import OurAmazingFeatures2 from "@/components/OurAmazingFeatures/OurAmazingFeatures2";
 
 
 export default function Home() {
@@ -13,8 +14,9 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
-      <CoinPriceMarqueeWidget />
+      {/* <CoinPriceMarqueeWidget /> */}
       <Hero1 />
+      {/* <OurAmazingFeatures2 /> */}
       <OurAmazingFeatures />
       <CallToAction />
       <InvestorsActivity />

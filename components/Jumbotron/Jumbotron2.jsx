@@ -3,6 +3,7 @@ import { ArrowDownRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import earth from "../../public/earth.png"
+import headerImg from "../../public/header-img.png"
 import Image from 'next/image';
 import { AnimatedShinyText } from '../magicui/animated-shiny-text';
 
@@ -39,20 +40,20 @@ const Hero1 = () => {
               </Button>
             </div>
           </div>
-          {/* <div className='bg-slate-400 max-h-96 p-4 rounded-md '>
+          <div className='bg-white max-h-96 p-4 rounded-md '>
             <Image
-              src={earth}
+              src={headerImg}
               alt="hero-img"
               width={400}
               height={300}
-              className="animate-pulse w-full mix-blend-color-dodge rounded-md object-contain"
+              className="w-full rounded-md object-contain"
             />
-          </div> */}
-          <img
+          </div>
+          {/* <img
             src="https://shadcnblocks.com/images/block/placeholder-1.svg"
             alt="placeholder hero"
             className="max-h-96 w-full rounded-md object-cover"
-          />
+          /> */}
         </div>
       </div>
     </section>

@@ -13,8 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import DashboardView from "./_components/DashboardView/DashboardView";
-import ListUsers from "./_components/ListUsers/ListUsers";
+
 
 
 export default async function Page() {
@@ -46,9 +45,7 @@ export default async function Page() {
           {/* Left Section */}
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
-            <DashboardView />
-            <ListUsers />
-          
+           <h2>Admin Dashboard</h2>
           </div>
 
 

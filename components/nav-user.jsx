@@ -39,7 +39,7 @@ export function NavUser({ userId }) {
   const user = useUserStore((state) => state.user);
 
   if (!user) {
-    return <div>Loading user profile…</div>
+    return <div className="text-xs italic">Loading user profile…</div>
   }
   // Extract user details for display.
   const userName = user?.username || "Guest";
