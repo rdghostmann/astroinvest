@@ -5,17 +5,20 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/sidebar"
 import DashboardView from "./_components/DashboardView/DashboardView";
 import AppSidebarWrapper from "./_components/AppSideWrapper/AppSideWrapper";
 
+
+
 export default async function Page() {
+
   return (
     <SidebarProvider>
       <AppSidebarWrapper />
@@ -44,7 +47,10 @@ export default async function Page() {
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
             <DashboardView />
+
           </div>
+
+
         </div>
       </SidebarInset>
     </SidebarProvider>
