@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+// import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,6 +16,10 @@ import {
 import DashboardView from "./_components/DashboardView/DashboardView";
 
 
+// Dynamically import AppSidebar with SSR disabled
+const AppSidebar = dynamic(() => import('@/components/app-sidebar'), { ssr: false });
+
+
 export default async function Page() {
 
   return (
@@ -30,7 +34,7 @@ export default async function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    InvestJar
+                    AstroInvest
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />

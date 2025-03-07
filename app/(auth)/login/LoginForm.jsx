@@ -42,7 +42,7 @@ const LoginForm = () => {
         password,
       });
 
-      console.log("SignIn Result:", result); // Debugging: Log the result
+      // console.log("SignIn Result:", result); // Debugging: Log the result
 
       if (result?.error) {
         setError(`An error occurred: ${result.error}`);
