@@ -1,4 +1,3 @@
-//LoginForm.jsx
 "use client";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -19,7 +18,7 @@ const LoginForm = () => {
   const { toast } = useToast();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Fix: using event parameter
+    event.preventDefault();
     setLoading(true);
 
     const formData = new FormData(event.currentTarget);
@@ -42,18 +41,20 @@ const LoginForm = () => {
         email,
         password,
       });
+
+      console.log("SignIn Result:", result); // Debugging: Log the result
+
       if (result?.error) {
         setError(`An error occurred: ${result.error}`);
         toast({ title: `An error occurred: ${result.error}` });
         setLoading(false);
       } else {
         toast({ title: "Login successful!" });
-        window.location.href = "/dashboard"; // Force a full page reload to ensure content is displayed correctly
-        router.push("/dashboard");
+        router.push("/dashboard"); // Use only router.push for redirection
       }
     } catch (err) {
       setError(`An error occurred: ${err.message}`);
-      toast("Error occurred. Please try again.");
+      toast({ title: "Error occurred. Please try again." });
     } finally {
       setLoading(false);
     }
