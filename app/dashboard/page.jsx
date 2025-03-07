@@ -1,4 +1,3 @@
-// import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,25 +5,20 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import DashboardView from "./_components/DashboardView/DashboardView";
-
-
-// Dynamically import AppSidebar with SSR disabled
-const AppSidebar = dynamic(() => import('@/components/app-sidebar'), { ssr: false });
-
+import AppSidebarWrapper from "./_components/AppSideWrapper/AppSideWrapper";
 
 export default async function Page() {
-
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebarWrapper />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
@@ -50,10 +44,7 @@ export default async function Page() {
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
             <DashboardView />
-
           </div>
-
-
         </div>
       </SidebarInset>
     </SidebarProvider>
