@@ -48,6 +48,7 @@ const LoginForm = () => {
         setLoading(false);
       } else {
         toast({ title: "Login successful!" });
+        window.location.href = "/dashboard"; // Force a full page reload to ensure content is displayed correctly
         router.push("/dashboard");
       }
     } catch (err) {
