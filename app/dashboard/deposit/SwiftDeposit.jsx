@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import CopyToClipboardButton from "@/components/CopyToClipboardButton"; // Assuming you have this component
+import CopyToClipboardButton from "./CopyToClipboardButton";
 
 const availableNetworks = [
   "Ethereum (ERC20)",
