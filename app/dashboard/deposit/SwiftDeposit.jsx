@@ -80,6 +80,7 @@ export default function SwiftDeposit({ assets }) {
           if (newTime <= 0) {
             clearInterval(timerId);
             localStorage.removeItem("depositStep");
+            setStep(1); // Reset to step 1 when time expires
             return 0;
           }
           localStorage.setItem("timeLeft", newTime);
