@@ -27,4 +27,5 @@ const BankSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Bank || mongoose.model("Bank", BankSchema);
+const Bank = mongoose.models?.Bank || mongoose.model("Bank", BankSchema);
+export default Bank;

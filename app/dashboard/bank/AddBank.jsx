@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { addBankAccount } from "@/actions/bankActions"; // Import the server action
 
 export default function AddBank() {
   const [bankName, setBankName] = useState("");
@@ -23,13 +24,7 @@ export default function AddBank() {
     };
 
     try {
-      const response = await fetch("/api/add-bank", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bankDetails),
-      });
+      const response = await addBankAccount(bankDetails);
 
       if (response.ok) {
         alert("Bank account added successfully!");
