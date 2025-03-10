@@ -25,7 +25,7 @@ const availableNetworks = [
   "OP Mainnet",
   "Mantle Network",
   "Arbitrum Nova",
-  "zkSync Era",
+  "Ripple",
   "Base Mainnet",
   "Linea",
 ];
