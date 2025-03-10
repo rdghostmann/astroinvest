@@ -229,7 +229,11 @@ export default function SwiftDeposit({ assets }) {
               Please complete your payment within <strong>{formattedTime}</strong>.
             </p>
           ) : (
-            <p className="text-red-600">Time expired. You can no longer complete this deposit.</p>
+            <>
+              <p className="text-red-600">Time expired. You can no longer complete this deposit.</p>
+              {localStorage.removeItem("depositStep")}
+              {setStep(1)}
+            </>
           )}
           <div className="p-3 bg-gray-100 rounded">
             <p>Deposit Number: <strong>{depositNumber}</strong></p>
