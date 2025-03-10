@@ -124,6 +124,9 @@ export default function SwiftDeposit({ assets }) {
   // Step 3: Payment completed
   const handlePaymentCompleted = () => {
     alert("Payment completed! Thank you.");
+    setAmount("");
+    setNetwork(null);
+    setSelectedAsset(null);
     localStorage.removeItem("depositStep");
     setStep(1);
   };
