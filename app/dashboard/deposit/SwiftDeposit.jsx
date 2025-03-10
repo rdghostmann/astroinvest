@@ -5,16 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import CopyToClipboardButton from "@/components/CopyToClipboardButton"; // Assuming you have this component
 
-// Example assets & networks
-// const availableAssets = ["ETH", "BTC", "USDT", "BNB"];
 const availableNetworks = [
   "Ethereum (ERC20)",
   "Arbitrum One",
@@ -32,10 +25,8 @@ export default function SwiftDeposit({ assets }) {
   const [amount, setAmount] = useState("");
   const [network, setNetwork] = useState("");
   const [depositNumber, setDepositNumber] = useState("");
-  const [DepositAddress, setDepositAddress] = useState("");
+  const [depositAddress, setDepositAddress] = useState("");
   const [timeLeft, setTimeLeft] = useState(900);
-
-
   const [selectedAsset, setSelectedAsset] = useState(null);
 
   // When an asset is selected, find it in the assets array and set it.
@@ -55,6 +46,7 @@ export default function SwiftDeposit({ assets }) {
       setAmount(storedDepositDetails.amount);
       setNetwork(storedDepositDetails.network);
       setDepositNumber(storedDepositDetails.depositNumber);
+      setDepositAddress(storedDepositDetails.depositAddress);
 
       // Calculate remaining time
       const lastTimestamp = localStorage.getItem("timestamp");
@@ -71,12 +63,12 @@ export default function SwiftDeposit({ assets }) {
       localStorage.setItem("depositStep", "3");
       localStorage.setItem(
         "depositDetails",
-        JSON.stringify({ asset, amount, network, depositAddress, depositNumber })
+        JSON.stringify({ amount, network, depositAddress, depositNumber })
       );
       localStorage.setItem("timeLeft", timeLeft);
       localStorage.setItem("timestamp", Date.now());
     }
-  }, [step]);
+  }, [step, amount, network, depositAddress, depositNumber, timeLeft]);
 
   // Handle countdown timer
   useEffect(() => {
@@ -107,16 +99,16 @@ export default function SwiftDeposit({ assets }) {
     .padStart(2, "0")}:${(timeLeft % 60).toString().padStart(2, "0")}`;
 
   // Generate deposit details
-  function generateDepositDetails(assetName) {
+  function generateDepositDetails() {
     const random19 = uuidv4().replace(/-/g, "").slice(0, 19).toUpperCase();
     setDepositNumber(random19);
-    setDepositAddress(selectedAsset);
+    setDepositAddress(selectedAsset.depositAddress);
   }
 
   // Step 1: Fill in asset, amount, network
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if (!asset || !amount || !network) return alert("Please fill in all fields.");
+    if (!selectedAsset || !amount || !network) return alert("Please fill in all fields.");
 
     generateDepositDetails();
     setStep(2);
@@ -195,7 +187,7 @@ export default function SwiftDeposit({ assets }) {
         <div className="space-y-4">
           <h2 className="text-xl font-bold">Deposit Address</h2>
           <p className="text-sm text-gray-700">
-            Please deposit your <strong>{selectedAsset}</strong> on the <strong>{network}</strong> network to
+            Please deposit your <strong>{selectedAsset?.name}</strong> on the <strong>{network}</strong> network to
             the following address:
           </p>
           <div className="p-2 bg-gray-100 rounded">
@@ -240,7 +232,7 @@ export default function SwiftDeposit({ assets }) {
           )}
           <div className="p-3 bg-gray-100 rounded">
             <p>Deposit Number: <strong>{depositNumber}</strong></p>
-            <p>Asset: <strong>{asset}</strong></p>
+            <p>Asset: <strong>{selectedAsset?.name}</strong></p>
             <p>Network: <strong>{network}</strong></p>
             <p>Amount: <strong>{amount}</strong></p>
             <p>Deposit Address: <strong>{depositAddress}</strong></p>
