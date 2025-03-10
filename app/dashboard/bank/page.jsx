@@ -45,7 +45,7 @@ export default function Page() {
           </div>
           <div>
             <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg  ">
-              <table className="min-w-full">
+              <table className="w-full">
                 <thead>
                   <tr className="text-slate-600 text-sm/5">
                     <th>#</th>
@@ -63,7 +63,7 @@ export default function Page() {
             </div>
 
             <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg  ">
-              <table className="min-w-full">
+              <table className="w-full">
                 <thead>
                   <tr className="text-slate-600 text-sm/5">
                     <th>#</th>
@@ -84,107 +84,13 @@ export default function Page() {
             </div>
 
 
-            <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
-              {/* Add Wallet Section */}
-              <div className="space-y-4">
-                {/* Add Wallet Option */}
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-4">Add New Wallet</h3>
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Select Crypto type:</p>
-                    <select className="bg-transparent p-2 rounded w-full">
-                      <option>Bitcoin</option>
-                      <option>Ethereum</option>
-                      <option>USDT</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Amount:</p>
-                    <input
-                      placeholder="Enter Amount"
-                      type="number"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
 
-                <button className="w-full bg-purple-600 text-white font-medium py-3 rounded-lg mt-6">
-                  Add Wallet
-                </button>
-              </div>
+            {/* Add Details */}
+            <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
+        
 
               {/* Add Bank Section */}
-              <div className="space-y-4 mb-4">
-                {/* Add Bank Option */}
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-4">Add Bank Account</h3>
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Bank Name:</p>
-                    <input
-                      placeholder="Enter Bank Name"
-                      type="text"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Account Number:</p>
-                    <input
-                      placeholder="Enter Account Number"
-                      type="number"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Account Name:</p>
-                    <input
-                      placeholder="Enter Account Name"
-                      type="text"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Bank Address:</p>
-                    <input
-                      placeholder="Enter Bank Address"
-                      type="text"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Routing No.:</p>
-                    <input
-                      placeholder="Enter Routing Number"
-                      type="number"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
-                  <div className="w-full">
-                    <p className="text-sm text-gray-500">Swift Code:</p>
-                    <input
-                      placeholder="Enter Swift Code"
-                      type="number"
-                      className="bg-transparent p-2 rounded w-full"
-                    />
-                  </div>
-                </div>
-
-                <button className="w-full bg-purple-600 text-white font-medium py-3 rounded-lg mt-6">
-                  Add Bank Account
-                </button>
-              </div>
-
+              <AddBank /> {/* Use AddBank component */}
 
             </div>
           </div>
