@@ -51,7 +51,6 @@ const LoginForm = () => {
       } else {
         toast({ title: "Login successful!" });
         router.push("/dashboard"); // Use only router.push for redirection
-        // router.push("/user"); // Use only router.push for redirection
       }
     } catch (err) {
       setError(`An error occurred: ${err.message}`);

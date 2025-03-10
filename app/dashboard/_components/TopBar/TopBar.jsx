@@ -24,7 +24,7 @@ const TopBar = ({ isSidebarOpen, toggleSidebar }) => {
   };
 
   return (
-    <div className="w-full bg-green-600 p-4 flex items-center justify-between">
+    <div className="w-full bg-blue-600 p-4 flex items-center justify-between">
       {/* Toggle Button */}
       <button className="hidden lg:block text-white" onClick={toggleSidebar}>
         {isSidebarOpen ? '☰' : '☰'}
@@ -59,7 +59,7 @@ const TopBar = ({ isSidebarOpen, toggleSidebar }) => {
                 href="/dashboard" 
                 className={clsx(
                   'w-full flex items-center gap-4 mx-auto mb-2 p-2',
-                  activeLink === "/dashboard" && 'text-green-500 border-l-2 border-green-500'
+                  activeLink === "/dashboard" && 'text-blue-500 border-l-2 border-blue-500'
                 )}
               >
                 <div className="flex items-center justify-center rounded-lg">
@@ -73,7 +73,7 @@ const TopBar = ({ isSidebarOpen, toggleSidebar }) => {
             </nav>
 
             <div className="p-4">
-              <Link href="/dashboard/documentation" className='bg-green-600 text-white w-full flex items-center gap-4 mx-auto mb-2 p-2'>
+              <Link href="/dashboard/documentation" className='bg-blue-600 text-white w-full flex items-center gap-4 mx-auto mb-2 p-2'>
                 <div className="flex items-center justify-center rounded-lg ">
                   <FaBookOpen className='text-2xl' />
                 </div>
