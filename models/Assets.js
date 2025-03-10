@@ -1,3 +1,4 @@
+//Assets Model
 import mongoose from "mongoose";
 
 const AssetSchema = new mongoose.Schema(
