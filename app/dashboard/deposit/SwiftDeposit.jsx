@@ -28,8 +28,6 @@ export default function SwiftDeposit({ assets }) {
   const [timeLeft, setTimeLeft] = useState(900);
 
 
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState(null);
 
   // When an asset is selected, find it in the assets array and set it.
