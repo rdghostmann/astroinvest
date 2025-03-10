@@ -44,10 +44,10 @@ const SideBar = ({ isOpen }) => {
             className={clsx(
               'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
               {
-                'border-l-4 border-green-500 text-green-500': pathname === '/dashboard',
+                'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard',
                 'text-slate-500': pathname !== '/dashboard',
                 'justify-start': isOpen,
-                'bg-green-500 rounded-lg justify-center': !isOpen,
+                'bg-blue-500 rounded-lg justify-center': !isOpen,
               }
             )}
           >
@@ -56,7 +56,7 @@ const SideBar = ({ isOpen }) => {
                 className={clsx(
                   'text-base',
                   {
-                    'text-green-500': pathname === '/dashboard',
+                    'text-blue-500': pathname === '/dashboard',
                     'text-slate-500': pathname !== '/dashboard',
                     'text-lg': !isOpen,
                   }
@@ -73,10 +73,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/activities" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/activities',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/activities',
               'text-slate-500': pathname !== '/dashboard/activities',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -84,7 +84,7 @@ const SideBar = ({ isOpen }) => {
               <FaTasks className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/activities',
+                  'text-blue-500': pathname === '/dashboard/activities',
                   'text-slate-500': pathname !== '/dashboard/activities',
                   'text-lg': !isOpen,
                 }
@@ -100,10 +100,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/expenses" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/expenses',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/expenses',
               'text-slate-500': pathname !== '/dashboard/expenses',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -111,7 +111,7 @@ const SideBar = ({ isOpen }) => {
               <FaFileInvoiceDollar className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/expenses',
+                  'text-blue-500': pathname === '/dashboard/expenses',
                   'text-slate-500': pathname !== '/dashboard/expenses',
                   'text-lg': !isOpen,
                 }
@@ -127,10 +127,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/incomes" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/incomes',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/incomes',
               'text-slate-500': pathname !== '/dashboard/incomes',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -138,7 +138,7 @@ const SideBar = ({ isOpen }) => {
               <FaDollarSign className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/incomes',
+                  'text-blue-500': pathname === '/dashboard/incomes',
                   'text-slate-500': pathname !== '/dashboard/incomes',
                   'text-lg': !isOpen,
                 }
@@ -156,10 +156,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/crops" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/crops',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/crops',
               'text-slate-500': pathname !== '/dashboard/crops',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -167,7 +167,7 @@ const SideBar = ({ isOpen }) => {
               <FaLeaf className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/crops',
+                  'text-blue-500': pathname === '/dashboard/crops',
                   'text-slate-500': pathname !== '/dashboard/crops',
                   'text-lg': !isOpen,
                 }
@@ -183,10 +183,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/lands" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/lands',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/lands',
               'text-slate-500': pathname !== '/dashboard/lands',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -194,7 +194,7 @@ const SideBar = ({ isOpen }) => {
               <FaTree className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/lands',
+                  'text-blue-500': pathname === '/dashboard/lands',
                   'text-slate-500': pathname !== '/dashboard/lands',
                   'text-lg': !isOpen,
                 }
@@ -210,10 +210,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/species" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/species',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/species',
               'text-slate-500': pathname !== '/dashboard/species',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -221,7 +221,7 @@ const SideBar = ({ isOpen }) => {
               <PiPlantFill className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/species',
+                  'text-blue-500': pathname === '/dashboard/species',
                   'text-slate-500': pathname !== '/dashboard/species',
                   'text-lg': !isOpen,
                 }
@@ -237,10 +237,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/inputs" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/inputs',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/inputs',
               'text-slate-500': pathname !== '/dashboard/inputs',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -248,7 +248,7 @@ const SideBar = ({ isOpen }) => {
               <MdInput className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/inputs',
+                  'text-blue-500': pathname === '/dashboard/inputs',
                   'text-slate-500': pathname !== '/dashboard/inputs',
                   'text-lg': !isOpen,
                 }
@@ -264,10 +264,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/warehouses" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/warehouses',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/warehouses',
               'text-slate-500': pathname !== '/dashboard/warehouses',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -275,7 +275,7 @@ const SideBar = ({ isOpen }) => {
               <FaWarehouse className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/warehouses',
+                  'text-blue-500': pathname === '/dashboard/warehouses',
                   'text-slate-500': pathname !== '/dashboard/warehouses',
                   'text-lg': !isOpen,
                 }
@@ -291,10 +291,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/housings" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/housings',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/housings',
               'text-slate-500': pathname !== '/dashboard/housings',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -302,7 +302,7 @@ const SideBar = ({ isOpen }) => {
               <FaHouseCircleCheck className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/housings',
+                  'text-blue-500': pathname === '/dashboard/housings',
                   'text-slate-500': pathname !== '/dashboard/housings',
                   'text-lg': !isOpen,
                 }
@@ -318,10 +318,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/equipments" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/equipments',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/equipments',
               'text-slate-500': pathname !== '/dashboard/equipments',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -329,7 +329,7 @@ const SideBar = ({ isOpen }) => {
               <FaTractor className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/equipments',
+                  'text-blue-500': pathname === '/dashboard/equipments',
                   'text-slate-500': pathname !== '/dashboard/equipments',
                   'text-lg': !isOpen,
                 }
@@ -345,10 +345,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/employees" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/employees',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/employees',
               'text-slate-500': pathname !== '/dashboard/employees',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -356,7 +356,7 @@ const SideBar = ({ isOpen }) => {
               <FaUsers className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/employees',
+                  'text-blue-500': pathname === '/dashboard/employees',
                   'text-slate-500': pathname !== '/dashboard/employees',
                   'text-lg': !isOpen,
                 }
@@ -372,10 +372,10 @@ const SideBar = ({ isOpen }) => {
           <Link href="/dashboard/settings" className={clsx(
             'bg-white shadow-lg w-4/5 flex items-center gap-4 mx-auto mb-2 p-2',
             {
-              'border-l-4 border-green-500 text-green-500': pathname === '/dashboard/settings',
+              'border-l-4 border-blue-500 text-blue-500': pathname === '/dashboard/settings',
               'text-slate-500': pathname !== '/dashboard/settings',
               'justify-start': isOpen,
-              'bg-green-500 rounded-lg justify-center': !isOpen,
+              'bg-blue-500 rounded-lg justify-center': !isOpen,
             }
           )}
           >
@@ -383,7 +383,7 @@ const SideBar = ({ isOpen }) => {
               <FaCog className={clsx(
                 'text-base',
                 {
-                  'text-green-500': pathname === '/dashboard/settings',
+                  'text-blue-500': pathname === '/dashboard/settings',
                   'text-slate-500': pathname !== '/dashboard/settings',
                   'text-lg': !isOpen,
                 }
@@ -398,7 +398,7 @@ const SideBar = ({ isOpen }) => {
         </nav>
 
         <div className="p-1">
-          <Link href="/dashboard/documentation" className={`mt-auto bg-green-500 w-4/5 text-white rounded shadow-lg flex items-center gap-4 mx-auto mb-2 p-2 ${isOpen ? 'justify-start' : 'bg-green-500 rounded-lg justify-center'}`}>
+          <Link href="/dashboard/documentation" className={`mt-auto bg-blue-500 w-4/5 text-white rounded shadow-lg flex items-center gap-4 mx-auto mb-2 p-2 ${isOpen ? 'justify-start' : 'bg-blue-500 rounded-lg justify-center'}`}>
             <div className="flex items-center justify-center text-center rounded-lg ">
               <FaBookOpen className={`text-2xl  ${isOpen ? 'text-2xl' : 'text-3xl text-white'}`} />
             </div>
