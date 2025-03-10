@@ -51,8 +51,8 @@ export default function Page() {
           <div className="w-full lg:w-1/3 space-y-6 my-2 basis-0">
             <h3 className="px-4 text-lg font-semibold">Upload Valid Identification</h3>
             <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
-              <kycForm />
-            </div>
+            <kycForm />
+               </div>
           </div>
         </div>
       </SidebarInset>
