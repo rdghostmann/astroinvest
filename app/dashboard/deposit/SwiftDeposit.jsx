@@ -2,7 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid"; // For generating random deposit no. (or you can write your own random function)
-import { Button, Input, Label } from "@/components/ui"; // Adjust imports to match your UI library
+"use client";
+
+import { useState, useRef } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import CopyToClipboardButton from "./CopyToClipboardButton";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";import { useToast } from "@/hooks/use-toast";
 
 // Example assets & networks for demonstration
 const availableAssets = ["ETH", "BTC", "USDT", "BNB"];
@@ -18,7 +32,7 @@ const availableNetworks = [
   "Linea",
 ];
 
-export default function SwiftDeposit() {
+export default function SwiftDeposit({ assets }) {
   const [step, setStep] = useState(1); // Step of the flow: 1->form, 2->show deposit address, 3->complete deposit
   const [asset, setAsset] = useState("");
   const [amount, setAmount] = useState("");

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sidebar"
 import { fetchAssets } from "@/controllers/FetchAssets";
 import DepositForm from "./DepositForm";
-import SwiftDeposit from "../_components/SwiftDeposit/SwiftDeposit";
+import SwiftDeposit from "./SwiftDeposit";
 
 export default async function Page() {
   const assets = await fetchAssets();
@@ -41,7 +41,7 @@ export default async function Page() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Make Desposit</BreadcrumbPage>
+                  <BreadcrumbPage>Make Y Desposit</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -55,7 +55,7 @@ export default async function Page() {
 
           <div className="w-full lg:w-1/3 space-y-6 basis-0">
             {/* Pass assets as props */}
-            <SwiftDeposit />
+            <SwiftDeposit assets={assetData} />
             {/* <DepositForm assets={assetData} /> */}
           </div>
         </div>
