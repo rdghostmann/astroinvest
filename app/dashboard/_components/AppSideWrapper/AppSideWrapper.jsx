@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 // Dynamically import AppSidebar with SSR disabled
-const AppSidebar = dynamic(() => import('@/components/app-sidebar'), { ssr: false });
+const AppSidebar = dynamic(() => import('@/components/app-sidebar'));
 
 const AppSidebarWrapper = () => {
   return <AppSidebar />;
