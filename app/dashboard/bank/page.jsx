@@ -44,24 +44,7 @@ export default function Page() {
             <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
           <div>
-            <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg  ">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-slate-600 text-sm/5">
-                    <th>#</th>
-                    <th>Coin</th>
-                    <th>Address</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody className="text-center">
-                  <tr>
-
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+            {/* Bank details  */}
             <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg  ">
               <table className="w-full">
                 <thead>
@@ -87,7 +70,7 @@ export default function Page() {
 
             {/* Add Details */}
             <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
-        
+
 
               {/* Add Bank Section */}
               <AddBank /> {/* Use AddBank component */}
