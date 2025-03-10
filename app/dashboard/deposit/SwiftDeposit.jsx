@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid"; // For generating random deposit no. (or you can write your own random function)
-"use client";
-
 import { useState, useRef } from "react";
 import {
   Select,
