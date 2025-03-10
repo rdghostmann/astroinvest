@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 // Example assets & networks
-const availableAssets = ["ETH", "BTC", "USDT", "BNB"];
+// const availableAssets = ["ETH", "BTC", "USDT", "BNB"];
 const availableNetworks = [
   "Ethereum (ERC20)",
   "Arbitrum One",
@@ -25,6 +25,7 @@ export default function SwiftDeposit({ assets }) {
   const [amount, setAmount] = useState("");
   const [network, setNetwork] = useState("");
   const [depositNumber, setDepositNumber] = useState("");
+  const [DepositAddress, setDepositAddress] = useState("");
   const [timeLeft, setTimeLeft] = useState(900);
 
 
@@ -102,7 +103,7 @@ export default function SwiftDeposit({ assets }) {
   function generateDepositDetails(assetName) {
     const random19 = uuidv4().replace(/-/g, "").slice(0, 19).toUpperCase();
     setDepositNumber(random19);
-    setDepositAddress("0x5e55591530c2001e42123b0440d3f948b9027698"); // Example address
+    setDepositAddress(selectedAsset);
   }
 
   // Step 1: Fill in asset, amount, network
@@ -187,7 +188,7 @@ export default function SwiftDeposit({ assets }) {
         <div className="space-y-4">
           <h2 className="text-xl font-bold">Deposit Address</h2>
           <p className="text-sm text-gray-700">
-            Please deposit your <strong>{asset}</strong> on the <strong>{network}</strong> network to
+            Please deposit your <strong>{selectedAsset}</strong> on the <strong>{network}</strong> network to
             the following address:
           </p>
           <div className="p-2 bg-gray-100 rounded">
@@ -213,7 +214,8 @@ export default function SwiftDeposit({ assets }) {
                   className="bg-transparent p-2 rounded w-full text-gray-700"
                 />
               </div>
-            )}          </div>
+            )}
+          </div>
           <Button onClick={handleProceedToPayment} className="w-full bg-purple-600 text-white">
             Proceed
           </Button>
