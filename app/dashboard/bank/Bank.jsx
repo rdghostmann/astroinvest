@@ -7,8 +7,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { addBankAccount } from "@/lib/actions";
 import { useToast } from "@/hooks/use-toast";
+import { useSession } from "next-auth/react"; // Assuming you are using next-auth for authentication
 
 export default function Bank() {
+  const { data: session } = useSession(); // Get the session data
+  const userID = session?.user?.id; // Get the userID from the session
+
   const [showPopup, setShowPopup] = useState(false);
   const [bankName, setBankName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -16,12 +20,21 @@ export default function Bank() {
   const [bankAddress, setBankAddress] = useState("");
   const [routingNumber, setRoutingNumber] = useState("");
   const [swiftCode, setSwiftCode] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!bankName || !accountNumber || !accountName || !bankAddress || !routingNumber || !swiftCode) {
+      toast({ title: "Please fill in all fields.", variant: "destructive" });
+      return;
+    }
+
+    setIsSubmitting(true);
+
     const bankDetails = {
+      userID, // Include the userID
       bankName,
       accountNumber,
       accountName,
@@ -33,7 +46,7 @@ export default function Bank() {
     const response = await addBankAccount(bankDetails);
 
     if (response.ok) {
-      toast({ title: "Added Bank successful!" });
+      toast({ title: "Added Bank successfully!" });
       setShowPopup(false);
       // Optionally, clear the form fields here
       setBankName("");
@@ -42,9 +55,12 @@ export default function Bank() {
       setBankAddress("");
       setRoutingNumber("");
       setSwiftCode("");
+      window.location.reload(); // Refresh the page after successful submission
     } else {
       toast({ title: "Failed to add bank account.", variant: "destructive" });
     }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -61,15 +77,9 @@ export default function Bank() {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <button
-            className="absolute border rounded-full top-2 right-2 text-gray-500 hover:text-gray-700"
-            onClick={() => setShowPopup(false)}
-          >
-            <XIcon className="h-6 w-6" />
-          </button>
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             <button
-              className="absolute border rounded-full top-2 right-2 text-gray-500 hover:text-gray-700"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               onClick={() => setShowPopup(false)}
             >
               <XIcon className="h-6 w-6" />
@@ -136,8 +146,8 @@ export default function Bank() {
                     />
                   </div>
                   <CardFooter className="mt-5">
-                    <Button type="submit" className="w-full">
-                      Save Bank
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Saving..." : "Save Bank"}
                     </Button>
                   </CardFooter>
                 </form>
