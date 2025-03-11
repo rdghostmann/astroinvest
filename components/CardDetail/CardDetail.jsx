@@ -71,7 +71,7 @@ export default function CardDetail({ userID }) {
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-6 lg:p-8">
-      <div className="mx-auto max-w-5xl space-y-8">
+      <div className="mx-auto max-w-full space-y-8">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-slate-900">Card Details</h1>
           <Button variant="outline" size="sm" onClick={() => setShowPopup(true)}>
