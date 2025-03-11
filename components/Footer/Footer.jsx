@@ -1,7 +1,7 @@
 'use client';
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import Logo from "../../public/AstroInvest2.png";
+import Logo from "../../public/investjar2.png";
 import Image from "next/image";
 
 

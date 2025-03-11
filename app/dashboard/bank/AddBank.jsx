@@ -1,7 +1,7 @@
 "use client";
 
+import { addBankAccount } from "@/lib/actions";
 import React, { useState } from "react";
-import { addBankAccount } from "@/actions/bankActions"; // Import the server action
 
 export default function AddBank() {
   const [bankName, setBankName] = useState("");
