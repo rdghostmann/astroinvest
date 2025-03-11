@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { addDeposit } from "@/lib/actions"; // Import the server action
 import CopyToClipboardButton from "./CopyToClipboardButton";
+import { addDeposit } from "@/lib/actions";
 
 const availableNetworks = [
   "Ethereum (ERC20)",
@@ -147,6 +147,7 @@ export default function SwiftDeposit({ assets }) {
       depositAddress,
       depositNumber,
     };
+    console.log(depositDetails);
 
     const response = await addDeposit(depositDetails);
 
