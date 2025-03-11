@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,44 +6,26 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-
+} from "@/components/ui/sidebar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { getSession } from "next-auth/react";
+import { fetchDepositsByUser } from "@/lib/actions"; // Import the server action
 
-export default function Page() {
+export default async function Page() {
+  const session = await getSession();
+  const userID = session?.user?.id;
 
-  const deposits = [
-    {
-      id: "1",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 3600,
-      currency: "SOL",
-    },
-    {
-      id: "2",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 5200,
-      currency: "BTC",
-    },
-    {
-      id: "3",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 2800,
-      currency: "ETH",
-    },
-  ];
+  // Fetch deposits made by the user
+  const deposits = await fetchDepositsByUser(userID);
 
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -54,12 +36,12 @@ export default function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    Investment & Desposit
+                    Investment & Deposit
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Desposit History</BreadcrumbPage>
+                  <BreadcrumbPage>Deposit History</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -70,33 +52,36 @@ export default function Page() {
             <h2 className="text-purple-600 font-bold text-xl">Deposit History</h2>
             <p className="text-slate-700">Find all your Deposits with AstroInvest here</p>
           </div>
-          <div className="w-full min-w-xs mx-auto px-0 lg:px-10 ">
+          <div className="w-full min-w-xs mx-auto px-0 lg:px-10">
             <div className="rounded-t-lg overflow-x-auto border">
-              <Table className="min-w-full">
-                <TableHeader>
-                  <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
-                    <TableHead className="text-blue-100">Transaction id</TableHead>
-                    <TableHead className="text-blue-100">Date</TableHead>
-                    <TableHead className="text-blue-100">Amount</TableHead>
-                    <TableHead className="text-blue-100">Currency</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {deposits.map((transaction) => (
-                    <TableRow key={transaction.id} className="border-b hover:bg-blue-900/20">
-                      <TableCell className="text-gray-600">{transaction.transactionId}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.date}</TableCell>
-                      <TableCell className="text-gray-600">${transaction.amount.toLocaleString()}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.currency}</TableCell>
+              {deposits.length > 0 ? (
+                <Table className="min-w-full">
+                  <TableHeader>
+                    <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
+                      <TableHead className="text-blue-100">Transaction ID</TableHead>
+                      <TableHead className="text-blue-100">Date</TableHead>
+                      <TableHead className="text-blue-100">Amount</TableHead>
+                      <TableHead className="text-blue-100">Currency</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {deposits.map((deposit) => (
+                      <TableRow key={deposit._id} className="border-b hover:bg-blue-900/20">
+                        <TableCell className="text-gray-600">{deposit.depositNumber}</TableCell>
+                        <TableCell className="text-gray-600">{new Date(deposit.createdAt).toLocaleDateString()}</TableCell>
+                        <TableCell className="text-gray-600">${deposit.amount.toLocaleString()}</TableCell>
+                        <TableCell className="text-gray-600">{deposit.assetName}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              ) : (
+                <div className="p-4 text-center text-gray-600">No Deposits made</div>
+              )}
             </div>
-
           </div>
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }
