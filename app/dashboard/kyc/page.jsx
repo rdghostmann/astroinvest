@@ -20,11 +20,16 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import kycForm from "./kycForm"
+
+const identificationTypes = [
+  "International Passport",
+  "Driver's License",
+  // Add more identification types if needed
+];
 
 export default function Page() {
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -53,22 +58,23 @@ export default function Page() {
             <p className="text-slate-700">Complete KYC Verification</p>
           </div>
 
-
           <div className="w-full lg:w-1/3 space-y-6 my-2 basis-0">
             <h3 className="px-4 text-lg font-semibold">Upload Valid Identification</h3>
             <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
               <form className="space-y-4">
-
                 <div className="flex flex-wrap justify-between items-center bg-gray-50 p-4 rounded-lg">
                   <div className="w-full">
-                    <Label htmlFor="" className="text-sm text-gray-500">Identification Type:</Label>
+                    <Label htmlFor="identificationType" className="text-sm text-gray-500">Identification Type:</Label>
                     <Select className="bg-transparent p-2 rounded w-full">
                       <SelectTrigger className="bg-transparent p-2 rounded w-full">
-                        <SelectValue placeholder="-- Select Asset --" />
+                        <SelectValue placeholder="-- Select Identification Type --" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem>International Passport</SelectItem>
-                        <SelectItem>Driver's License</SelectItem>
+                        {identificationTypes.map((type, index) => (
+                          <SelectItem key={index} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -96,12 +102,11 @@ export default function Page() {
                 <Button type="submit" className="w-full bg-purple-600 text-white font-medium py-3 rounded-lg mt-6">
                   Upload
                 </Button>
-
               </form>
             </div>
           </div>
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }
