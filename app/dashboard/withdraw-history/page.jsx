@@ -66,7 +66,7 @@ export default function Page() {
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="text-sm/5">
-            <h2 className="text-purple-600 font-bold text-xl">Investment History</h2>
+            <h2 className="text-purple-600 font-bold text-xl">Withdrawal History</h2>
             <p className="text-slate-700">Find all your Withdrawal with AstroInvest here</p>
           </div>
           <div className="w-full min-w-xs mx-auto px-0 lg:px-10 ">
