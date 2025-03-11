@@ -85,7 +85,7 @@ export default function Bank({ userID }) {
           </Button>
         </div>
 
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+        <div className="w-full">
           {/* Bank List */}
           <BankList banks={banks} />
         </div>
@@ -93,7 +93,7 @@ export default function Bank({ userID }) {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               onClick={() => setShowPopup(false)}
