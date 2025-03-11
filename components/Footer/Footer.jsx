@@ -1,7 +1,7 @@
 'use client';
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import Logo from "../../public/investjar2.png";
+import Logo from "../../public/AstroInvest2.png";
 import Image from "next/image";
 
 
@@ -53,7 +53,7 @@ const Footer7 = () => {
                     }}
                     className="object-cover"
                   />
-                  <p className="text-3xl font-semibold">InvestJar</p>
+                  <p className="text-3xl font-semibold">AstroInvest</p>
                 </span>
                 <p className="mt-6 text-sm text-muted-foreground">
                   Empowering your financial future, one smart investment at a time.
@@ -100,7 +100,7 @@ const Footer7 = () => {
             </div>
           </div>
           <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
-            <p>© 2025 InvestJar. All rights reserved.</p>
+            <p>© 2025 AstroInvest. All rights reserved.</p>
             <ul className="flex justify-center gap-4 lg:justify-start">
               <li className="hover:text-white">
                 <a href="#"> Terms and Conditions</a>

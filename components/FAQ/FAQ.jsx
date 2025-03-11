@@ -31,7 +31,7 @@ const FAQ = () => {
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-indigo-600/20">
-              <AccordionTrigger className="text-indigo-900 hover:text-indigo-900/70">How can I start working with InvestJar?</AccordionTrigger>
+              <AccordionTrigger className="text-indigo-900 hover:text-indigo-900/70">How can I start working with AstroInvest?</AccordionTrigger>
               <AccordionContent className="text-gray-600">
                 Contact our support team to get started with your investment journey.
               </AccordionContent>
@@ -48,10 +48,10 @@ const FAQ = () => {
 
             <AccordionItem value="item-3" className="border-indigo-600/20">
               <AccordionTrigger className="text-indigo-900 hover:text-indigo-900/70">
-                Can I reinvest profit from my InvestJar account balance?
+                Can I reinvest profit from my AstroInvest account balance?
               </AccordionTrigger>
               <AccordionContent className="text-gray-600">
-                <p>In order to make a reinvestment deposit from your InvestJar account balance, follow the instructions:</p>
+                <p>In order to make a reinvestment deposit from your AstroInvest account balance, follow the instructions:</p>
                 <ul className="list-disc pl-6 mt-2 space-y-1">
                   <li>Login to your account</li>
                   <li>Click "Make deposit"</li>

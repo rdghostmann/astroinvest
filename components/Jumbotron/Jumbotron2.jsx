@@ -17,7 +17,7 @@ const Hero1 = () => {
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="relative text-center rounded-full px-2 py-1 text-sm text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               <AnimatedShinyText className="inline-flex items-center justify-center px-3 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-                <span>✨ Announcing InvestJar.</span>
+                <span>✨ Announcing AstroInvest.</span>
                 <Link href="#" className="font-semibold ml-2 text-indigo-900">
                   <span aria-hidden="true" className="absolute inset-0" />
                   <span aria-hidden="true">&rarr;</span>

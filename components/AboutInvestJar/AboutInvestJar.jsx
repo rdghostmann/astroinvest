@@ -5,7 +5,7 @@ import { ArrowDownRight, ArrowRight } from "lucide-react";
 import About1 from "../../public/about-1.png";
 import { Badge } from '../ui/badge';
 
-const AboutInvestJar = () => {
+const AboutAstroInvest = () => {
   return (
     <div className="bg-white text-slate-700">
     {/* Hero Section */}
@@ -23,7 +23,7 @@ const AboutInvestJar = () => {
           </div>
           <div className="w-full lg:w-1/2 space-y-4">
           <Badge className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white" variant="outline">
-              About InvestJar
+              About AstroInvest
               <ArrowDownRight className="ml-2 size-4" />
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-blue-700">
@@ -35,7 +35,7 @@ const AboutInvestJar = () => {
             </h2>
             <p className="text-gray-700 w-[90%]">
               There has been always a demand for quality investment services. In an attempt to satisfy this demand,
-              the idea of creating an InvestJar company came up. InvestJar is a modern investment company that combines the
+              the idea of creating an AstroInvest company came up. AstroInvest is a modern investment company that combines the
               most advanced projects in its work.
             </p>
             <p className="text-gray-700 w-[90%]">
@@ -54,4 +54,4 @@ const AboutInvestJar = () => {
   )
 }
 
-export default AboutInvestJar
+export default AboutAstroInvest
