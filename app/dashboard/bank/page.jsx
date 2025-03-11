@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,17 +6,22 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import BankTable from "./BankTable";
+import AddBank from "./AddBank";
+import { fetchBanks } from "./actions"; // Import server action
 
-export default function Page() {
+export default async function Page() {
+  const banks = await fetchBanks(); // Fetch banks on the server
+
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -26,9 +31,7 @@ export default function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Dashboard
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
@@ -44,41 +47,16 @@ export default function Page() {
             <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
           <div>
-            {/* Bank details  */}
-            <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg  ">
-              <table className="w-full">
-                <thead>
-                  <tr className="text-slate-600 text-sm/5">
-                    <th>#</th>
-                    <th>Bank Name</th>
-                    <th>Account Number</th>
-                    <th>Account Name</th>
-                    <th>Bank Address</th>
-                    <th>Routing Number</th>
-                    <th>Swift Code</th>
-                  </tr>
-                </thead>
-                <tbody className="text-center">
-                  <tr>
+            {/* Bank Table */}
+            <BankTable banks={banks} />
 
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-
-
-            {/* Add Details */}
+            {/* Add Bank Section */}
             <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
-
-
-              {/* Add Bank Section */}
-              <AddBank /> {/* Use AddBank component */}
-
+              <AddBank />
             </div>
           </div>
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }
