@@ -13,8 +13,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import BankTable from "./BankTable.";
-import { fetchBanks } from "@/lib/actions";
 import Bank from "./Bank";
 
 export default async function Page() {
