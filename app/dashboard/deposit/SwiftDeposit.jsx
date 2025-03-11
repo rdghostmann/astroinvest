@@ -125,7 +125,7 @@ export default function SwiftDeposit({ assets }) {
   const handlePaymentCompleted = () => {
     alert("Payment completed! Thank you.");
     setAmount("");
-    setNetwork(null);
+    setNetwork("");
     setSelectedAsset(null);
     localStorage.removeItem("depositStep");
     setStep(1);
@@ -167,19 +167,18 @@ export default function SwiftDeposit({ assets }) {
           {/* Network */}
           <div>
             <Label htmlFor="networkSelect">Choose Network:</Label>
-            <select
-              id="networkSelect"
-              className="border p-2 w-full rounded"
-              value={network}
-              onChange={(e) => setNetwork(e.target.value)}
-            >
-              <option value="">-- Select Network --</option>
-              {availableNetworks.map((net) => (
-                <option key={net} value={net}>
-                  {net}
-                </option>
-              ))}
-            </select>
+            <Select onValueChange={setNetwork} value={network}>
+              <SelectTrigger className="bg-transparent p-2 rounded w-full">
+                <SelectValue placeholder="-- Select Network --" />
+              </SelectTrigger>
+              <SelectContent>
+                {availableNetworks.map((net) => (
+                  <SelectItem key={net} value={net}>
+                    {net}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <Button type="submit" className="w-full bg-blue-600 text-white">
             Continue
