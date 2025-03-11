@@ -48,6 +48,10 @@ export default function SwiftDeposit({ assets }) {
       setDepositNumber(storedDepositDetails.depositNumber);
       setDepositAddress(storedDepositDetails.depositAddress);
 
+      // Find the asset in the assets array
+      const asset = assets.find((a) => a.name === storedDepositDetails.assetName);
+      setSelectedAsset(asset);
+
       // Calculate remaining time
       const lastTimestamp = localStorage.getItem("timestamp");
       const elapsedTime = Math.floor((Date.now() - lastTimestamp) / 1000);
@@ -55,7 +59,7 @@ export default function SwiftDeposit({ assets }) {
 
       setTimeLeft(remainingTime);
     }
-  }, []);
+  }, [assets]);
 
   // Save state to localStorage whenever step changes
   useEffect(() => {
@@ -63,12 +67,12 @@ export default function SwiftDeposit({ assets }) {
       localStorage.setItem("depositStep", "3");
       localStorage.setItem(
         "depositDetails",
-        JSON.stringify({ amount, network, depositAddress, depositNumber })
+        JSON.stringify({ amount, network, depositAddress, depositNumber, assetName: selectedAsset?.name })
       );
       localStorage.setItem("timeLeft", timeLeft);
       localStorage.setItem("timestamp", Date.now());
     }
-  }, [step, amount, network, depositAddress, depositNumber, timeLeft]);
+  }, [step, amount, network, depositAddress, depositNumber, timeLeft, selectedAsset]);
 
   // Handle countdown timer
   useEffect(() => {
