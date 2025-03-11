@@ -13,11 +13,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { fetchBanks } from "./actions"; // Import server action
 import BankTable from "./BankTable.";
+import { fetchBanks } from "@/lib/actions";
 
 export default async function Page() {
-  const banks = await fetchBanks(); // Fetch banks on the server
+  const banks = await fetchBankss(); // Fetch banks on the server
 
   return (
     <SidebarProvider>
