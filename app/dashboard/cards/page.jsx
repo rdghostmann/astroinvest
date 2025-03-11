@@ -49,6 +49,8 @@ export default function Page() {
           <div className="w-full lg:w-1/3 space-y-6 basis-0">
             <CardDetail  />
           </div>
+
+          
         </div>
       </SidebarInset>
     </SidebarProvider>)

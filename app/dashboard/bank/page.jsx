@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import BankTable from "./BankTable.";
 import { fetchBanks } from "@/lib/actions";
+import Bank from "./Bank";
 
 export default async function Page() {
   const banks = await fetchBankss(); // Fetch banks on the server
@@ -46,13 +47,7 @@ export default async function Page() {
             <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
           <div>
-            {/* Bank Table */}
-            <BankTable banks={banks} />
-
-            {/* Add Bank Section */}
-            <div className="mb-2 bg-white shadow-md p-4 rounded-lg">
-              <AddBank />
-            </div>
+            <Bank />
           </div>
         </div>
       </SidebarInset>
