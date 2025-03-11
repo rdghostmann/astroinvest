@@ -14,8 +14,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Bank from "./Bank";
+import { getSession } from "next-auth/react";
 
 export default async function Page() {
+  const session = await getSession();
+  const userID = session?.user?.id;
 
   return (
     <SidebarProvider>
@@ -44,7 +47,7 @@ export default async function Page() {
             <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
           <div>
-            <Bank />
+            <Bank userID={userID} />
           </div>
         </div>
       </SidebarInset>

@@ -1,18 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PlusCircleIcon, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { addBankAccount } from "@/lib/actions";
+import { addBankAccount, fetchBanksByUser } from "@/lib/actions";
 import { useToast } from "@/hooks/use-toast";
-import { useSession } from "next-auth/react"; // Assuming you are using next-auth for authentication
 
-export default function Bank() {
-  const { data: session } = useSession(); // Get the session data
-  const userID = session?.user?.id; // Get the userID from the session
-
+export default function Bank({ userID }) {
   const [showPopup, setShowPopup] = useState(false);
   const [bankName, setBankName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -21,7 +17,21 @@ export default function Bank() {
   const [routingNumber, setRoutingNumber] = useState("");
   const [swiftCode, setSwiftCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [banks, setBanks] = useState([]);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const response = await fetchBanksByUser(userID);
+        setBanks(response);
+      } catch (error) {
+        console.error("Error fetching banks:", error);
+      }
+    };
+
+    fetchBanks();
+  }, [userID]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,6 +82,11 @@ export default function Bank() {
             <PlusCircleIcon className="mr-2 h-4 w-4" />
             Add A New Bank
           </Button>
+        </div>
+
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+          {/* Bank List */}
+          <BankList banks={banks} />
         </div>
       </div>
 
@@ -156,6 +171,39 @@ export default function Bank() {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function BankList({ banks }) {
+  return (
+    <div className="max-w-3xl md:w-screen mx-auto overflow-x-scroll my-6 bg-white shadow-md p-4 rounded-lg">
+      <table className="w-full">
+        <thead>
+          <tr className="text-slate-600 text-sm/5">
+            <th>#</th>
+            <th>Bank Name</th>
+            <th>Account Number</th>
+            <th>Account Name</th>
+            <th>Bank Address</th>
+            <th>Routing Number</th>
+            <th>Swift Code</th>
+          </tr>
+        </thead>
+        <tbody className="text-center">
+          {banks.map((bank, index) => (
+            <tr key={bank._id}>
+              <td>{index + 1}</td>
+              <td>{bank.bankName}</td>
+              <td>{bank.accountNumber}</td>
+              <td>{bank.accountName}</td>
+              <td>{bank.bankAddress}</td>
+              <td>{bank.routingNumber}</td>
+              <td>{bank.swiftCode}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
