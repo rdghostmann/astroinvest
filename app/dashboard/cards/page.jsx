@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import CardDetail from "@/components/CardDetail/CardDetail";
 import {
   Breadcrumb,
@@ -7,18 +7,21 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { ArrowUpRight } from "lucide-react";
+} from "@/components/ui/sidebar";
+import { getSession } from "next-auth/react";
 
-export default function Page() {
+export default async function Page() {
+  const session = await getSession();
+  const userID = session?.user?.id;
+
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -29,7 +32,7 @@ export default function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    Investment & Desposit
+                    Investment & Deposit
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
@@ -47,12 +50,10 @@ export default function Page() {
           </div>
 
           <div className="w-full lg:w-1/3 space-y-6 basis-0">
-            <CardDetail  />
+            <CardDetail userID={userID} />
           </div>
-
-          
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }

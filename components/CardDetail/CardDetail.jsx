@@ -7,10 +7,12 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { addCardDetails } from "@/lib/actions"; // Import the server action
 
-export default function CardDetail() {
+export default function CardDetail({ userID }) {
   const [cardNumber, setCardNumber] = useState("");
   const [cardType, setCardType] = useState("");
+  const [bankName, setBankName] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -36,23 +38,35 @@ export default function CardDetail() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!cardNumber || !cardType) {
+    if (!cardNumber || !cardType || !bankName) {
       toast({ title: "Please fill in all fields.", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    const cardDetails = {
+      userID, // Include the userID
+      cardNumber,
+      cardType,
+      bankName,
+    };
+
+    const response = await addCardDetails(cardDetails);
+
+    if (response.ok) {
       toast({ title: "Added Card successfully!" });
-      setIsSubmitting(false);
+      setShowPopup(false);
       // Optionally, clear the form fields here
       setCardNumber("");
       setCardType("");
+      setBankName("");
       window.location.href = "/dashboard/card"; // Refresh the page after successful submission
-      // window.location.href = "/dashboard/card/page.jsx"; // Refresh the page after successful submission
-    }, 2000);
+    } else {
+      toast({ title: "Failed to add card.", variant: "destructive" });
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -71,7 +85,7 @@ export default function CardDetail() {
           <Card className="bg-gradient-to-br from-purple-600 to-purple-900 text-white">
             <CardContent className="p-6">
               <div className="space-y-8">
-                <div className="text-xl font-semibold">Bank Name</div>
+                <div className="text-xl font-semibold">{bankName || "Bank Name"}</div>
                 <div className="font-mono text-2xl tracking-wider">{cardNumber || "•••• •••• •••• ••••"}</div>
                 <div className="flex justify-between">
                   <div>
@@ -105,6 +119,15 @@ export default function CardDetail() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <form onSubmit={handleSubmit}>
+                  <div className="space-y-2">
+                    <Label htmlFor="bankName">Bank Name</Label>
+                    <Input
+                      id="bankName"
+                      placeholder="Enter Bank Name"
+                      value={bankName}
+                      onChange={(e) => setBankName(e.target.value)}
+                    />
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="cardNumber">Card Number</Label>
                     <Input
