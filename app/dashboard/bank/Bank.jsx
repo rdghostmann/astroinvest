@@ -85,7 +85,7 @@ export default function Bank({ userID }) {
           </Button>
         </div>
 
-        <div className="w-full">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Bank List */}
           <BankList banks={banks} />
         </div>
