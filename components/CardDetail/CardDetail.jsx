@@ -163,10 +163,10 @@ export default function CardDetail({ userID }) {
                           <SelectValue placeholder="MM/YY" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="12/23">12/23</SelectItem>
-                          <SelectItem value="01/24">01/24</SelectItem>
-                          <SelectItem value="02/24">02/24</SelectItem>
-                          <SelectItem value="03/24">03/24</SelectItem>
+                          <SelectItem value="12/28">12/23</SelectItem>
+                          <SelectItem value="01/28">01/28</SelectItem>
+                          <SelectItem value="02/28">02/28</SelectItem>
+                          <SelectItem value="03/28">03/28</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
