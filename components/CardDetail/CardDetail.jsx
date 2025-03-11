@@ -1,15 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import { PlusCircleIcon } from "lucide-react";
+import { PlusCircleIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CardDetail() {
   const [cardNumber, setCardNumber] = useState("");
+  const [cardType, setCardType] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   // Format card number with spaces
   const formatCardNumber = (value) => {
@@ -29,6 +33,28 @@ export default function CardDetail() {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!cardNumber || !cardType) {
+      toast({ title: "Please fill in all fields.", variant: "destructive" });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    setTimeout(() => {
+      toast({ title: "Added Card successfully!" });
+      setIsSubmitting(false);
+      // Optionally, clear the form fields here
+      setCardNumber("");
+      setCardType("");
+      window.location.href = "/dashboard/card"; // Refresh the page after successful submission
+      // window.location.href = "/dashboard/card/page.jsx"; // Refresh the page after successful submission
+    }, 2000);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-4xl space-y-8">
@@ -40,15 +66,12 @@ export default function CardDetail() {
           </Button>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Bank Card Preview */}
           <Card className="bg-gradient-to-br from-purple-600 to-purple-900 text-white">
             <CardContent className="p-6">
               <div className="space-y-8">
-                <div className="flex justify-between">
-                  <div className="text-sm">Balance</div>
-                  <div className="font-mono text-sm">$2,254.75</div>
-                </div>
+                <div className="text-xl font-semibold">Bank Name</div>
                 <div className="font-mono text-2xl tracking-wider">{cardNumber || "•••• •••• •••• ••••"}</div>
                 <div className="flex justify-between">
                   <div>
@@ -68,51 +91,74 @@ export default function CardDetail() {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPopup(false)}
+            >
+              <XIcon className="h-6 w-6" />
+            </button>
             {/* Card Details Form */}
             <Card>
               <CardHeader>
                 <CardTitle>Add Card Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="cardNumber">Card Number</Label>
-                  <Input
-                    id="cardNumber"
-                    placeholder="0000 0000 0000 0000"
-                    value={cardNumber}
-                    onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                    maxLength={19}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="name">Card Holder Name</Label>
-                  <Input id="name" placeholder="Enter card holder name" />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit}>
                   <div className="space-y-2">
-                    <Label htmlFor="expiry">Expiry Date</Label>
-                    <Select>
-                      <SelectTrigger id="expiry">
-                        <SelectValue placeholder="MM/YY" />
+                    <Label htmlFor="cardNumber">Card Number</Label>
+                    <Input
+                      id="cardNumber"
+                      placeholder="0000 0000 0000 0000"
+                      value={cardNumber}
+                      onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
+                      maxLength={19}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="cardType">Card Type</Label>
+                    <Select onValueChange={setCardType} value={cardType}>
+                      <SelectTrigger id="cardType">
+                        <SelectValue placeholder="Select Card Type" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="12/23">12/23</SelectItem>
-                        <SelectItem value="01/24">01/24</SelectItem>
-                        <SelectItem value="02/24">02/24</SelectItem>
-                        <SelectItem value="03/24">03/24</SelectItem>
+                        <SelectItem value="Verve">Verve</SelectItem>
+                        <SelectItem value="Master">Master</SelectItem>
+                        <SelectItem value="Visa">Visa</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="cvv">CVV</Label>
-                    <Input id="cvv" placeholder="123" maxLength={3} />
+                    <Label htmlFor="name">Card Holder Name</Label>
+                    <Input id="name" placeholder="Enter card holder name" />
                   </div>
-                </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="expiry">Expiry Date</Label>
+                      <Select>
+                        <SelectTrigger id="expiry">
+                          <SelectValue placeholder="MM/YY" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="12/23">12/23</SelectItem>
+                          <SelectItem value="01/24">01/24</SelectItem>
+                          <SelectItem value="02/24">02/24</SelectItem>
+                          <SelectItem value="03/24">03/24</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="cvv">CVV</Label>
+                      <Input id="cvv" placeholder="123" maxLength={3} />
+                    </div>
+                  </div>
+                  <CardFooter>
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Saving..." : "Save Card"}
+                    </Button>
+                  </CardFooter>
+                </form>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full" onClick={() => setShowPopup(false)}>Save Card</Button>
-              </CardFooter>
             </Card>
           </div>
         </div>
