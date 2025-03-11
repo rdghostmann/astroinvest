@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { addDeposit } from "@/lib/actions"; // Import the server action
 import CopyToClipboardButton from "./CopyToClipboardButton";
 
 const availableNetworks = [
@@ -21,6 +24,9 @@ const availableNetworks = [
 ];
 
 export default function SwiftDeposit({ assets }) {
+  const { data: session } = useSession(); // Get the session data
+  const userID = session?.user?.id; // Get the userID from the session
+
   const [step, setStep] = useState(1);
   const [amount, setAmount] = useState("");
   const [network, setNetwork] = useState("");
@@ -28,6 +34,7 @@ export default function SwiftDeposit({ assets }) {
   const [depositAddress, setDepositAddress] = useState("");
   const [timeLeft, setTimeLeft] = useState(900);
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const { toast } = useToast();
 
   // When an asset is selected, find it in the assets array and set it.
   const handleAssetChange = (assetName) => {
@@ -126,13 +133,33 @@ export default function SwiftDeposit({ assets }) {
   };
 
   // Step 3: Payment completed
-  const handlePaymentCompleted = () => {
-    alert("Payment completed! Thank you.");
-    setAmount("");
-    setNetwork("");
-    setSelectedAsset(null);
-    localStorage.removeItem("depositStep");
-    setStep(1);
+  const handlePaymentCompleted = async () => {
+    if (!userID) {
+      toast({ title: "User not authenticated.", variant: "destructive" });
+      return;
+    }
+
+    const depositDetails = {
+      userId: userID,
+      assetName: selectedAsset.name,
+      amount,
+      network,
+      depositAddress,
+      depositNumber,
+    };
+
+    const response = await addDeposit(depositDetails);
+
+    if (response.ok) {
+      toast({ title: "Payment completed! Thank you." });
+      setAmount("");
+      setNetwork("");
+      setSelectedAsset(null);
+      localStorage.removeItem("depositStep");
+      setStep(1);
+    } else {
+      toast({ title: "Failed to save deposit details.", variant: "destructive" });
+    }
   };
 
   return (

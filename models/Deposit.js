@@ -7,7 +7,7 @@ const DepositSchema = new mongoose.Schema(
       ref: 'User',
       required: true
     },
-    assetId: { 
+    assetName: { 
       type: String,
       required: true,
     },
@@ -15,9 +15,17 @@ const DepositSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    proofOfDeposit: {
+    network: { 
       type: String,
-      required: true
+      required: true,
+    },
+    depositAddress: { 
+      type: String,
+      required: true,
+    },
+    depositNumber: { 
+      type: String,
+      required: true,
     },
     status: {
       type: String,
