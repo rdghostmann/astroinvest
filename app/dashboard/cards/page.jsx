@@ -49,7 +49,7 @@ export default async function Page() {
             <p className="text-slate-700">Add Card for Instant Funding</p>
           </div>
 
-          <div className="w-full lg:w-2/3 space-y-6 basis-0">
+          <div className="w-full basis-0">
             <CardDetail userID={userID} />
           </div>
         </div>

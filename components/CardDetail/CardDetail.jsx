@@ -80,7 +80,7 @@ export default function CardDetail({ userID }) {
           </Button>
         </div>
 
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
           {/* Bank Card Preview */}
           <Card className="bg-gradient-to-br from-purple-600 to-purple-900 text-white">
             <CardContent className="p-6">
