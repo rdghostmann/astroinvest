@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { PlusCircleIcon } from "lucide-react";
+import { PlusCircleIcon, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-
 
 export default function Bank() {
   const [showPopup, setShowPopup] = useState(false);
@@ -27,7 +26,7 @@ export default function Bank() {
       routingNumber,
       swiftCode,
     });
-    setShowPopup(false);
+    // Optionally, you can clear the form fields here
   };
 
   return (
@@ -44,7 +43,13 @@ export default function Bank() {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPopup(false)}
+            >
+              <XIcon className="h-6 w-6" />
+            </button>
             {/* Bank Details Form */}
             <Card>
               <CardHeader>
@@ -106,7 +111,7 @@ export default function Bank() {
                       onChange={(e) => setSwiftCode(e.target.value)}
                     />
                   </div>
-                  <CardFooter>
+                  <CardFooter className="mt-5">
                     <Button type="submit" className="w-full">
                       Save Bank
                     </Button>
