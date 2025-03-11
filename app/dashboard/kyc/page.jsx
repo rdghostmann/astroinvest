@@ -85,7 +85,6 @@ export default function Page() {
                     <Input
                       type="file"
                       className="bg-transparent p-2 rounded w-full"
-                      disabled
                     />
                   </div>
                 </div>
@@ -95,7 +94,6 @@ export default function Page() {
                     <Input
                       type="file"
                       className="bg-transparent p-2 rounded w-full"
-                      disabled
                     />
                   </div>
                 </div>
