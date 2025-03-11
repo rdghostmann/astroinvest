@@ -1,3 +1,5 @@
+  BLOB_READ_WRITE_TOKEN="vercel_blob_rw_F3cgo7pU7kJIvR93_ntLeV6rdk3z5mr9MQ17DgqRZdqFWcw"
+
   //user
   await connectToDB();
   const adminPassword = await bcrypt.hash('admin123', 10);
