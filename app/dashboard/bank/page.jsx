@@ -16,7 +16,6 @@ import {
 import Bank from "./Bank";
 
 export default async function Page() {
-  const banks = await fetchBankss(); // Fetch banks on the server
 
   return (
     <SidebarProvider>
