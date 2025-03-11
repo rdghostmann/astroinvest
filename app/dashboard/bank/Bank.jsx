@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { addBankAccount } from "@/lib/actions";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Bank() {
   const [showPopup, setShowPopup] = useState(false);
@@ -14,19 +16,35 @@ export default function Bank() {
   const [bankAddress, setBankAddress] = useState("");
   const [routingNumber, setRoutingNumber] = useState("");
   const [swiftCode, setSwiftCode] = useState("");
+  const { toast } = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({
+
+    const bankDetails = {
       bankName,
       accountNumber,
       accountName,
       bankAddress,
       routingNumber,
       swiftCode,
-    });
-    // Optionally, you can clear the form fields here
+    };
+
+    const response = await addBankAccount(bankDetails);
+
+    if (response.ok) {
+      toast({ title: "Added Bank successful!" });
+      setShowPopup(false);
+      // Optionally, clear the form fields here
+      setBankName("");
+      setAccountNumber("");
+      setAccountName("");
+      setBankAddress("");
+      setRoutingNumber("");
+      setSwiftCode("");
+    } else {
+      toast({ title: "Failed to add bank account.", variant: "destructive" });
+    }
   };
 
   return (
