@@ -14,12 +14,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getSession } from "next-auth/react";
 import { fetchDepositsByUser } from "@/lib/actions"; // Import the server action
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/auth";
 
 export default async function Page() {
-  const session = await getSession();
-  const userID = session?.user?.id;
+   const session = await getServerSession(authOptions)
+    const userID = session?.user?.id;
 
   // Fetch deposits made by the user
   const deposits = await fetchDepositsByUser(userID);
