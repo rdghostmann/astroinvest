@@ -54,8 +54,6 @@ export default function Bank({ userID }) {
       swiftCode,
     };
 
-    console.log("Bank Details:", bankDetails);
-
     const response = await addBankAccount(bankDetails);
 
     if (response.ok) {
