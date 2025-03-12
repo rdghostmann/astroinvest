@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const InvestmentSchema = new mongoose.Schema(
   {
-    investId: {
+    userID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     planName: {
       type: String,
@@ -22,7 +22,6 @@ const InvestmentSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 
 // Fix the model export
 const Investment = mongoose.models?.Investment || mongoose.model("Investment", InvestmentSchema);

@@ -11,6 +11,7 @@ import { investAmount } from "@/lib/actions";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
+import { useSession } from "next-auth/react";
 
 const plans = [
   { type: "gold", roi: 120, minInvest: 500, maxInvest: 5000, medal: 1 },
@@ -19,10 +20,12 @@ const plans = [
 ];
 
 const InvestForm = () => {
+  const { data: session } = useSession(); // Get the session data
+  const userID = session?.user?.id; // Get the userID from the session
+
   // Retrieve user object from Zustand store
   const { user } = useUserStore();
   const balance = user?.walletBalance;
-  const userId = user?.userID || ""; // Ensure this matches how you store it
 
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
@@ -48,7 +51,7 @@ const InvestForm = () => {
     setLoading(true);
 
     const payload = {
-      investId: userId,
+      userID,
       planName: selectedPlan.type,
       amount,
       profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
@@ -101,28 +104,28 @@ const InvestForm = () => {
             <Card
               key={plan.type}
               className={`relative overflow-hidden snap-center shrink-0 w-[90%] md:w-[300px] mx-auto ${plan.type === "gold"
-                  ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
-                  : plan.type === "silver"
-                    ? "bg-[#C0C0C0]/10 bg-gradient-to-r from-[#C0C0C0] to-[#A9A9A9]"
-                    : "bg-gradient-to-r from-[#CD7F32] to-[#8B4513] border-[#CD7F32]"
+                ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
+                : plan.type === "silver"
+                  ? "bg-[#C0C0C0]/10 bg-gradient-to-r from-[#C0C0C0] to-[#A9A9A9]"
+                  : "bg-gradient-to-r from-[#CD7F32] to-[#8B4513] border-[#CD7F32]"
                 } border-2`}
               onClick={() => handlePlanSelection(plan)}
             >
               <CardHeader className="flex items-center pb-2">
                 <div
                   className={`border-4 p-3 rounded-full ${plan.type === "gold"
-                      ? "bg-[#FFD700]/10 border-[#FFD700]"
-                      : plan.type === "silver"
-                        ? "bg-[#C0C0C0]/10 border-[#C0C0C0]"
-                        : "bg-[#CD7F32]/10 border-[#CD7F32]"
+                    ? "bg-[#FFD700]/10 border-[#FFD700]"
+                    : plan.type === "silver"
+                      ? "bg-[#C0C0C0]/10 border-[#C0C0C0]"
+                      : "bg-[#CD7F32]/10 border-[#CD7F32]"
                     }`}
                 >
                   <Award
                     className={`h-8 w-8 ${plan.type === "gold"
-                        ? "text-[#FFD700]"
-                        : plan.type === "silver"
-                          ? "text-[#C0C0C0]"
-                          : "text-[#CD7F32]"
+                      ? "text-[#FFD700]"
+                      : plan.type === "silver"
+                        ? "text-[#C0C0C0]"
+                        : "text-[#CD7F32]"
                       }`}
                   />
                 </div>

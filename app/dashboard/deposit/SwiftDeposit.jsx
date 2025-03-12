@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -11,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 import { addDeposit } from "@/lib/actions";
 import { ToastAction } from "@/components/ui/toast";
+import { useSession } from "next-auth/react";
 
 const availableNetworks = [
   "Ethereum (ERC20)",
