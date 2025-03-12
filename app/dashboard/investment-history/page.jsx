@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,28 +6,27 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth";
+import { fetchInvestmentByUser } from "@/lib/actions"; // Import the server action
 
 export default async function Page() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
   const userID = session?.user?.id;
 
-   // Fetch investment made by the user
-    const Investments = await fetchInvestmentByUser(userID);
-  
-    console.log("investment:", Investments);
-    
+  // Fetch investments made by the user
+  const investments = await fetchInvestmentByUser(userID);
+
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -43,7 +42,7 @@ export default async function Page() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Desposit History</BreadcrumbPage>
+                  <BreadcrumbPage>Investment History</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -54,33 +53,38 @@ export default async function Page() {
             <h2 className="text-purple-600 font-bold text-xl">Investment History</h2>
             <p className="text-slate-700">Find all your Investments with AstroInvest here</p>
           </div>
-          <div className="w-full min-w-xs mx-auto px-0 lg:px-10 ">
+          <div className="w-full min-w-xs mx-auto px-0 lg:px-10">
             <div className="rounded-t-lg overflow-x-auto border">
-              <Table className="min-w-full">
-                <TableHeader>
-                  <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
-                    <TableHead className="text-blue-100">Transaction id</TableHead>
-                    <TableHead className="text-blue-100">Date</TableHead>
-                    <TableHead className="text-blue-100">Amount</TableHead>
-                    <TableHead className="text-blue-100">Currency</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {Investments.map((transaction) => (
-                    <TableRow key={transaction.id} className="border-b hover:bg-blue-900/20">
-                      <TableCell className="text-gray-600">{transaction.transactionId}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.date}</TableCell>
-                      <TableCell className="text-gray-600">${transaction.amount.toLocaleString()}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.currency}</TableCell>
+              {investments.length > 0 ? (
+                <Table className="min-w-full">
+                  <TableHeader>
+                    <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
+                      <TableHead className="text-blue-100">Transaction ID</TableHead>
+                      <TableHead className="text-blue-100">Date</TableHead>
+                      <TableHead className="text-blue-100">Amount</TableHead>
+                      <TableHead className="text-blue-100">Plan Name</TableHead>
+                      <TableHead className="text-blue-100">Profit</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {investments.map((investment) => (
+                      <TableRow key={investment._id} className="border-b hover:bg-blue-900/20">
+                        <TableCell className="text-gray-600">{investment._id}</TableCell>
+                        <TableCell className="text-gray-600">{new Date(investment.createdAt).toLocaleDateString()}</TableCell>
+                        <TableCell className="text-gray-600">${investment.amount.toLocaleString()}</TableCell>
+                        <TableCell className="text-gray-600">{investment.planName}</TableCell>
+                        <TableCell className="text-gray-600">${investment.profit.toLocaleString()}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              ) : (
+                <div className="p-4 text-center text-gray-600">No Investments found</div>
+              )}
             </div>
-
           </div>
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }
