@@ -13,34 +13,19 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/auth";
 
-export default function Page() {
-  const deposits = [
-    {
-      id: "1",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 3600,
-      currency: "SOL",
-    },
-    {
-      id: "2",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 5200,
-      currency: "BTC",
-    },
-    {
-      id: "3",
-      transactionId: "30490eDriYCJso2sX9w0",
-      date: "Nov-3-2021",
-      amount: 2800,
-      currency: "ETH",
-    },
-  ];
+export default async function Page() {
+  const session = await getServerSession(authOptions)
+  const userID = session?.user?.id;
+
+   // Fetch investment made by the user
+    const Investments = await fetchInvestmentByUser(userID);
+  
+    console.log("investment:", Investments);
+    
   return (
     (<SidebarProvider>
       <AppSidebar />
@@ -81,7 +66,7 @@ export default function Page() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {deposits.map((transaction) => (
+                  {Investments.map((transaction) => (
                     <TableRow key={transaction.id} className="border-b hover:bg-blue-900/20">
                       <TableCell className="text-gray-600">{transaction.transactionId}</TableCell>
                       <TableCell className="text-gray-600">{transaction.date}</TableCell>

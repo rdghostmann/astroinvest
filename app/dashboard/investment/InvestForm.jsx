@@ -57,7 +57,7 @@ const InvestForm = () => {
       profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
     };
 
-    console.log("Payload:", payload);
+    // console.log("Payload:", payload);
     const response = await investAmount(payload);
 
     if (response.success) {
