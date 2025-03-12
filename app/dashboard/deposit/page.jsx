@@ -14,7 +14,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { fetchAssets } from "@/controllers/FetchAssets";
-import DepositForm from "./DepositForm";
 import SwiftDeposit from "./SwiftDeposit";
 
 export default async function Page() {
@@ -56,7 +55,6 @@ export default async function Page() {
           <div className="w-full lg:w-1/3 space-y-6 basis-0">
             {/* Pass assets as props */}
             <SwiftDeposit assets={assetData} />
-            {/* <DepositForm assets={assetData} /> */}
           </div>
         </div>
 

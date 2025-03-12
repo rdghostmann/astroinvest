@@ -14,10 +14,11 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Bank from "./Bank";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/auth";
 
 export default async function Page() {
-  const session = await getSession();
+  const session = await getServerSession(authOptions)
   const userID = session?.user?.id;
 
   return (

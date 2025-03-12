@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { PlusCircleIcon, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { addBankAccount, fetchBanksByUser } from "@/lib/actions";
 import { useToast } from "@/hooks/use-toast";
-import BankList from "./BankList"; // Import the BankList component
 
 export default function Bank({ userID }) {
   const [showPopup, setShowPopup] = useState(false);
@@ -54,6 +54,8 @@ export default function Bank({ userID }) {
       swiftCode,
     };
 
+    console.log("Bank Details:", bankDetails);
+
     const response = await addBankAccount(bankDetails);
 
     if (response.ok) {
@@ -87,7 +89,40 @@ export default function Bank({ userID }) {
 
         <div className="grid grid-col-1">
           {/* Bank List */}
-          <BankList banks={banks} />
+          <div class="flex flex-col overflow-x-auto">
+            <div class="sm:-mx-6 lg:-mx-8">
+              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div className="rounded-t-lg overflow-x-auto border">
+                  <Table className="min-w-full text-start text-sm font-light">
+                    <TableHeader>
+                      <TableRow className="border-b border-neutral-200 bg-blue-950/50 hover:bg-blue-900/50">
+                        <TableHead className="text-blue-100 px-6 py-4">#</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Bank Name</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Account Number</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Account Name</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Bank Address</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Routing Number</TableHead>
+                        <TableHead className="text-blue-100 px-6 py-4">Swift Code</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {banks.map((bank, index) => (
+                        <TableRow key={bank._id} className="border-b border-neutral-200 hover:bg-blue-900/20">
+                          <TableCell className="text-gray-600 px-6 py-4">{index + 1}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.bankName}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.accountNumber}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.accountName}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.bankAddress}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.routingNumber}</TableCell>
+                          <TableCell className="text-gray-600 px-6 py-4">{bank.swiftCode}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -95,7 +130,7 @@ export default function Bank({ userID }) {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              className="absolute m-2  top-2 right-2 text-gray-500 hover:text-gray-700"
               onClick={() => setShowPopup(false)}
             >
               <XIcon className="h-6 w-6" />

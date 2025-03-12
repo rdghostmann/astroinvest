@@ -10,6 +10,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { useToast } from "@/hooks/use-toast";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 import { addDeposit } from "@/lib/actions";
+import { ToastAction } from "@/components/ui/toast";
 
 const availableNetworks = [
   "Ethereum (ERC20)",
@@ -120,7 +121,14 @@ export default function SwiftDeposit({ assets }) {
   // Step 1: Fill in asset, amount, network
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if (!selectedAsset || !amount || !network) return alert("Please fill in all fields.");
+    if (!selectedAsset || !amount || !network) {
+      toast({ 
+        title: "Please fill in all input fields.", 
+        description: "All fill fields are required .",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+      return;
+    }
 
     generateDepositDetails();
     setStep(2);
@@ -135,7 +143,12 @@ export default function SwiftDeposit({ assets }) {
   // Step 3: Payment completed
   const handlePaymentCompleted = async () => {
     if (!userID) {
-      toast({ title: "User not authenticated.", variant: "destructive" });
+      toast({ 
+        variant: "destructive" ,
+        title: "unauthenticated user.", 
+        description: "There was a problem with your request.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
       return;
     }
 
@@ -152,14 +165,24 @@ export default function SwiftDeposit({ assets }) {
     const response = await addDeposit(depositDetails);
 
     if (response.ok) {
-      toast({ title: "Payment completed! Thank you." });
+      toast({
+        variant: "success",
+        title: "Payment completed!",
+        description: `Deposit shall be reviewed.`,
+      });
       setAmount("");
       setNetwork("");
       setSelectedAsset(null);
       localStorage.removeItem("depositStep");
       setStep(1);
     } else {
-      toast({ title: "Failed to save deposit details.", variant: "destructive" });
+      toast({
+        variant: "destructive",
+        title: "Failed to save deposit details.",
+        description: "There was a problem with your request.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+
+      });
     }
   };
 
