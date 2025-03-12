@@ -25,6 +25,8 @@ export default async function Page() {
   // Fetch deposits made by the user
   const deposits = await fetchDepositsByUser(userID);
 
+  console.log("Deposits:", deposits);
+
   return (
     <SidebarProvider>
       <AppSidebar />
