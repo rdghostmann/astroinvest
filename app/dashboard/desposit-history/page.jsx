@@ -19,8 +19,8 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/auth";
 
 export default async function Page() {
-   const session = await getServerSession(authOptions)
-    const userID = session?.user?.id;
+  const session = await getServerSession(authOptions)
+  const userID = session?.user?.id;
 
   // Fetch deposits made by the user
   const deposits = await fetchDepositsByUser(userID);
@@ -77,7 +77,7 @@ export default async function Page() {
                   </TableBody>
                 </Table>
               ) : (
-                <div className="p-4 text-center text-gray-600">No Deposits made</div>
+                <div className="p-4 text-center text-gray-600">No Deposits found</div>
               )}
             </div>
           </div>
