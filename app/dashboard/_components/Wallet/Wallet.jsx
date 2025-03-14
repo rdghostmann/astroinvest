@@ -13,8 +13,7 @@ const Wallet = async () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
-      <h2>Wallet Balances</h2>
+      <h2>My Assets</h2>
       <ul>
         {wallets.length > 0 ? (
           wallets.map((wallet) => (
