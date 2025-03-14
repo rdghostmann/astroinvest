@@ -1,11 +1,11 @@
-// app/api/auth/register/route.js
 "use server";
 
 import { connectToDB } from "@/lib/connectDB";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import User from "@/models/User"; // Import the User model
+import User from "@/models/User";
+import Wallet from "@/models/Wallet";
 
 export async function POST(req) {
   try {
@@ -33,7 +33,7 @@ export async function POST(req) {
     }
 
     await connectToDB();
-    
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
@@ -58,16 +58,28 @@ export async function POST(req) {
 
     await newUser.save();
 
+    // Create default wallets for the user
+    const wallets = [
+      { user: newUser._id, name: 'Bitcoin', balance: 0 },
+      { user: newUser._id, name: 'Ethereum', balance: 0 },
+      { user: newUser._id, name: 'Solana', balance: 0 },
+      { user: newUser._id, name: 'XRP', balance: 0 },
+      { user: newUser._id, name: 'Dogecoin', balance: 0 },
+      { user: newUser._id, name: 'BNB', balance: 0 },
+    ];
+
+    await Wallet.insertMany(wallets);
+
     // TODO: Trigger Magic Link email verification via nodemailer
 
     return NextResponse.json(
-      { message: "User registered successfully" },
+      { message: "User registered and wallets created successfully" },
       { status: 201 }
     );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: "Error creating user and wallets" },
       { status: 500 }
     );
   }

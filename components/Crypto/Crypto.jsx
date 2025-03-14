@@ -15,33 +15,28 @@ const cryptos = [
   { id: 5, name: 'BNB', path: bnbImage },
 ];
 
-// Dynamically create functional components for each cryptocurrency
-const CryptoComponents = cryptos.reduce((components, crypto) => {
-  const CryptoComponent = () => (
-    <div key={crypto.id} className='border w-fit flex flex-col items-center justify-center text-center rounded-xl p-3'>
-      <Image src={crypto.path} alt={crypto.name} width={50} height={50} />
-      <p>{crypto.name}</p>
-    </div>
-  );
-  components[crypto.name] = CryptoComponent;
-  return components;
-}, {});
+// Export the image paths
+export const cryptoImages = {
+  Bitcoin: bitcoinImage,
+  Ethereum: ethereumImage,
+  Solana: solanaImage,
+  XRP: xrpImage,
+  BNB: bnbImage,
+};
 
 // Main Crypto component
 const Crypto = () => (
   <div>
     <h1>Cryptocurrencies</h1>
     <div style={{ display: 'flex', gap: '20px' }}>
-      {cryptos.map((crypto) => {
-        const CryptoComponent = CryptoComponents[crypto.name];
-        return <CryptoComponent key={crypto.id} />;
-      })}
+      {cryptos.map((crypto) => (
+        <div key={crypto.id} className='border w-fit flex flex-col items-center justify-center text-center rounded-xl p-3'>
+          <Image src={crypto.path} alt={crypto.name} width={50} height={50} />
+          <p>{crypto.name}</p>
+        </div>
+      ))}
     </div>
   </div>
 );
 
-// Export each functional component individually
-export const { Bitcoin, Ethereum, Solana, XRP, BNB } = CryptoComponents;
-
-// Export the main Crypto component
 export default Crypto;
