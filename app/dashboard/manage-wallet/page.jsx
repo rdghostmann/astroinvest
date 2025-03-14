@@ -35,18 +35,18 @@ export default function Page() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Manage Wallet</BreadcrumbPage>
+                  <BreadcrumbPage>Manage Asset</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="text-sm/5 text-center">
-            <p>Manage Where your money goes to</p>
+          <div className="text-sm/5">
+            <h2 className="text-purple-600 font-bold text-xl">Manage Asset</h2>
+            <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
-          {/* <CryptoList /> */}
-          {/* <ManageWallet /> */}
+         
         </div>
       </SidebarInset>
     </SidebarProvider>)
