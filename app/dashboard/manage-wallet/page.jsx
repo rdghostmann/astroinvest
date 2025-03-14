@@ -13,6 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import Wallet from "../_components/Wallet/Wallet";
 // import { ManageWallet } from "../_components/ManageWallet/ManageWallet";
 // import CryptoList from "@/components/CryptoList/CryptoList";
 
@@ -45,6 +46,9 @@ export default function Page() {
           <div className="text-sm/5">
             <h2 className="text-purple-600 font-bold text-xl">Manage Asset</h2>
             <p className="text-slate-700">Manage Where your money goes to</p>
+          </div>
+          <div>
+            <Wallet />
           </div>
          
         </div>
