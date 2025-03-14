@@ -23,7 +23,7 @@ export const cryptoImages = {
   Ethereum: ethereumImage,
   Solana: solanaImage,
   XRP: xrpImage,
-  Doge: dogeImage,
+  Dogecoin: dogeImage,
   BNB: bnbImage,
 };
 
