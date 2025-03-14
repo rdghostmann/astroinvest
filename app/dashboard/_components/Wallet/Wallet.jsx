@@ -13,7 +13,7 @@ const Wallet = async () => {
 
   return (
     <div>
-      <h2>My Assets</h2>
+      <h2 className="font-semibold">My Assets</h2>
       <ul>
         {wallets.length > 0 ? (
           wallets.map((wallet) => (

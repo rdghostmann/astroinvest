@@ -45,16 +45,15 @@ const LoginForm = () => {
       // console.log("SignIn Result:", result); // Debugging: Log the result
 
       if (result?.error) {
-        setError(`An error occurred: ${result.error}`);
-        toast({ title: `An error occurred: ${result.error}` });
+        setError(`Wrong Email or Password`);
+        toast({ title: `Wrong Email or Password` });
         setLoading(false);
       } else {
         toast({ title: "Login successful!" });
         router.push("/dashboard"); // Use only router.push for redirection
       }
     } catch (err) {
-      setError(`An error occurred: ${err.message}`);
-      toast({ title: "Error occurred. Please try again." });
+      toast({ title: "Error occurred." });
     } finally {
       setLoading(false);
     }
