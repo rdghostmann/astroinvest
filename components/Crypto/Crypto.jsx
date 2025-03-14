@@ -13,7 +13,7 @@ const cryptos = [
   { id: 2, name: 'Ethereum', path: ethereumImage },
   { id: 3, name: 'Solana', path: solanaImage },
   { id: 4, name: 'XRP', path: xrpImage },
-  { id: 5, name: 'DOGE', path: dogeImage },
+  { id: 5, name: 'Dogecoin', path: dogeImage },
   { id: 6, name: 'BNB', path: bnbImage },
 ];
 
