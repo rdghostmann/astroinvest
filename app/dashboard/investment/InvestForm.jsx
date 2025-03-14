@@ -14,9 +14,9 @@ import { useUserStore } from "@/store/userStore";
 import { useSession } from "next-auth/react";
 
 const plans = [
-  { type: "gold", roi: 120, minInvest: 500, maxInvest: 5000, medal: 1 },
-  { type: "silver", roi: 80, minInvest: 100, maxInvest: 500, medal: 2 },
-  { type: "bronze", roi: 50, minInvest: 20, maxInvest: 100, medal: 3 },
+  { type: "gold", roi: 12, minInvest: 150000, maxInvest: 250000, medal: 1 },
+  { type: "silver", roi: 8, minInvest: 50000, maxInvest: 150000, medal: 2 },
+  { type: "bronze", roi: 5, minInvest: 100, maxInvest: 50000, medal: 3 },
 ];
 
 const InvestForm = () => {

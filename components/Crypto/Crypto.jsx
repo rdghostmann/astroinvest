@@ -34,7 +34,7 @@ const Crypto = () => (
     <div style={{ display: 'flex', gap: '20px' }}>
       {cryptos.map((crypto) => (
         <div key={crypto.id} className='border w-fit flex flex-col items-center justify-center text-center rounded-xl p-3'>
-          <Image src={crypto.path} alt={crypto.name} width={50} height={50} />
+          <Image src={crypto.path} alt={crypto.name} width={50} height={50} priority/>
           <p>{crypto.name}</p>
         </div>
       ))}
