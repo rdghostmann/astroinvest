@@ -14,6 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import Wallet from "../_components/Wallet/Wallet";
+import Crypto from "@/components/Crypto/Crypto";
 // import { ManageWallet } from "../_components/ManageWallet/ManageWallet";
 // import CryptoList from "@/components/CryptoList/CryptoList";
 
@@ -50,7 +51,10 @@ export default function Page() {
           <div>
             <Wallet />
           </div>
-         
+          <div>
+            <Crypto />
+          </div>
+
         </div>
       </SidebarInset>
     </SidebarProvider>)
