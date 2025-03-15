@@ -51,9 +51,7 @@ export default function Page() {
           <div>
             <Wallet />
           </div>
-          <div>
-            <Crypto />
-          </div>
+        
 
         </div>
       </SidebarInset>
