@@ -75,10 +75,11 @@ export default async function Page() {
                         <TableBody>
                           {deposits.map((deposit) => (
                             <TableRow key={deposit._id} className="border-b hover:bg-blue-900/20">
-                              <TableCell className="text-gray-600">{deposit.depositNumber}</TableCell>
-                              <TableCell className="text-gray-600">{new Date(deposit.createdAt).toLocaleDateString()}</TableCell>
-                              <TableCell className="text-gray-600">${deposit.amount.toLocaleString()}</TableCell>
-                              <TableCell className="text-gray-600">{deposit.assetName}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{deposit.depositNumber}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{new Date(deposit.createdAt).toLocaleDateString()}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">${deposit.amount.toLocaleString()}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{deposit.assetName}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{deposit.status}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>

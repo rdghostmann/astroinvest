@@ -63,21 +63,21 @@ export default async function Page() {
                       <Table className="min-w-full">
                         <TableHeader>
                           <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
-                            <TableHead className="text-blue-100">Transaction ID</TableHead>
-                            <TableHead className="text-blue-100">Date</TableHead>
-                            <TableHead className="text-blue-100">Amount</TableHead>
-                            <TableHead className="text-blue-100">Plan Name</TableHead>
-                            <TableHead className="text-blue-100">Profit</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Transaction ID</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Date</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Plan Name</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Profit</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
                           {investments.map((investment) => (
                             <TableRow key={investment._id} className="border-b hover:bg-blue-900/20">
-                              <TableCell className="text-gray-600">{investment._id}</TableCell>
-                              <TableCell className="text-gray-600">{new Date(investment.createdAt).toLocaleDateString()}</TableCell>
-                              <TableCell className="text-gray-600">${investment.amount.toLocaleString()}</TableCell>
-                              <TableCell className="text-gray-600">{investment.planName}</TableCell>
-                              <TableCell className="text-gray-600">${investment.profit.toLocaleString()}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{investment._id}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{new Date(investment.createdAt).toLocaleDateString()}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">${investment.amount.toLocaleString()}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{investment.planName}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">${investment.profit.toLocaleString()}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
