@@ -205,6 +205,6 @@ export default function Bank({ userID }) {
           </div>
         </div>
       )}
-    </div>
+    </div>  
   );
 }
