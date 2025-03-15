@@ -82,6 +82,9 @@
     { name: "Bitcoin", symbol: "BTC", network: "Bitcoin", depositAddress: "bc1qxyz..." },
     { name: "Ethereum", symbol: "ETH", network: "Ethereum", depositAddress: "0x123..." },
     { name: "Solana", symbol: "SOL", network: "Solana", depositAddress: "3abcxyz..." },
+    { name: "Ripple", symbol: "XRP", network: "Ripple", depositAddress: "3abcxyz..." },
+    { name: "Dogecoin", symbol: "DOGE", network: "Dogecoin", depositAddress: "3abcxyz..." },
+    { name: "BNBChain", symbol: "BNB", network: "BEP20", depositAddress: "3abcxyz..." },
   ];
   try {
 
