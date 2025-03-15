@@ -18,7 +18,7 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function Page() {
-  const deposits = [
+  const withdrawals = [
     {
       id: "1",
       transactionId: "30490eDriYCJso2sX9w0",
@@ -69,30 +69,40 @@ export default function Page() {
             <h2 className="text-purple-600 font-bold text-xl">Withdrawal History</h2>
             <p className="text-slate-700">Find all your Withdrawal with AstroInvest here</p>
           </div>
-          <div className="w-full min-w-xs mx-auto px-0 lg:px-10 ">
-            <div className="rounded-t-lg overflow-x-auto border">
-              <Table className="min-w-full">
-                <TableHeader>
-                  <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
-                    <TableHead className="text-blue-100">Transaction id</TableHead>
-                    <TableHead className="text-blue-100">Date</TableHead>
-                    <TableHead className="text-blue-100">Amount</TableHead>
-                    <TableHead className="text-blue-100">Currency</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {deposits.map((transaction) => (
-                    <TableRow key={transaction.id} className="border-b hover:bg-blue-900/20">
-                      <TableCell className="text-gray-600">{transaction.transactionId}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.date}</TableCell>
-                      <TableCell className="text-gray-600">${transaction.amount.toLocaleString()}</TableCell>
-                      <TableCell className="text-gray-600">{transaction.currency}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+          <div className="grid grid-col-1">
+            {/* Withdrawal List  */}
+            <div className="flex flex-col overflow-x-auto">
+              <div className="sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                  <div className="rounded-t-lg overflow-x-auto border">
+                    {withdrawals.length > 0 ? (
+                      <Table className="min-w-full text-start text-sm font-light">
+                        <TableHeader>
+                          <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
+                            <TableHead className="text-blue-100 px-6 py-4">Transaction ID</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Date</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Currency</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {withdrawals.map((withdrawal) => (
+                            <TableRow key={withdrawal._id} className="border-b hover:bg-blue-900/20">
+                              <TableCell className="text-gray-600">{withdrawal.withdrawalNumber}</TableCell>
+                              <TableCell className="text-gray-600">{new Date(withdrawal.date).toLocaleDateString()}</TableCell>
+                              <TableCell className="text-gray-600">${withdrawal.amount.toLocaleString()}</TableCell>
+                              <TableCell className="text-gray-600">{withdrawal.assetName}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    ) : (
+                      <div className="p-4 text-center text-gray-600">No Withdrawals found</div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </SidebarInset>
