@@ -70,6 +70,7 @@ export default async function Page() {
                             <TableHead className="text-blue-100 px-6 py-4">Date</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Currency</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Status</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
