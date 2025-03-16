@@ -13,11 +13,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { AdminSidebar } from './_component/AdminSidebar'
 
 import UsersTable from '../_component/UsersTable';
 import { getAllUsers } from '@/lib/actions';
 import UsersCard from './UsersCard';
+import { AdminSidebar } from '../_component/AdminSidebar';
 
 const page = async () => {
   const users = await getAllUsers();
