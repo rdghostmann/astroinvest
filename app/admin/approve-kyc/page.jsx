@@ -44,7 +44,7 @@ const page = async () => {
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           {/* Left Section */}
-          <div className="flex-1 space-y-6 basis-0">
+          <div className="flex-1 basis-0">
             {/* Portfolio Overview */}
             <h2 className="text-lg font-semibold">KYC Approvals</h2>
           </div>
