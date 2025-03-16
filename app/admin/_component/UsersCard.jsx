@@ -57,7 +57,7 @@ const UsersCard = ({ users }) => {
                     <span className="text-gray-500">Unverified</span>
                   )}
                 </p>
-                <Link href={`/admin/users/${user._id}`}>
+                <Link href={`/admin/topup-user/${user._id}`}>
                   <span className="mt-2 text-blue-500">View Wallet</span>
                 </Link>
               </div>
