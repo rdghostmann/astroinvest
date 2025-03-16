@@ -15,12 +15,14 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import LogOutBtn from '@/components/LogOut/LogOutBtn'
+import { AdminSidebar } from './_component/AdminSidebar'
 
 const page = () => {
   return (
     <SidebarProvider>
       {/* <AppSidebarWrapper /> */}
-      <AppSidebar />
+      {/* <AppSidebar /> */}
+      <AdminSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
