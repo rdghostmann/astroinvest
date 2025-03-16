@@ -53,7 +53,6 @@ const page = async () => {
           {/* </div> */}
           <div>
             <UsersCard users={users} />
-
           </div>
 
 

@@ -1,27 +1,20 @@
-"use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { getUserById, updateUserWallet } from '@/lib/actions'; // Import the server actions
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-const UserWalletPage = async ({ params }) => {
+export default async function UserWallet ({ params }) {
   const { id } = params;
-  const user = await getUserById(id); // Fetch user by ID
+  const user = await getUserById(id);
 
-  const [wallets, setWallets] = useState(user.wallets);
+  console.log("The User Id", user);
 
-  const handleUpdate = async (walletId, newBalance) => {
-    await updateUserWallet(walletId, newBalance);
-    const updatedWallets = wallets.map((wallet) =>
-      wallet._id === walletId ? { ...wallet, balance: newBalance } : wallet
-    );
-    setWallets(updatedWallets);
-  };
 
   return (
     <div>
       <h2 className="font-semibold">User Wallets</h2>
-      <ul role="list" className="grid grid-cols-1 gap-4 divide-y divide-gray-100">
+      <p>User ID: {user}</p>
+      {/* <ul role="list" className="grid grid-cols-1 gap-4 divide-y divide-gray-100">
         {wallets.map((wallet) => (
           <li key={wallet._id} className="flex items-center gap-4 p-4 border rounded-lg shadow-md">
             <div className="flex justify-between gap-x-6 py-5">
@@ -42,9 +35,8 @@ const UserWalletPage = async ({ params }) => {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
 
-export default UserWalletPage;
