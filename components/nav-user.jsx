@@ -44,7 +44,7 @@ export function NavUser({ userId }) {
   // Extract user details for display.
   const userName = user?.username || "Guest";
   const userEmail = user?.email || "No Email";
-  const userRole = user?.role || "User"; // Ensure role is available in session
+  const userRole = user?.role === "admin" ? "Admin" : "User"; // Ensure role is available in session
   const userAvatar = user?.avatar || ""; // Fallback avatar
 
   return (
