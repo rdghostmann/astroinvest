@@ -41,7 +41,7 @@ const UsersCard = ({ users }) => {
             <li key={user._id} className="flex justify-between gap-x-6 py-5 border rounded-lg shadow-md px-6">
               <div className="flex min-w-0 gap-x-4">
                 <Avatar className="h-12 w-12 rounded-full bg-gray-50">
-                  <AvatarImage src={user.avatar || "https://via.placeholder.com/50"} alt={user.username} />
+                  <AvatarImage src={user.avatar} alt={user.username} />
                   <AvatarFallback className="rounded-full">{user.username[0]}</AvatarFallback>
                 </Avatar>
                 <div className="min-w-0 flex-auto">
