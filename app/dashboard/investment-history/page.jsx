@@ -57,13 +57,13 @@ export default async function Page() {
             {/* Deposit List  */}
             <div className="flex flex-col overflow-x-auto">
               <div className="sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                   <div className="rounded-t-lg overflow-x-auto border">
                     {investments.length > 0 ? (
                       <Table className="min-w-full">
                         <TableHeader>
                           <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
-                            <TableHead className="text-blue-100 px-6 py-4">Transaction ID</TableHead>
+                            {/* <TableHead className="text-blue-100 px-6 py-4">Transaction ID</TableHead> */}
                             <TableHead className="text-blue-100 px-6 py-4">Date</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Plan Name</TableHead>
@@ -73,7 +73,7 @@ export default async function Page() {
                         <TableBody>
                           {investments.map((investment) => (
                             <TableRow key={investment._id} className="border-b hover:bg-blue-900/20">
-                              <TableCell className="text-gray-600 px-6 py-4">{investment._id}</TableCell>
+                              {/* <TableCell className="text-gray-600 px-6 py-4">{investment._id}</TableCell> */}
                               <TableCell className="text-gray-600 px-6 py-4">{new Date(investment.createdAt).toLocaleDateString()}</TableCell>
                               <TableCell className="text-gray-600 px-6 py-4">${investment.amount.toLocaleString()}</TableCell>
                               <TableCell className="text-gray-600 px-6 py-4">{investment.planName}</TableCell>
