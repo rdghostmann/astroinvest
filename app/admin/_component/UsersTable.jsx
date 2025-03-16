@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Link from 'next/link';
+import { Input } from '@/components/ui/input';
 
 const UsersTable = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,8 +28,7 @@ const UsersTable = ({ users }) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-semibold">Users List</h2>
-        <input
+        <Input
           type="text"
           placeholder="Search by username, email, or phone"
           value={searchTerm}
