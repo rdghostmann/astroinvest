@@ -13,7 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { AdminSidebar } from './_component/AdminSidebar'
+import { AdminSidebar } from '../_component/AdminSidebar'
 
 
 const page = async () => {
