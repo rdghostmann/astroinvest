@@ -53,7 +53,7 @@ const adminData = {
     {
       title: "User Top Up",
       icon: HandCoins,
-      url: "/admin/user-top-up",
+      url: "/admin/topup-user",
     },
   ],
   navSecondary: [
