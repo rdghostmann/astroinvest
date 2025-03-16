@@ -23,7 +23,6 @@ import { Button } from '@/components/ui/button';
 
 const page = async () => {
   const { id } = params;
-  const user = await getUserById(id);
 
 
   return (
@@ -57,7 +56,7 @@ const page = async () => {
           {/* </div> */}
           <div>
             <h2 className="font-semibold">User Wallets</h2>
-            <p>User ID: {user}</p>
+            <p>User ID: {id}</p>
 
           </div>
 
