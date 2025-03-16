@@ -14,12 +14,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
-import { AdminSidebar } from '../_component/AdminSidebar'
 import UsersCard from './UsersCard';
 
 import { getUserById, updateUserWallet } from '@/lib/actions'; // Import the server actions
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { AdminSidebar } from '../../_component/AdminSidebar';
 
 const page = async () => {
   const { id } = params;
