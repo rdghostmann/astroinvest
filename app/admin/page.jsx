@@ -45,7 +45,6 @@ const page = () => {
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
             <h2 className="text-lg font-semibold">Admin Dashboard</h2>
-            <LogOutBtn />
           </div>
 
 
