@@ -28,13 +28,18 @@ const UsersCard = ({ users }) => {
 
   return (
     <div>
-      <Input
-        type="text"
-        placeholder="Search by username or email"
-        value={searchTerm}
-        onChange={handleSearch}
-        className="mb-4 p-2 border rounded"
-      />
+      <div className="grid grid-col-2 mb-4">
+        <h2 className="text-lg font-semibold">Users Lisiting</h2>
+
+        <Input
+          type="text"
+          placeholder="Search by username or email"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="mb-4 p-2 border rounded"
+        />
+      </div>
+
       <ul className="grid grid-cols-1 gap-4">
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (

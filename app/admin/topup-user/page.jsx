@@ -47,10 +47,10 @@ const page = async () => {
         </header>
         <div className="flex flex-1 flex-col gap-1 p-4 pt-0">
           {/* Left Section */}
-          <div className="flex-1 space-y-6 basis-0">
+          {/* <div className="flex-1 space-y-6 basis-0"> */}
             {/* Portfolio Overview */}
-            <h2 className="text-lg font-semibold">TopUp Users</h2>
-          </div>
+            {/* <h2 className="text-lg font-semibold">TopUp Users</h2> */}
+          {/* </div> */}
           <div>
             <UsersCard users={users} />
 
