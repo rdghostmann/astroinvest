@@ -21,7 +21,7 @@ import {
 
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
+import { NavAdmin } from "./NavAdmin";
 import {
   Sidebar,
   SidebarContent,
@@ -95,7 +95,7 @@ export function AdminSidebar({ ...props }) {
         <NavSecondary items={adminData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser />
+        <NavAdmin />
       </SidebarFooter>
     </Sidebar>
   );

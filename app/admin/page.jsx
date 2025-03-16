@@ -1,5 +1,4 @@
 import React from 'react'
-import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,8 +19,6 @@ import { AdminSidebar } from './_component/AdminSidebar'
 const page = () => {
   return (
     <SidebarProvider>
-      {/* <AppSidebarWrapper /> */}
-      {/* <AppSidebar /> */}
       <AdminSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">

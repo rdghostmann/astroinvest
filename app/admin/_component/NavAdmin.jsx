@@ -29,9 +29,9 @@ import {
 } from "@/components/ui/sidebar";
 import { useFetchUser } from "@/hooks/useFetchUser";
 import { useUserStore } from "@/store/userStore";
-import LogOutBtn from "./LogOut/LogOutBtn";
+import LogOutBtn from "@/components/LogOut/LogOutBtn";
 
-export function NavUser({ userId }) {
+export function NavAdmin({ userId }) {
   const { isMobile } = useSidebar();
 
   // Trigger fetching and updating the store on mount or when userId changes.
@@ -42,9 +42,9 @@ export function NavUser({ userId }) {
     return <div className="text-xs italic">Loading user profile…</div>
   }
   // Extract user details for display.
-  const userName = user?.username || "Guest";
+  const userName = user?.username || "Administrator";
   const userEmail = user?.email || "No Email";
-  const userRole = user?.role || "User";
+  const userRole = user?.role || "Admin";
   const userAvatar = user?.avatar || ""; // Fallback avatar
 
   return (
