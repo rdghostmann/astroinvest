@@ -63,7 +63,7 @@ const UsersCard = ({ users }) => {
                     <span className="text-gray-500"><CircleX color="#b60c0c" />Unverified</span>
                   )}
                 </p>
-                <Link href={`/admin/topup-user/${user._id}`} className='border border-blue-500 rounded p-2'>
+                <Link href={`/admin/topup-user/${user._id}`} className='border border-blue-500 rounded text-xs/3 p-1'>
                   <span className="text-blue-500">View Wallet</span>
                 </Link>
               </div>
