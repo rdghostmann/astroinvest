@@ -7,6 +7,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar";
 import { Input } from '@/components/ui/input';
+import { CircleCheck, CircleX } from 'lucide-react';
 
 const UsersCard = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,9 +53,9 @@ const UsersCard = ({ users }) => {
                 <p className="text-sm text-gray-900">{user.walletAddress}</p>
                 <p className="mt-1 text-xs text-gray-500">
                   {user.isVerified ? (
-                    <span className="text-green-500">Verified</span>
+                    <span className="text-green-500"><CircleCheck color="#0d8505" /></span>
                   ) : (
-                    <span className="text-gray-500">Unverified</span>
+                    <span className="text-gray-500"><CircleX color="#b60c0c" /></span>
                   )}
                 </p>
                 <Link href={`/admin/topup-user/${user._id}`}>
