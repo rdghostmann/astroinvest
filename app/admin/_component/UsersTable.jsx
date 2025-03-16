@@ -20,7 +20,8 @@ const UsersTable = ({users}) => {
 
   return (
     <div>
-      <h2 className="font-semibold">Users List</h2>
+     <div className="flex items-center justify-between mb-4">
+     <h2 className="font-semibold">Users List</h2>
       <input
         type="text"
         placeholder="Search by username, email, or phone"
@@ -28,6 +29,7 @@ const UsersTable = ({users}) => {
         onChange={handleSearch}
         className="mb-4 p-2 border rounded"
       />
+     </div>
       <div className="flex flex-col overflow-x-auto">
         <div className="sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
