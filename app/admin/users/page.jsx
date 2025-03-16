@@ -1,11 +1,11 @@
 import React from 'react'
-import UsersPage from './UsersPage'
+import UsersTable from './UsersCard'
 
 
 export default function page() {
   return (
     <div>
-      <UsersPage />
+      <UsersTable />
     </div>
   )
 }

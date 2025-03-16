@@ -39,7 +39,7 @@ export function NavAdmin({ userId }) {
   const user = useUserStore((state) => state.user);
 
   if (!user) {
-    return <div className="text-xs italic">Loading user profile…</div>
+    return <div className="text-xs italic">Loading profile…</div>
   }
   // Extract user details for display.
   const userName = user?.username || "Administrator";

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { getAllUsers } from '@/lib/actions'; // Import the server action
 import Link from 'next/link';
 
-const UsersPage = async () => {
+const UsersCard = async () => {
   const users = await getAllUsers(); // Fetch all users
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,7 +22,7 @@ const UsersPage = async () => {
 
   return (
     <div>
-      <h2 className="font-semibold">Users List</h2>
+      <h2 className="font-semibold">Users Card</h2>
       <input
         type="text"
         placeholder="Search by username or email"
@@ -55,4 +55,4 @@ const UsersPage = async () => {
   );
 };
 
-export default UsersPage;
+export default UsersCard;
