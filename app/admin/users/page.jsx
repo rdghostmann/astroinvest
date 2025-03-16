@@ -16,7 +16,6 @@ import {
 
 import UsersTable from '../_component/UsersTable';
 import { getAllUsers } from '@/lib/actions';
-import UsersCard from './UsersCard';
 import { AdminSidebar } from '../_component/AdminSidebar';
 
 const page = async () => {
@@ -39,7 +38,7 @@ const page = async () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>User Listing</BreadcrumbPage>
+                  <BreadcrumbPage>Users</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -49,11 +48,10 @@ const page = async () => {
           {/* Left Section */}
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
-            <h2 className="text-lg font-semibold">Admin Dashboard</h2>
+            <h2 className="text-lg font-semibold">Users Lisiting</h2>
           </div>
           <div>
             <UsersTable users={users} />
-            <UsersCard users={users} />
           </div>
 
 

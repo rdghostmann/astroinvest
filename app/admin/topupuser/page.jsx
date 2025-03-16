@@ -14,9 +14,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { AdminSidebar } from './_component/AdminSidebar'
+import UsersCard from '../_component/UsersCard'
 
+import { getAllUsers } from '@/lib/actions';
 
 const page = async () => {
+  const users = await getAllUsers();
 
 
   return (
@@ -36,7 +39,7 @@ const page = async () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>ApproveKYC</BreadcrumbPage>
+                  <BreadcrumbPage>Top User's Wallet</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -46,10 +49,10 @@ const page = async () => {
           {/* Left Section */}
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
-            <h2 className="text-lg font-semibold">KYC Approvals</h2>
+            <h2 className="text-lg font-semibold">TopUp Users</h2>
           </div>
           <div>
-            {/* Add Somthing here */}
+            <UsersCard users={users} />
 
           </div>
 
