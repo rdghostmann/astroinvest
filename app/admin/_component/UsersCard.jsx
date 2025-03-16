@@ -6,6 +6,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
+import { Input } from '@/components/ui/input';
 
 const UsersCard = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -26,8 +27,7 @@ const UsersCard = ({ users }) => {
 
   return (
     <div>
-      <h2 className="font-semibold">Users Card</h2>
-      <input
+      <Input
         type="text"
         placeholder="Search by username or email"
         value={searchTerm}
