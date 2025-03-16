@@ -22,6 +22,8 @@ const UsersCard = ({ users }) => {
     setFilteredUsers(filtered);
   };
 
+  console.log("Listing users:", users);
+
   return (
     <div>
       <h2 className="font-semibold">Users Card</h2>
@@ -35,7 +37,7 @@ const UsersCard = ({ users }) => {
       <ul className="grid grid-cols-1 gap-4">
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
-            <li key={user._id} className="flex justify-between gap-x-6 py-5 border rounded-lg shadow-md">
+            <li key={user._id} className="flex justify-between gap-x-6 py-5 border rounded-lg shadow-md px-6">
               <div className="flex min-w-0 gap-x-4">
                 <Avatar className="h-12 w-12 rounded-full bg-gray-50">
                   <AvatarImage src={user.avatar || "https://via.placeholder.com/50"} alt={user.username} />
