@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { getUsers } from '@/lib/actions';
 
-const UsersCard = async () => {
-  const users = await getUsers();
+const UsersCard = ({users}) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredUsers, setFilteredUsers] = useState(users);

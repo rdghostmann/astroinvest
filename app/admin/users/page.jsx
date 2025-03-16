@@ -1,6 +1,7 @@
 import React from 'react'
 import UsersTable from '../_component/UsersTable';
 import { getAllUsers } from '@/lib/actions';
+import UsersCard from './UsersCard';
 
 export default async function page() {
   const users = await getAllUsers();
@@ -9,6 +10,7 @@ export default async function page() {
   return (
     <div>
       <UsersTable users={users} />
+      <UsersCard users={users} />
     </div>
   )
 }
