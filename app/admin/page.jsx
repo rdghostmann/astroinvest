@@ -46,6 +46,21 @@ const page = () => {
             {/* Portfolio Overview */}
             <h2 className="text-lg font-semibold">Admin Dashboard</h2>
           </div>
+          <div>
+            {/* div with icon of user and total number of Users */}
+            <div></div>
+            {/* div with icon of user and total number of Wallets */}
+            <div></div>
+            {/* div with icon of user and total number of Investment */}
+            <div></div>
+            {/* div with icon of user and total number of Approved KYC */}
+            <div></div>
+            {/* div with icon of user and total number of Deposit */}
+            <div></div>
+            {/* div with icon of user and total number of Withdrawal */}
+            <div></div>
+
+          </div>
 
 
         </div>

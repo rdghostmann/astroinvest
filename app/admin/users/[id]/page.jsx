@@ -20,10 +20,10 @@ const UserWalletPage = async ({ params }) => {
   return (
     <div>
       <h2 className="font-semibold">User Wallets</h2>
-      <div className="grid grid-cols-1 gap-4">
+      <ul role="list" className="grid grid-cols-1 gap-4 divide-y divide-gray-100">
         {wallets.map((wallet) => (
-          <div key={wallet._id} className="flex items-center gap-4 p-4 border rounded-lg shadow-md">
-            <div className="flex flex-col">
+          <li key={wallet._id} className="flex items-center gap-4 p-4 border rounded-lg shadow-md">
+            <div className="flex justify-between gap-x-6 py-5">
               <span className="font-semibold">{wallet.name}</span>
               <span>Balance: ${wallet.balance}</span>
               <input
@@ -39,9 +39,9 @@ const UserWalletPage = async ({ params }) => {
                 Update Balance
               </button>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
