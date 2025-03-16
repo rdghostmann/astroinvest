@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import { getUserById, updateUserWallet } from '@/lib/actions'; // Import the server actions
 
 const UserWalletPage = async ({ params }) => {

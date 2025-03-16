@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
 
 const UsersCard = ({ users }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,13 +37,10 @@ const UsersCard = ({ users }) => {
           filteredUsers.map((user) => (
             <li key={user._id} className="flex justify-between gap-x-6 py-5 border rounded-lg shadow-md">
               <div className="flex min-w-0 gap-x-4">
-                <Image
-                  className="size-12 flex-none rounded-full bg-gray-50"
-                  src={user.avatar || "https://via.placeholder.com/50"}
-                  alt={user.username}
-                  width={50}
-                  height={50}
-                />
+                <Avatar className="h-12 w-12 rounded-full bg-gray-50">
+                  <AvatarImage src={user.avatar || "https://via.placeholder.com/50"} alt={user.username} />
+                  <AvatarFallback className="rounded-full">{user.username[0]}</AvatarFallback>
+                </Avatar>
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold text-gray-900">{user.username}</p>
                   <p className="mt-1 truncate text-xs text-gray-500">{user.email}</p>
