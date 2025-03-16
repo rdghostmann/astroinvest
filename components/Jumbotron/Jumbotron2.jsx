@@ -47,6 +47,7 @@ const Hero1 = () => {
               width={400}
               height={300}
               className="w-full rounded-md object-contain"
+              priority
             />
           </div>
           {/* <img

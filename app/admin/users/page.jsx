@@ -1,13 +1,14 @@
 import React from 'react'
-// import UsersCard from './UsersCard'
-import UsersTable from '../_component/UsersTable'
+import UsersTable from '../_component/UsersTable';
+import { getAllUsers } from '@/lib/actions';
 
+export default async function page() {
+  const users = await getAllUsers();
 
-export default function page() {
+  console.log("List of users", users);
   return (
     <div>
-      {/* <UsersCard /> */}
-      <UsersTable />
+      <UsersTable users={users} />
     </div>
   )
 }
