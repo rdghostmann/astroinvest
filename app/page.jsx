@@ -23,12 +23,12 @@ export default async function Home() {
       <CoinPriceMarqueeWidget />
       <Hero1 />
       <TrustPilot />
+      <Stats />
       <AboutAstroInvest />
       <OurAmazingFeatures />
       <Fiat />
       <CallToAction />
       <AchieveMore />
-      <Stats />
       <InvestorsActivity />
       <AffiliateProgram />
       <HowItWorks />
