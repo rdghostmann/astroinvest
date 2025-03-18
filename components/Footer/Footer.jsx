@@ -1,7 +1,7 @@
 'use client';
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import Logo from "../../public/investjar2.png";
+import Logo from "../../public/logo-white.png";
 import Image from "next/image";
 
 
@@ -43,7 +43,7 @@ const Footer7 = () => {
           <div className="flex flex-col items-center justify-between gap-10 text-center lg:flex-row lg:text-left">
             <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
               <div className="">
-                <span className="w-full py-2 border bg-cyan-50 text-gray-900 mx-auto flex items-center justify-center gap-4 lg:justify-start">
+                <span className="w-full py-2 border mx-auto flex items-center justify-center gap-4 lg:justify-start">
                   <Image
                     src={Logo}
                     alt="logo"
@@ -53,7 +53,7 @@ const Footer7 = () => {
                     }}
                     className="object-cover"
                   />
-                  <p className="text-3xl font-semibold">AstroInvest</p>
+                  <p className="text-3xl text-white font-semibold">AstroInvest</p>
                 </span>
                 <p className="mt-6 text-sm text-muted-foreground">
                   Empowering your financial future, one smart investment at a time.
