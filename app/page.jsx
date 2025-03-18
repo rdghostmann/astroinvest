@@ -25,10 +25,10 @@ export default async function Home() {
       <TrustPilot />
       <AboutAstroInvest />
       <OurAmazingFeatures />
-      <Stats />
       <Fiat />
       <CallToAction />
       <AchieveMore />
+      <Stats />
       <InvestorsActivity />
       <AffiliateProgram />
       <HowItWorks />
