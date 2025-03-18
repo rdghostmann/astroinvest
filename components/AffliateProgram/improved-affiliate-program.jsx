@@ -31,7 +31,7 @@ export default function AffiliateProgram() {
 
             <div className="space-y-4 max-w-xl">
               <p className="text-base md:text-lg">
-                Riovest provides an adaptive and profitable affiliate program for long-term partnership. You will
+                AstroInvest provides an adaptive and profitable affiliate program for long-term partnership. You will
                 receive referral commissions from your partner's deposits and also from his daily income
               </p>
 

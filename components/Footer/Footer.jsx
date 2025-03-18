@@ -3,7 +3,7 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Logo from "../../public/logo-white.png";
 import Image from "next/image";
-
+import { TriangleAlert } from "lucide-react";
 
 const sections = [
   {
@@ -34,10 +34,10 @@ const Footer7 = () => {
     <section className="pt-20 pb-10 px-8 bg-black w-full text-cyan-50 text-center">
       <div className="container mx-auto">
         <footer>
-          <div className="flex flex-col items-center justify-between gap-10 text-center lg:flex-row lg:text-left">
-            <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
-              <div className="">
-                <span className="w-full py-2 mx-auto flex items-center justify-center gap-4 lg:justify-start">
+          <div className="flex flex-col items-center justify-between gap-10 text-center ">
+            <div className="flex w-full max-w-96 mx-auto shrink flex-col items-center justify-center gap-6">
+              <div className="text-center">
+                <span className="w-full py-2 mx-auto flex items-center justify-center gap-4">
                   <Image
                     src={Logo}
                     alt="logo"
@@ -49,11 +49,11 @@ const Footer7 = () => {
                   />
                   <p className="text-3xl text-white font-semibold">AstroInvest</p>
                 </span>
-                <p className="mt-6 text-sm text-muted-foreground">
-                  Empowering your financial future, one smart investment at a time.
+                <p className="mt-6 text-sm text-center text-muted-foreground">
+                  Empowering your financial future,<br/> one smart investment at a time.
                 </p>
               </div>
-              <ul className="flex items-center space-x-6 text-muted-foreground">
+              <ul className="flex items-center justify-center space-x-6 text-muted-foreground">
                 <li className="font-medium hover:text-white">
                   <a href="#">
                     <FaInstagram className="size-6" />
@@ -76,7 +76,7 @@ const Footer7 = () => {
                 </li>
               </ul>
             </div>
-            {/* <div className="grid grid-cols-3 gap-6 lg:gap-20">
+            <div className="grid grid-cols-3 gap-6 lg:gap-20">
               {sections.map((section, sectionIdx) => (
                 <div key={sectionIdx}>
                   <h3 className="mb-6 font-bold">{section.title}</h3>
@@ -91,7 +91,7 @@ const Footer7 = () => {
                   </ul>
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
           <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>© 2025 AstroInvest. All rights reserved.</p>
@@ -104,6 +104,16 @@ const Footer7 = () => {
               </li>
             </ul>
           </div>
+          {/* <div className="mt-8 text-left text-muted-foreground text-xs">
+            <h6 className="mt-4 text-lg font-semibold flex items-center"><TriangleAlert size={20} className="inline-block" color="#ee5353" /> Risk warning</h6>
+            <p className="mt-2 text-sm">
+              Financial spread trading comes with a high risk of losing money rapidly due to leverage. 83.5% of retail investor accounts lose money when trading CFDs with this provider.
+              You should consider whether you understand how spread trading works and whether you can afford to take the high risk of losing your money.
+            </p>
+            <p className="mt-2 text-sm">
+              The content of this website must not be construed as personal advice. We recommend that you seek advice from an independent financial advisor.
+            </p>
+          </div> */}
         </footer>
       </div>
     </section>

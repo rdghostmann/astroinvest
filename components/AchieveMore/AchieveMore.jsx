@@ -2,13 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import Award from "../../public/in-award-icon.svg";
 import AwardImage from "../../public/in-stena-2-image.png";
+import { ChartNoAxesColumn, RefreshCw } from 'lucide-react';
 
 const AchieveMore = () => {
   return (
     <section className='w-full bg-gray-100'>
       <div className="py-12 ">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-5">
             <div className="mb-8 lg:mb-0">
               <span className="text-sm uppercase text-gray-500">Achieve more</span>
               <h1 className="mt-2 text-3xl font-bold">Purpose of a convoy is to keep your team</h1>
@@ -16,7 +17,7 @@ const AchieveMore = () => {
             <div className="flex flex-col gap-8">
               <div className="flex items-start gap-4">
                 <div className="bg-purple-500 rounded-full p-3">
-                  <i className="fas fa-chart-simple text-white"></i>
+                <ChartNoAxesColumn color='#fff' />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Designed for Impact</h3>
@@ -28,7 +29,7 @@ const AchieveMore = () => {
               </div>
               <div className="flex items-start gap-4">
                 <div className="bg-red-500 rounded-full p-3">
-                  <i className="fas fa-arrows-rotate text-white"></i>
+                <RefreshCw color='#fff' />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Harmonized with Your Vision</h3>
@@ -46,14 +47,14 @@ const AchieveMore = () => {
             </div>
             <div className="mt-8 lg:mt-0 lg:ml-8">
               <span className="text-sm uppercase text-gray-500">Fully regulated</span>
-              <h1 className="mt-2 text-3xl font-bold">Trusted for more than 10 years</h1>
-              <p className="text-gray-600 mt-4">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt quis nostrum exercitationem ullam corporis suscipit.</p>
+              <h1 className="mt-2 text-3xl font-bold">Trusted for more than 4 years</h1>
+              <p className="text-gray-600 mt-4">Expert in creating tailored financial solutions, enhancing client satisfaction and operational efficiency.</p>
               <div className="flex flex-wrap gap-8 mt-8">
                 <div className="flex items-center gap-4">
-                  <Image src={Award} alt="Best CFD Broker" width={45} height={42} />
+                  <Image src={Award} alt="Best CCT Broker" width={45} height={42} />
                   <div>
-                    <h5 className="font-semibold">Best CFD Broker</h5>
-                    <small className="text-gray-500">TradeON Summit 2020</small>
+                    <h5 className="font-semibold">Best CCT Broker</h5>
+                    <small className="text-gray-500">CryptoConsortium Summit 2020</small>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
