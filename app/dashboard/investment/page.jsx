@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,20 +6,32 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 import InvestForm from "./InvestForm";
+import { getServerSession } from "next-auth";
+import { findUserWallets } from "@/lib/actions";
 
 export default async function Page() {
+  // Fetch the user's session
+  const session = await getServerSession();
+
+  // Fetch the user's wallets using the session
+  let wallets = [];
+  if (session?.user?.id) {
+    wallets = await findUserWallets(session.user.id);
+  }
+
+  console.log("Wallets:", wallets);
 
   return (
-    (<SidebarProvider>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -29,9 +41,7 @@ export default async function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Investment & Desposit
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href="#">Investment & Deposit</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
@@ -46,9 +56,11 @@ export default async function Page() {
             <h2 className="text-purple-600 font-bold text-xl">Investment Plans</h2>
             <p className="text-slate-700">Investment that Guarantee Wealth</p>
           </div>
+          {/* Pass the fetched wallets as props */}
           <InvestForm />
+          {/* <InvestForm wallets={wallets} /> */}
         </div>
       </SidebarInset>
-    </SidebarProvider>)
+    </SidebarProvider>
   );
 }
