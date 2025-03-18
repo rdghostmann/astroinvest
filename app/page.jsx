@@ -7,19 +7,30 @@ import Hero1 from "@/components/Jumbotron/Jumbotron2";
 import OurAmazingFeatures from "@/components/OurAmazingFeatures/OurAmazingFeatures";
 import CoinPriceMarqueeWidget from "@/components/CoinPriceMarqueeWidget/CoinPriceMarqueeWidget";
 import OurAmazingFeatures2 from "@/components/OurAmazingFeatures/OurAmazingFeatures2";
-
+import AboutAstroInvest from "@/components/AboutAstroInvest/AboutAstroInvest";
+import Fiat from "@/components/Fiat/Fiat";
+import Stats from "@/components/OurStats/Stats";
+import AffiliateProgram from "@/components/AffliateProgram/improved-affiliate-program";
+import AchieveMore from "@/components/AchieveMore/AchieveMore";
+import TrustPilot from "@/components/TrustPilot/TrustPilot";
+// import AffiliateProgram from "@/components/AffliateProgram/AffiliateProgram";
 
 
 export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
-      {/* <CoinPriceMarqueeWidget /> */}
+      <CoinPriceMarqueeWidget />
       <Hero1 />
-      {/* <OurAmazingFeatures2 /> */}
+      <TrustPilot />
+      <AboutAstroInvest />
       <OurAmazingFeatures />
+      <Stats />
+      <Fiat />
       <CallToAction />
+      <AchieveMore />
       <InvestorsActivity />
+      <AffiliateProgram />
       <HowItWorks />
       <FAQ />
       <Footer7 />

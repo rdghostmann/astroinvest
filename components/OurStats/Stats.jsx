@@ -1,46 +1,55 @@
-import React from 'react'
+import React from 'react';
+import Image from 'next/image';
+import DepositImage from "../../public/depositImage2.png";
+import MemberImage from "../../public/memberImage.png";
+import CountriesImage from "../../public/countriesImage.png";
+
+const stats = [
+  {
+    id: 1,
+    path: DepositImage,
+    title: "Total Deposited",
+    desc: "62K",
+  },
+  {
+    id: 2,
+    path: MemberImage,
+    title: "Total Members",
+    desc: "70K+",
+  },
+  {
+    id: 3,
+    path: CountriesImage,
+    title: "Support Countries",
+    desc: "178",
+  },
+];
 
 const Stats = () => {
   return (
-    <section>
-    {/* Container */}
-    <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
-      {/* Title */}
-      <h2 className="text-center text-3xl font-bold md:text-5xl">
-        Our Stats
-      </h2>
-      {/* <p className="mx-auto mb-8 mt-4 max-w-lg items-center text-center text-sm text-gray-500 sm:text-base md:mb-12 lg:mb-16">
-        Lorem ipsum dolor sit amet consectetur adipiscing elit ut
-        aliquam,purus sit amet luctus magna fringilla urna
-      </p> */}
-      {/* Content */}
-      <div className="mx-auto flex w-full max-w-4xl flex-col flex-wrap justify-between gap-5 px-16 py-8 sm:flex-row md:gap-6">
-        
-        <div className="border border-gray-800 rounded-lg p-3 flex flex-col items-center justify-center gap-4">
-          <div>
-            {/* image  */}
-          </div>
-          <p className="text-sm">Total Desposited</p>
-          <h2 className="text-3xl font-bold md:text-6xl">62K</h2>
-        </div>
-        <div className="border border-gray-800 rounded-lg p-3 flex flex-col items-center justify-center gap-4">
-          <div>
-            {/* image  */}
-          </div>
-          <p className="text-sm">Total Members</p>
-          <h2 className="text-3xl font-bold md:text-6xl">70K+</h2>
-        </div>
-        <div className="border border-gray-800 rounded-lg p-3 flex flex-col items-center justify-center gap-4">
-          <div>
-            {/* image  */}
-          </div>
-          <p className="text-sm">Support Countries</p>
-          <h2 className="text-3xl font-bold md:text-6xl">178</h2>
+    <section className='relative'>
+      {/* Container */}
+      <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-10 md:py-18">
+        {/* Title */}
+        {/* <h2 className="text-center text-3xl font-bold md:text-5xl">
+          Our Stats
+        </h2> */}
+
+        {/* Content */}
+        <div className="grid grid-cols-3 gap-6  py-8">
+          {stats.map((stat) => (
+            <div key={stat.id} className="shadow-xl rounded-lg p-3 text-center flex flex-col items-center justify-center gap-4">
+              <div className='w-18 h-18 md:w-36 md:h-36 rounded-full'>
+                <Image src={stat.path} alt={stat.title} width={400} height={400} className="rounded-full" />
+              </div>
+              <p className="text-sm">{stat.title}</p>
+              <h2 className="text-xl text-indigo-900 font-bold md:text-3xl">{stat.desc}</h2>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-  )
-}
+    </section>
+  );
+};
 
-export default Stats
+export default Stats;
