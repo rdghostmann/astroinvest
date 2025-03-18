@@ -19,11 +19,11 @@ const AchieveMore = () => {
                   <i className="fas fa-chart-simple text-white"></i>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">Built for impact</h3>
-                  <p className="text-gray-600">Our solutions are designed to create a significant and lasting impact on your business. 
-                    We focus on delivering high-quality results that drive growth and success. 
-                </p>
-                  <a href="#" className="text-blue-500 hover:underline">Learn more<i className="fas fa-circle-chevron-right ml-1"></i></a>
+                  <h3 className="text-xl font-semibold">Designed for Impact</h3>
+                  <p className="text-gray-600">
+                    Our innovative solutions are tailored to deliver transformative results, leaving a lasting impression on your business. We prioritize excellence to fuel your growth and success.
+                  </p>
+                  <a href="#" className="text-blue-500 hover:underline">Discover More<i className="fas fa-circle-chevron-right ml-1"></i></a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -31,9 +31,11 @@ const AchieveMore = () => {
                   <i className="fas fa-arrows-rotate text-white"></i>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">In sync with you</h3>
-                  <p className="text-gray-600">Whether you're looking to improve efficiency, increase revenue, or enhance customer satisfaction, our team is dedicated to helping you achieve your goals and make a meaningful difference in your industry.</p>
-                  <a href="#" className="text-blue-500 hover:underline">Learn more<i className="fas fa-circle-chevron-right ml-1"></i></a>
+                  <h3 className="text-xl font-semibold">Harmonized with Your Vision</h3>
+                  <p className="text-gray-600">
+                    Whether your aim is to boost efficiency, amplify revenue, or elevate customer satisfaction, our dedicated team is committed to helping you reach your objectives and make a tangible impact in your sector.
+                  </p>
+                  <a href="#" className="text-blue-500 hover:underline">Explore Further<i className="fas fa-circle-chevron-right ml-1"></i></a>
                 </div>
               </div>
             </div>
