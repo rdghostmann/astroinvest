@@ -53,3 +53,50 @@ const Stats = () => {
 };
 
 export default Stats;
+
+
+// <section class="py-5 mt-4 in-avo-12" style="background: url(img/in-avo-12-background.jpg) no-repeat bottom center; background-size: cover;">
+// 			<div class="container">
+// 				<div class="row justify-content-center">
+// 					<div class="col-lg-8 text-center">
+// 						<h1 class="text-white">We are committed to meeting your CFD and FX trading needs</h1>
+// 						<p class="lead text-white d-none d-lg-block">Excepteur occaeca cupidata non proident fugiat nulla pariatur quasi architecto beatae, sunt in culpa quila officia deserunt mollit anim id est aute laborum.</p>
+// 						<a href="#" class="btn btn-primary rounded-pill mt-2 mb-4">Discover the benefits<i class="fas fa-arrow-right ms-1"></i></a>
+// 					</div>
+// 				</div>
+// 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex align-items-center gy-3 gy-lg-0">
+// 					<div class="col">
+// 						<div class="card card-body text-center">
+// 							<h1 class="text-white mb-0">
+// 								<span class="count" data-counter-end="250">250</span>M<span class="text-primary">+</span>
+// 							</h1>
+// 							<p class="text-white mb-0">Lorem ipsum dolor sit odin amet consectetur.</p>
+// 						</div>
+// 					</div>
+// 					<div class="col">
+// 						<div class="card card-body text-center">
+// 							<h1 class="text-white mb-0">
+// 								<span class="count" data-counter-end="90">90</span><span class="text-primary">%</span>
+// 							</h1>
+// 							<p class="text-white mb-0">Lorem ipsum dolor sit odin amet consectetur.</p>
+// 						</div>
+// 					</div>
+// 					<div class="col">
+// 						<div class="card card-body text-center">
+// 							<h1 class="text-white mb-0">
+// 								<span class="count" data-counter-end="131">131</span>M<span class="text-primary">+</span>
+// 							</h1>
+// 							<p class="text-white mb-0">Lorem ipsum dolor sit odin amet consectetur.</p>
+// 						</div>
+// 					</div>
+// 					<div class="col">
+// 						<div class="card card-body text-center">
+// 							<h1 class="text-white mb-0">
+// 								<span class="count" data-counter-end="35">35</span>M<span class="text-primary">+</span>
+// 							</h1>
+// 							<p class="text-white mb-0">Lorem ipsum dolor sit odin amet consectetur.</p>
+// 						</div>
+// 					</div>
+// 				</div>
+// 			</div>
+// 		</section>
