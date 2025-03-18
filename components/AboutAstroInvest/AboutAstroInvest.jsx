@@ -21,9 +21,8 @@ const AboutAstroInvest = () => {
               />
             </div>
             <div className="w-full lg:w-1/2 space-y-6">
-              <span className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-4 rounded-full" >
+              <span className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-full" >
                 About AstroInvest
-                <ArrowDownRight className="ml-2 size-4" />
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-blue-700">
                 Stable Earnings

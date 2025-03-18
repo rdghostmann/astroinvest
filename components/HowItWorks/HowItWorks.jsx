@@ -47,7 +47,7 @@ const HowItWorks = () => {
                   <div className="flex-grow pl-4">
                     <h2 className="title-font text-sm font-bold text-blue-600 mb-1 tracking-wider">STEP 1</h2>
                     <h2 className="title-font text-sm font-bold text-indigo-900 mb-1 tracking-wider">Create Account</h2>
-                    <p className="leading-relaxed">Click <Link href="/register">Sign Up</Link> to fill the blank, our SSL will protect your privacy.</p>
+                    <p className="leading-relaxed">Click <Link href="/register">Sign Up</Link> to create an account, submit your application and Fund your account wallet</p>
                   </div>
                 </div>
 

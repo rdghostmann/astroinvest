@@ -17,7 +17,7 @@ const TrustPilot = () => {
         </div>
         {/* For larger screens */}
         <div className="hidden sm:block">
-          <p className="text-lg flex items-center justify-center">
+          <p className="text-sm flex items-center justify-center">
             Our customer says <span className="font-bold mx-1">Excellent</span>
             <Image src={ReviewStarImage} alt="Review Stars" width={100} height={20} className="inline-block mx-2" priority />
             4.5 out of 5 based on 2,954 reviews
