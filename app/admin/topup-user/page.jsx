@@ -16,7 +16,7 @@ import {
 
 import { getAllUsers } from '@/lib/actions';
 import { AdminSidebar } from '../_component/AdminSidebar'
-import UsersCard from './UsersCard';
+import UsersCard from '../_component/UsersCard';
 
 const page = async () => {
   const users = await getAllUsers();
