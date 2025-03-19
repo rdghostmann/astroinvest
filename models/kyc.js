@@ -13,7 +13,7 @@ const KycSchema = new mongoose.Schema(
     kyc_selfie_image: { type: String, required: function () { return this.id_type === "Selfie"; } }, // FIXED
     status: {
       type: String,
-      enum: ["pending", "verified", "rejected"],
+      enum: ["pending", "Verified", "Rejected"],
       default: "pending", // Changed from "Not verified" to "pending" to match enum
     },
   },

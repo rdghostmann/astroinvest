@@ -1,4 +1,5 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,18 +7,31 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { AdminSidebar } from '../_component/AdminSidebar'
+} from "@/components/ui/sidebar";
+import { AdminSidebar } from "../_component/AdminSidebar";
+import KycCard from "./KycCard";
+import { fetchKycUsers, fetchAllKycRecords } from "@/lib/actions"; // Import the separate functions
 
+const Page = () => {
+  const [users, setUsers] = useState([]);
+  const [kycRecords, setKycRecords] = useState([]);
 
-const page = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const usersData = await fetchKycUsers();
+      const kycData = await fetchAllKycRecords();
+      setUsers(usersData);
+      setKycRecords(kycData);
+    };
 
+    fetchData();
+  }, []);
 
   return (
     <SidebarProvider>
@@ -30,9 +44,7 @@ const page = async () => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    AstroInvest
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href="#">AstroInvest</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
@@ -42,22 +54,19 @@ const page = async () => {
             </Breadcrumb>
           </div>
         </header>
+
         <div className="flex flex-1 flex-col gap-1 p-4 pt-0">
-          {/* Left Section */}
-          <div className="flex-1 space-y-6 basis-0">
-            {/* Portfolio Overview */}
-            <h2 className="text-lg font-semibold">KYC Approvals</h2>
+          <h2 className="text-lg font-semibold">KYC Approvals</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {users.map(user => {
+              const userKyc = kycRecords.find(kyc => kyc.user_id === user._id);
+              return <KycCard key={user._id} user={user} kyc={userKyc} />;
+            })}
           </div>
-          <div>
-            {/* Add Somthing here */}
-
-          </div>
-
-
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
-}
+};
 
-export default page
+export default Page;

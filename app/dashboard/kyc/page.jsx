@@ -56,47 +56,51 @@ export default function Page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Prevent re-upload if KYC is already pending
     if (kycStatus === "pending") {
       toast({ title: "Your KYC is already under review. Please wait for admin approval." });
-
-      
       return;
     }
-
+  
     if (!idType || (!selfieFile && (!frontFile || !backFile))) {
       alert("Please fill in all fields and select files.");
       return;
     }
-
+  
     setUploading(true);
     try {
       const formData = new FormData();
       formData.append("idType", idType);
-
+  
       if (idType === "Selfie") {
         formData.append("selfieFile", selfieFile);
       } else {
         formData.append("frontFile", frontFile);
         formData.append("backFile", backFile);
       }
-
+  
       const response = await fetch("/api/kycupload", {
         method: "POST",
         body: formData,
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to upload files.");
       }
-
+  
       const result = await response.json();
       console.log("Uploaded Files:", result);
-
+  
       setKycStatus(result.kycStatus || "Submitted");
       toast({ title: "Files uploaded successfully! Your KYC is now pending approval." });
-
+  
+      // Clear input fields after successful upload
+      setFrontFile(null);
+      setBackFile(null);
+      setSelfieFile(null);
+      e.target.reset(); // Reset the form inputs
+  
     } catch (error) {
       console.error("Upload Error:", error);
       alert("Failed to upload files.");
@@ -104,7 +108,6 @@ export default function Page() {
       setUploading(false);
     }
   };
-
   return (
     <SidebarProvider>
       <AppSidebar />
