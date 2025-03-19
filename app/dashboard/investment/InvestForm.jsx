@@ -27,7 +27,6 @@ const InvestForm = ({ wallets }) => {
   const [loading, setLoading] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState(wallets?.[0] || null); // Default to the first wallet if available
 
-  const router = useRouter();
 
   const dailyProfit = (amount * selectedPlan.roi) / (100 * 30);
   const totalProfit = dailyProfit * 30;
@@ -91,7 +90,7 @@ const InvestForm = ({ wallets }) => {
 
         {/* Investment Plans */}
         <div className="container mx-auto mt-4">
-          <div className="grid grid-cols-1">
+          <div className="grid grid-cols-1 border border-red-500 p-2">
             <Splide
               options={{
                 type: "loop",
@@ -172,82 +171,88 @@ const InvestForm = ({ wallets }) => {
           </div>
         </div>
 
-        {/* Buttons to Choose Plan */}
-        <div className="mt-4 w-full flex flex-wrap justify-center gap-4">
-          {plans.map((plan) => (
-            <Button
-              key={plan.type}
-              onClick={() => handlePlanSelection(plan)}
-              className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
-                ? "bg-[#FFD700] text-black" // Highlight the selected plan
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
-            >
-              {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
-            </Button>
-          ))}
-        </div>
 
         {/* Investment Calculator */}
-        <div className="mt-4 max-w-xs">
-          <h2 className="text-2xl font-bold text-center">Profit Calculator</h2>
-          <Card className="w-full bg-black backdrop-blur backdrop-contrast-100 text-white mt-8">
-            <CardContent className="p-6 ">
-              <div className="grid grid-cols-1">
-                <div className="lg:col-span-3 space-y-6 mb-2">
-                  <div>
-                    <Label htmlFor="amount" className="text-lg font-medium">
-                      Enter Amount:
-                    </Label>
-                    <div className="flex items-center gap-4 mt-2">
-                      <Input
-                        type="number"
-                        id="amount"
-                        name="amount"
-                        min="20"
-                        max={selectedWallet?.balance || 0}
-                        value={amount}
-                        onChange={(e) => setAmount(Number(e.target.value))}
-                        className="bg-white text-black border-[#2C1810]"
-                      />
-                      <span>USD</span>
-                    </div>
-                    <Slider
-                      value={[amount]}
-                      min={selectedPlan.minInvest}
-                      max={selectedPlan.maxInvest}
-                      step={1}
-                      onValueChange={handleAmountChange}
-                      className="mt-4 text-white bg-gray-400"
-                    />
-                    <div className="text-sm text-white mt-2">{amount} USD</div>
-                  </div>
-                </div>
-
-                <div className="w-full bg-gradient-to-br from-[#07071a] to-[#2c0323] text-white p-6 rounded-lg">
-                  <div className=" space-y-4">
-                    <div>
-                      <div className="text-sm">Daily Profit</div>
-                      <div className="text-2xl font-bold">{dailyProfit.toFixed(2)} USD</div>
-                    </div>
-                    <div>
-                      <div className="text-sm">Total Profit</div>
-                      <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
-                    </div>
-                    <Button
-                      onClick={handleInvest}
-                      disabled={loading}
-                      type="submit"
-                      className="w-fit mx-auto text-black bg-[#FFD700]"
-                    >
-                      {loading ? "Processing..." : "Invest Now"}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
+        <div className="container mx-auto mt-4">
+          <div className="grid grid-cols-1">
+            <div className="mt-4 relative overflow-hidden snap-center shrink-0 w-full  mx-auto">
+              <h2 className="text-2xl font-bold text-center">Profit Calculator</h2>
+              {/* Buttons to Choose Plan */}
+              <div className="mt-4 w-full flex flex-wrap justify-center gap-4">
+                {plans.map((plan) => (
+                  <Button
+                    key={plan.type}
+                    onClick={() => handlePlanSelection(plan)}
+                    className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
+                      ? "bg-[#FFD700] text-black"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                      }`}
+                  >
+                    {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
+                  </Button>
+                ))}
               </div>
-            </CardContent>
-          </Card>
+
+              <Card className="w-full bg-black backdrop-blur backdrop-contrast-100 text-white mt-8">
+                <CardContent className="p-6 ">
+                  <div className="grid grid-cols-1">
+                    <div className="lg:col-span-3 space-y-6 mb-2">
+                      <div>
+                        <Label htmlFor="amount" className="text-lg font-medium">
+                          Enter Amount:
+                        </Label>
+                        <div className="flex items-center gap-4 mt-2">
+                          <Input
+                            type="number"
+                            id="amount"
+                            name="amount"
+                            min="20"
+                            max={selectedWallet?.balance || 0}
+                            value={amount}
+                            onChange={(e) => setAmount(Number(e.target.value))}
+                            className="bg-white text-black border-[#2C1810]"
+                            step="5"
+                          />
+                          <span>USD</span>
+                        </div>
+                        <Slider
+                          value={[amount]}
+                          min={selectedPlan.minInvest}
+                          max={selectedPlan.maxInvest}
+                          step={1}
+                          onValueChange={handleAmountChange}
+                          className="mt-4 text-white bg-gray-400"
+                        />
+                        <div className="text-sm text-white mt-2">{amount} USD</div>
+                      </div>
+                    </div>
+
+                    <div className="w-full bg-gradient-to-br from-[#07071a] to-[#2c0323] text-white p-6 rounded-lg">
+                      <div className=" space-y-4">
+                        <div>
+                          <div className="text-sm">Daily Profit</div>
+                          <div className="text-2xl font-bold">{dailyProfit.toFixed(2)} USD</div>
+                        </div>
+                        <div>
+                          <div className="text-sm">Total Profit</div>
+                          <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
+                        </div>
+                        <Button
+                          onClick={handleInvest}
+                          disabled={loading}
+                          type="submit"
+                          className="w-fit mx-auto text-black bg-[#FFD700]"
+                        >
+                          {loading ? "Processing..." : "Invest Now"}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
 
       </form>
