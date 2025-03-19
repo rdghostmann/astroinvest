@@ -16,17 +16,16 @@ import {
 
 import InvestForm from "./InvestForm";
 import { getServerSession } from "next-auth";
-import { findUserWallets } from "@/lib/actions";
+import { authOptions } from "@/auth";
+import { fetchWalletsByUser } from "@/lib/actions";
+
 
 export default async function Page() {
-  // Fetch the user's session
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
+  const userID = session?.user?.id;
 
-  // Fetch the user's wallets using the session
-  let wallets = [];
-  if (session?.user?.id) {
-    wallets = await findUserWallets(session.user.id);
-  }
+  // Fetch wallets made by the user
+  const wallets = await fetchWalletsByUser(userID);
 
   console.log("Wallets:", wallets);
 

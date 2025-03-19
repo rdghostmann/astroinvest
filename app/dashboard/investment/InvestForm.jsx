@@ -20,8 +20,7 @@ const plans = [
 ];
 
 const InvestForm = () => {
-  const { data: session } = useSession(); // Get the session data
-  const userID = session?.user?.id; // Get the userID from the session
+
 
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
