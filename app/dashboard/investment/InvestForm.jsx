@@ -5,7 +5,6 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css"; // Import Splide CSS
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { ArrowRight, Award } from "lucide-react";
@@ -39,9 +38,30 @@ const InvestForm = ({ wallets, userID }) => {
     setAmount(plan.minInvest); // Reset amount to the minimum investment for the selected plan
   };
 
+  const handleInvest = async (event) => {
+    event.preventDefault();
+
+    if (!selectedWallet) {
+      alert("Please select a wallet.");
+      return;
+    }
+
+    if (amount < selectedPlan.minInvest || amount > selectedPlan.maxInvest) {
+      alert(`Amount must be between ${selectedPlan.minInvest} and ${selectedPlan.maxInvest}.`);
+      return;
+    }
+
+    if (amount > selectedWallet.balance) {
+      alert("Insufficient wallet balance.");
+      return;
+    }
+
+   
+  };
+
   return (
     <div className="w-full">
-      <form action={investAmount} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
+      <form onSubmit={handleInvest} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
         {loading && <Loading />}
         {/* Display User's Current Balance */}
         <div className="bg-gray-50 p-4 rounded-lg">
@@ -151,7 +171,8 @@ const InvestForm = ({ wallets, userID }) => {
           <div className="py-4 w-full flex items-center gap-5">
             <p className="">Choose a Plan:</p>
             {plans.map((plan) => (
-              <Button
+              <button
+              type="button"
                 key={plan.type}
                 onClick={() => handlePlanSelection(plan)}
                 className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
@@ -160,7 +181,7 @@ const InvestForm = ({ wallets, userID }) => {
                   }`}
               >
                 {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
-              </Button>
+              </button>
             ))}
           </div>
 
@@ -211,14 +232,13 @@ const InvestForm = ({ wallets, userID }) => {
                           <div className="text-sm">Total Profit</div>
                           <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
                         </div>
-                        <Button
-                          disabled={loading}
+                        <button
                           type="submit"
-                          className="w-fit mx-auto text-black bg-[#FFD700]"
+                          className="px-4 py-2 rounded-lg flex items-center w-fit mx-auto text-black bg-[#FFD700]"
                         >
                           {loading ? "Processing..." : "Invest Now"}
                           <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        </button>
                       </div>
                     </div>
                   </div>
