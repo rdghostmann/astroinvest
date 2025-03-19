@@ -11,6 +11,10 @@ const InvestmentSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    assetName: {
+      type: String,
+      required: true
+    },
     amount: {
       type: Number,
       required: true

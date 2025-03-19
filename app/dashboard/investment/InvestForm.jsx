@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 import Loading from "@/app/loading";
-import { useRouter } from "next/navigation";
+import { investAmount } from "@/lib/actions";
 
 const plans = [
   { type: "gold", roi: 12, minInvest: 150000, maxInvest: 250000, medal: 1 },
@@ -21,7 +21,7 @@ const plans = [
   { type: "bronze", roi: 5, minInvest: 100, maxInvest: 50000, medal: 3 },
 ];
 
-const InvestForm = ({ wallets }) => {
+const InvestForm = ({ wallets, userID }) => {
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
   const [loading, setLoading] = useState(false);
@@ -29,36 +29,6 @@ const InvestForm = ({ wallets }) => {
 
   const dailyProfit = (amount * selectedPlan.roi) / (100 * 30);
   const totalProfit = dailyProfit * 30;
-
-  // const handleInvest = async (event) => {
-  //   event.preventDefault();
-
-  //   if (amount < 100) {
-  //     alert("Invalid investment amount");
-  //     return;
-  //   }
-  //   if (amount > selectedWallet?.balance) {
-  //     alert("Insufficient balance");
-  //     return;
-  //   }
-
-  //   setLoading(true);
-
-  //   const payload = {
-  //     userID: selectedWallet?.userId,
-  //     planName: selectedPlan.type,
-  //     amount,
-  //     profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
-  //     walletID: selectedWallet?.id,
-  //   };
-
-  //   console.log(payload);
-
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //     alert("Investment successful!");
-  //   }, 2000);
-  // };
 
   const handleAmountChange = (value) => {
     setAmount(value[0]);
@@ -71,7 +41,7 @@ const InvestForm = ({ wallets }) => {
 
   return (
     <div className="w-full">
-      <form action={()=>{}} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
+      <form action={investAmount} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
         {loading && <Loading />}
         {/* Display User's Current Balance */}
         <div className="bg-gray-50 p-4 rounded-lg">
@@ -120,33 +90,30 @@ const InvestForm = ({ wallets }) => {
                 plans.map((plan) => (
                   <SplideSlide key={plan.type}>
                     <Card
-                      className={`relative overflow-hidden snap-center shrink-0 w-full md:w-[300px] mx-auto ${
-                        plan.type === "gold"
-                          ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
-                          : plan.type === "silver"
+                      className={`relative overflow-hidden snap-center shrink-0 w-full md:w-[300px] mx-auto ${plan.type === "gold"
+                        ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
+                        : plan.type === "silver"
                           ? "bg-[#C0C0C0]/10 bg-gradient-to-r from-[#C0C0C0] to-[#A9A9A9]"
                           : "bg-gradient-to-r from-[#CD7F32] to-[#8B4513] border-[#CD7F32]"
-                      } border-2`}
+                        } border-2`}
                       onClick={() => handlePlanSelection(plan)}
                     >
                       <CardHeader className="flex items-center pb-2">
                         <div
-                          className={`border-4 p-3 rounded-full ${
-                            plan.type === "gold"
-                              ? "bg-[#FFD700]/10 border-[#FFD700]"
-                              : plan.type === "silver"
+                          className={`border-4 p-3 rounded-full ${plan.type === "gold"
+                            ? "bg-[#FFD700]/10 border-[#FFD700]"
+                            : plan.type === "silver"
                               ? "bg-[#C0C0C0]/10 border-[#C0C0C0]"
                               : "bg-[#CD7F32]/10 border-[#CD7F32]"
-                          }`}
+                            }`}
                         >
                           <Award
-                            className={`h-8 w-8 ${
-                              plan.type === "gold"
-                                ? "text-[#FFD700]"
-                                : plan.type === "silver"
+                            className={`h-8 w-8 ${plan.type === "gold"
+                              ? "text-[#FFD700]"
+                              : plan.type === "silver"
                                 ? "text-[#C0C0C0]"
                                 : "text-[#CD7F32]"
-                            }`}
+                              }`}
                           />
                         </div>
                       </CardHeader>
@@ -180,26 +147,26 @@ const InvestForm = ({ wallets }) => {
 
         {/* Investment Calculator */}
         <div className="container mx-auto mt-4">
+          {/* Buttons to Choose Plan */}
+          <div className="py-4 w-full flex items-center gap-5">
+            <p className="">Choose a Plan:</p>
+            {plans.map((plan) => (
+              <Button
+                key={plan.type}
+                onClick={() => handlePlanSelection(plan)}
+                className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
+                  ? "bg-[#FFD700] text-black"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  }`}
+              >
+                {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
+              </Button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1">
             <div className="mt-4 relative overflow-hidden snap-center shrink-0 w-full mx-auto">
               <h2 className="text-2xl font-bold text-center">Profit Calculator</h2>
-              {/* Buttons to Choose Plan */}
-              <div className="mt-4 w-full flex flex-wrap justify-center gap-4">
-                {plans.map((plan) => (
-                  <Button
-                    key={plan.type}
-                    onClick={() => handlePlanSelection(plan)}
-                    className={`px-4 py-2 rounded-lg font-bold ${
-                      selectedPlan.type === plan.type
-                        ? "bg-[#FFD700] text-black"
-                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                    }`}
-                  >
-                    {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
-                  </Button>
-                ))}
-              </div>
-
               <Card className="w-full bg-black backdrop-blur backdrop-contrast-100 text-white mt-8">
                 <CardContent className="p-6">
                   <div className="grid grid-cols-1">
@@ -245,7 +212,6 @@ const InvestForm = ({ wallets }) => {
                           <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
                         </div>
                         <Button
-                          onClick={()=>{}}
                           disabled={loading}
                           type="submit"
                           className="w-fit mx-auto text-black bg-[#FFD700]"

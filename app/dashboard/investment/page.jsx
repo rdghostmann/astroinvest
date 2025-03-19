@@ -54,7 +54,7 @@ export default async function Page() {
             <p className="text-slate-700">Investment that Guarantee Wealth</p>
           </div>
           {/* Pass the fetched wallets as props */}
-          <InvestForm wallets={wallets} />
+          <InvestForm wallets={wallets} userID={userID} />
         </div>
       </SidebarInset>
     </SidebarProvider>
