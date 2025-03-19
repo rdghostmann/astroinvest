@@ -25,35 +25,40 @@ const InvestForm = ({ wallets }) => {
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
   const [loading, setLoading] = useState(false);
-  const [selectedWallet, setSelectedWallet] = useState(wallets?.[0] || null); // Default to the first wallet if available
-
+  const [selectedWallet, setSelectedWallet] = useState(wallets?.[0] || null);
 
   const dailyProfit = (amount * selectedPlan.roi) / (100 * 30);
   const totalProfit = dailyProfit * 30;
 
-  const handleInvest = async (event) => {
-    event.preventDefault();
+  // const handleInvest = async (event) => {
+  //   event.preventDefault();
 
-    if (amount < 100) {
-      alert("Invalid investment amount");
-      return;
-    }
-    if (amount > selectedWallet?.balance) {
-      alert("Insufficient balance");
-      return;
-    }
+  //   if (amount < 100) {
+  //     alert("Invalid investment amount");
+  //     return;
+  //   }
+  //   if (amount > selectedWallet?.balance) {
+  //     alert("Insufficient balance");
+  //     return;
+  //   }
 
-    setLoading(true);
+  //   setLoading(true);
 
-    const payload = {
-      userID: selectedWallet?.userId, // Assuming the wallet contains the userId
-      planName: selectedPlan.type,
-      amount,
-      profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
-      walletID: selectedWallet?.id,
-    };
-    console.log(payload);
-  };
+  //   const payload = {
+  //     userID: selectedWallet?.userId,
+  //     planName: selectedPlan.type,
+  //     amount,
+  //     profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
+  //     walletID: selectedWallet?.id,
+  //   };
+
+  //   console.log(payload);
+
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     alert("Investment successful!");
+  //   }, 2000);
+  // };
 
   const handleAmountChange = (value) => {
     setAmount(value[0]);
@@ -61,12 +66,12 @@ const InvestForm = ({ wallets }) => {
 
   const handlePlanSelection = (plan) => {
     setSelectedPlan(plan);
-    setAmount(plan.minInvest); // Reset amount when plan changes
+    setAmount(plan.minInvest); // Reset amount to the minimum investment for the selected plan
   };
 
   return (
     <div className="w-full">
-      <form onSubmit={handleInvest} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
+      <form action={()=>{}} className="container mx-auto mb-2 bg-white shadow-md p-4 rounded-lg">
         {loading && <Loading />}
         {/* Display User's Current Balance */}
         <div className="bg-gray-50 p-4 rounded-lg">
@@ -87,10 +92,9 @@ const InvestForm = ({ wallets }) => {
           </Select>
         </div>
 
-
         {/* Investment Plans */}
         <div className="container mx-auto mt-4">
-          <div className="grid grid-cols-1 border border-red-500 p-2">
+          <div className="grid grid-cols-1 p-2">
             <Splide
               options={{
                 type: "loop",
@@ -116,30 +120,33 @@ const InvestForm = ({ wallets }) => {
                 plans.map((plan) => (
                   <SplideSlide key={plan.type}>
                     <Card
-                      className={`relative overflow-hidden snap-center shrink-0 w-full md:w-[300px] mx-auto ${plan.type === "gold"
-                        ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
-                        : plan.type === "silver"
+                      className={`relative overflow-hidden snap-center shrink-0 w-full md:w-[300px] mx-auto ${
+                        plan.type === "gold"
+                          ? "bg-[#FFD700]/10 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
+                          : plan.type === "silver"
                           ? "bg-[#C0C0C0]/10 bg-gradient-to-r from-[#C0C0C0] to-[#A9A9A9]"
                           : "bg-gradient-to-r from-[#CD7F32] to-[#8B4513] border-[#CD7F32]"
-                        } border-2`}
+                      } border-2`}
                       onClick={() => handlePlanSelection(plan)}
                     >
                       <CardHeader className="flex items-center pb-2">
                         <div
-                          className={`border-4 p-3 rounded-full ${plan.type === "gold"
-                            ? "bg-[#FFD700]/10 border-[#FFD700]"
-                            : plan.type === "silver"
+                          className={`border-4 p-3 rounded-full ${
+                            plan.type === "gold"
+                              ? "bg-[#FFD700]/10 border-[#FFD700]"
+                              : plan.type === "silver"
                               ? "bg-[#C0C0C0]/10 border-[#C0C0C0]"
                               : "bg-[#CD7F32]/10 border-[#CD7F32]"
-                            }`}
+                          }`}
                         >
                           <Award
-                            className={`h-8 w-8 ${plan.type === "gold"
-                              ? "text-[#FFD700]"
-                              : plan.type === "silver"
+                            className={`h-8 w-8 ${
+                              plan.type === "gold"
+                                ? "text-[#FFD700]"
+                                : plan.type === "silver"
                                 ? "text-[#C0C0C0]"
                                 : "text-[#CD7F32]"
-                              }`}
+                            }`}
                           />
                         </div>
                       </CardHeader>
@@ -171,11 +178,10 @@ const InvestForm = ({ wallets }) => {
           </div>
         </div>
 
-
         {/* Investment Calculator */}
         <div className="container mx-auto mt-4">
           <div className="grid grid-cols-1">
-            <div className="mt-4 relative overflow-hidden snap-center shrink-0 w-full  mx-auto">
+            <div className="mt-4 relative overflow-hidden snap-center shrink-0 w-full mx-auto">
               <h2 className="text-2xl font-bold text-center">Profit Calculator</h2>
               {/* Buttons to Choose Plan */}
               <div className="mt-4 w-full flex flex-wrap justify-center gap-4">
@@ -183,10 +189,11 @@ const InvestForm = ({ wallets }) => {
                   <Button
                     key={plan.type}
                     onClick={() => handlePlanSelection(plan)}
-                    className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
-                      ? "bg-[#FFD700] text-black"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                      }`}
+                    className={`px-4 py-2 rounded-lg font-bold ${
+                      selectedPlan.type === plan.type
+                        ? "bg-[#FFD700] text-black"
+                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    }`}
                   >
                     {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
                   </Button>
@@ -194,7 +201,7 @@ const InvestForm = ({ wallets }) => {
               </div>
 
               <Card className="w-full bg-black backdrop-blur backdrop-contrast-100 text-white mt-8">
-                <CardContent className="p-6 ">
+                <CardContent className="p-6">
                   <div className="grid grid-cols-1">
                     <div className="lg:col-span-3 space-y-6 mb-2">
                       <div>
@@ -228,7 +235,7 @@ const InvestForm = ({ wallets }) => {
                     </div>
 
                     <div className="w-full bg-gradient-to-br from-[#07071a] to-[#2c0323] text-white p-6 rounded-lg">
-                      <div className=" space-y-4">
+                      <div className="space-y-4">
                         <div>
                           <div className="text-sm">Daily Profit</div>
                           <div className="text-2xl font-bold">{dailyProfit.toFixed(2)} USD</div>
@@ -238,7 +245,7 @@ const InvestForm = ({ wallets }) => {
                           <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
                         </div>
                         <Button
-                          onClick={handleInvest}
+                          onClick={()=>{}}
                           disabled={loading}
                           type="submit"
                           className="w-fit mx-auto text-black bg-[#FFD700]"
@@ -254,7 +261,6 @@ const InvestForm = ({ wallets }) => {
             </div>
           </div>
         </div>
-
       </form>
     </div>
   );
