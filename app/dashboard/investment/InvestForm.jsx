@@ -53,22 +53,7 @@ const InvestForm = ({ wallets }) => {
       profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
       walletID: selectedWallet?.id,
     };
-
-    const response = await fetch("/api/invest", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      router.push("/dashboard");
-    } else {
-      alert("Investment failed");
-    }
-
-    setLoading(false);
+    console.log(payload);
   };
 
   const handleAmountChange = (value) => {
@@ -185,6 +170,22 @@ const InvestForm = ({ wallets }) => {
               )}
             </Splide>
           </div>
+        </div>
+
+        {/* Buttons to Choose Plan */}
+        <div className="mt-4 w-full flex flex-wrap justify-center gap-4">
+          {plans.map((plan) => (
+            <Button
+              key={plan.type}
+              onClick={() => handlePlanSelection(plan)}
+              className={`px-4 py-2 rounded-lg font-bold ${selectedPlan.type === plan.type
+                ? "bg-[#FFD700] text-black" // Highlight the selected plan
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                }`}
+            >
+              {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
+            </Button>
+          ))}
         </div>
 
         {/* Investment Calculator */}
