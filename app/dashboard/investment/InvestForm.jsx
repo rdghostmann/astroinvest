@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,6 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 const plans = [
   { type: "gold", roi: 12, minInvest: 150000, maxInvest: 250000, medal: 1 },
@@ -19,21 +18,16 @@ const plans = [
   { type: "bronze", roi: 5, minInvest: 100, maxInvest: 50000, medal: 3 },
 ];
 
-const InvestForm = () => {
-
-
+const InvestForm = ({ wallets }) => {
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
   const [loading, setLoading] = useState(false);
-  const [wallets, setWallets] = useState([]); // State to store wallets
-  const [selectedWallet, setSelectedWallet] = useState(null); // State for selected wallet
+  const [selectedWallet, setSelectedWallet] = useState(wallets?.[0] || null); // Default to the first wallet if available
 
   const router = useRouter();
 
   const dailyProfit = (amount * selectedPlan.roi) / (100 * 30);
   const totalProfit = dailyProfit * 30;
-
-
 
   const handleInvest = async (event) => {
     event.preventDefault();
@@ -50,7 +44,7 @@ const InvestForm = () => {
     setLoading(true);
 
     const payload = {
-      userID,
+      userID: selectedWallet?.userId, // Assuming the wallet contains the userId
       planName: selectedPlan.type,
       amount,
       profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
@@ -106,9 +100,9 @@ const InvestForm = () => {
       </div>
 
       {/* Investment Plans */}
-      <div className="flex flex-col overflow-x-auto">
+      {/* <div className="flex flex-col overflow-x-auto">
         <div className="sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8"> */}
             <div className="py-3 overflow-x-auto">
               <div className="w-[90%] md:w-[300px] flex space-x-6 snap-x snap-mandatory">
                 {plans.map((plan) => (
@@ -166,9 +160,9 @@ const InvestForm = () => {
                 ))}
               </div>
             </div>
-          </div>
+          {/* </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Investment Calculator */}
       <div className="mt-4 grid grid-cols-1">

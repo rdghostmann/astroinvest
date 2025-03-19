@@ -17,7 +17,7 @@ import {
 import InvestForm from "./InvestForm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
-import { fetchWalletsByUser } from "@/lib/actions";
+import { findUserWallets } from "@/lib/actions";
 
 
 export default async function Page() {
@@ -25,9 +25,7 @@ export default async function Page() {
   const userID = session?.user?.id;
 
   // Fetch wallets made by the user
-  const wallets = await fetchWalletsByUser(userID);
-
-  console.log("Wallets:", wallets);
+  const wallets = await findUserWallets(userID);
 
   return (
     <SidebarProvider>
@@ -56,8 +54,7 @@ export default async function Page() {
             <p className="text-slate-700">Investment that Guarantee Wealth</p>
           </div>
           {/* Pass the fetched wallets as props */}
-          <InvestForm />
-          {/* <InvestForm wallets={wallets} /> */}
+          <InvestForm wallets={wallets} />
         </div>
       </SidebarInset>
     </SidebarProvider>
