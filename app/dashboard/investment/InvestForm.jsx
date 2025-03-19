@@ -5,6 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css"; // Import Splide CSS
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { ArrowRight, Award } from "lucide-react";
@@ -14,6 +15,9 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import Loading from "@/app/loading";
 import { investAmount } from "@/lib/actions";
 
+import { useToast } from "@/hooks/use-toast";
+
+
 const plans = [
   { type: "gold", roi: 12, minInvest: 150000, maxInvest: 250000, medal: 1 },
   { type: "silver", roi: 8, minInvest: 50000, maxInvest: 150000, medal: 2 },
@@ -21,6 +25,9 @@ const plans = [
 ];
 
 const InvestForm = ({ wallets, userID }) => {
+
+  const { toast } = useToast();
+  
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [amount, setAmount] = useState(plans[0].minInvest);
   const [loading, setLoading] = useState(false);
@@ -56,7 +63,34 @@ const InvestForm = ({ wallets, userID }) => {
       return;
     }
 
-   
+    setLoading(true);
+
+    const payload = {
+      userID: userID.toString(),
+      planName: selectedPlan.type,
+      assetName: selectedWallet.name,
+      amount,
+      profit: ((amount * selectedPlan.roi) / 100).toFixed(2),
+      walletID: selectedWallet.id.toString(),
+    };
+
+    console.log("Investment Payload:", payload);
+
+    
+    try {
+      const response = await investAmount(payload);
+      
+      if (response.success) {
+        toast({title: "Investment created successfully!"});
+      } else {
+        alert(response.message || "Failed to create investment.");
+      }
+    } catch (error) {
+      console.error("Error creating investment:", error);
+      toast({title: "An error occurred while creating the investment."});
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -232,13 +266,14 @@ const InvestForm = ({ wallets, userID }) => {
                           <div className="text-sm">Total Profit</div>
                           <div className="text-2xl font-bold">{totalProfit.toFixed(2)} USD</div>
                         </div>
-                        <button
+                        <Button
+                          // disabled={loading}
                           type="submit"
-                          className="px-4 py-2 rounded-lg flex items-center w-fit mx-auto text-black bg-[#FFD700]"
+                          className="w-fit mx-auto text-black bg-[#FFD700]"
                         >
                           {loading ? "Processing..." : "Invest Now"}
                           <ArrowRight className="ml-2 h-4 w-4" />
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
