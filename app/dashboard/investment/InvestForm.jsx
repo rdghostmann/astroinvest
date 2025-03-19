@@ -74,9 +74,7 @@ const InvestForm = ({ wallets, userID }) => {
       walletID: selectedWallet.id.toString(),
     };
 
-    console.log("Investment Payload:", payload);
-
-    
+   
     try {
       const response = await investAmount(payload);
       
