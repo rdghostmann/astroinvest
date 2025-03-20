@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import SessionProviderWrapper from "./SessionProviderWrapper";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth";
+import Tawk from "@/components/Tawk/Tawk";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }) {
           {children}
         </SessionProviderWrapper>
         <Toaster />
+        <Tawk />
       </body>
     </html>
   );
