@@ -52,7 +52,7 @@ export default async function Page() {
             <p className="text-slate-700">Top up your Account Balance Instantly</p>
           </div>
 
-          <div className="w-full lg:w-1/3 space-y-6 basis-0">
+          <div className="w-full space-y-6 basis-0">
             {/* Pass assets as props */}
             <SwiftDeposit assets={assetData} />
           </div>

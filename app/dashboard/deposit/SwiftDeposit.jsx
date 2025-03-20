@@ -11,6 +11,7 @@ import CopyToClipboardButton from "./CopyToClipboardButton";
 import { addDeposit } from "@/lib/actions";
 import { ToastAction } from "@/components/ui/toast";
 import { useSession } from "next-auth/react";
+import { Clipboard } from "lucide-react";
 
 const availableNetworks = [
   "Ethereum (ERC20)",
@@ -37,6 +38,22 @@ export default function SwiftDeposit({ assets }) {
   const [timeLeft, setTimeLeft] = useState(900);
   const [selectedAsset, setSelectedAsset] = useState(null);
   const { toast } = useToast();
+
+
+
+  const [paymentDetails] = useState({
+    name: "Adedolapo Helen Akinro",
+    accountNumber: "8038115349",
+    bankName: "MONIEPOINT",
+    orderNo: "1887355161411141632",
+    amount: "150,000 NGN",
+    recipientName: "RANDAL CHUKWUWEIKE WILSON",
+  })
+
+
+  const handleCopyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+  }
 
   // When an asset is selected, find it in the assets array and set it.
   const handleAssetChange = (assetName) => {
@@ -123,8 +140,8 @@ export default function SwiftDeposit({ assets }) {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (!selectedAsset || !amount || !network) {
-      toast({ 
-        title: "Please fill in all input fields.", 
+      toast({
+        title: "Please fill in all input fields.",
         description: "All fill fields are required .",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
@@ -144,9 +161,9 @@ export default function SwiftDeposit({ assets }) {
   // Step 3: Payment completed
   const handlePaymentCompleted = async () => {
     if (!userID) {
-      toast({ 
-        variant: "destructive" ,
-        title: "unauthenticated user.", 
+      toast({
+        variant: "destructive",
+        title: "unauthenticated user.",
         description: "There was a problem with your request.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
@@ -188,10 +205,10 @@ export default function SwiftDeposit({ assets }) {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="p-4 container mx-auto">
       {step === 1 && (
         <form onSubmit={handleSubmitForm} className="space-y-4">
-          <h2 className="text-xl font-bold mb-4">Deposit Form</h2>
+          {/* <h2 className="text-xl font-bold mb-4">Deposit Fund</h2> */}
           {/* Select Asset */}
           <div>
             <Label htmlFor="assetSelect">Select Asset:</Label>
@@ -280,29 +297,164 @@ export default function SwiftDeposit({ assets }) {
         </div>
       )}
       {step === 3 && (
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold">Complete Your Payment</h2>
-          {timeLeft > 0 ? (
-            <p className="text-red-600">
-              Please complete your payment within <strong>{formattedTime}</strong>.
-            </p>
-          ) : (
-            <>
-              <p className="text-red-600">Time expired. You can no longer complete this deposit.</p>
-              {localStorage.removeItem("depositStep")}
-              {setStep(1)}
-            </>
-          )}
-          <div className="p-3 bg-gray-100 rounded">
-            <p>Deposit Number: <strong>{depositNumber}</strong></p>
-            <p>Asset: <strong>{selectedAsset?.name}</strong></p>
-            <p>Network: <strong>{network}</strong></p>
-            <p>Amount: <strong>{amount}</strong></p>
-            <p>Deposit Address: <strong>{depositAddress}</strong></p>
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold">Complete Your Payment Within: <span className="bg-red-600 text-white rounded-md p-2 text-2xl">{formattedTime}</span></h2>
+            {timeLeft > 0 ? (
+              <>
+                {/* <p className="">
+                  <strong className="bg-red-600 text-white rounded-md p-2 text-2xl">{formattedTime}</strong>.
+                </p> */}
+                <p className="mt-4">
+                  Please complete your payment within <span className="">{formattedTime}</span>.<br />Otherwise, the order will be automatically canceled.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-red-600">Time expired. You can no longer complete this deposit.</p>
+                {localStorage.removeItem("depositStep")}
+                {setStep(1)}
+              </>
+            )}
           </div>
-          <Button onClick={handlePaymentCompleted} disabled={timeLeft === 0} className="w-full bg-green-600 text-white">
-            Payment Completed
-          </Button>
+          {/* Stepper */}
+          <ol className="overflow-hidden space-y-8">
+            <li className={`relative flex-1 after:content-[''] after:w-0.5 after:h-96 after:bg-${timeLeft > 0 ? "green-600" : "gray-200"
+              } after:inline-block after:absolute after:-bottom-11 after:left-4 lg:after:left-5`} >
+              <div className="flex items-start font-medium w-full">
+                <span className={`w-8 h-8 z-10 aspect-square ${timeLeft > 0 ? "bg-green-600 text-white" : "bg-gray-200 text-gray-600"} border-2 border-transparent rounded-full flex justify-center items-center mr-3 text-sm lg:w-10 lg:h-10`} >
+                  1
+                </span>
+                <div className="block">
+                  {/* <h4 className={`text-base ${timeLeft > 0 ? "text-green-600" : "text-gray-600"} mb-2`}>
+                    Deposit
+                  </h4> */}
+                  <p className="text-sm text-gray-600 max-w-xs">
+                    Log in to your account Dashboard
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li className={`relative flex-1 after:content-[''] after:w-0.5 after:h- after:bg-gray-200 after:inline-block after:absolute after:-bottom-12 after:left-4 lg:after:left-5`} >
+              <div className="flex items-center font-medium w-full">
+                <span className={`w-8 h-8 z-10 aspect-square ${timeLeft > 0 ? "bg-green-600 text-white" : "bg-gray-200 text-gray-600"} border-2 border-transparent rounded-full flex justify-center items-center mr-3 text-sm lg:w-10 lg:h-10`} >
+                  2
+                </span>
+                <div className="block">
+                  {/* <h4 className="text-base text-gray-600 mb-2">Payment Verification</h4> */}
+                  <p className="text-sm text-gray-600 max-w-xs">
+                    Click on Make Deposit to continue.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li className="relative flex-1 after:content-[''] after:w-0.5 after:h-96">
+              <div className="flex items-start font-medium w-full">
+                <span className={`w-8 h-8 aspect-square ${timeLeft > 0 ? "bg-green-600 text-white" : "bg-gray-200 text-gray-600"} border-2 border-transparent rounded-full flex justify-center items-center mr-3 text-sm lg:w-10 lg:h-10`} >
+                  3
+                </span>
+                <div className="block">
+                  <div className="flex flex-col space-y-2 ">
+                    <h4 className="text-base font-semibold text-gray-600 mb-2">Payment Verification</h4>
+
+                    <div className="w-full flex text-base items-start relative">
+
+                      <div className="space-y-4 ">
+                        <p className="text-sm text-gray-600">Transfer:</p>
+                        <p className="text-gray-500 text-xs font-bold flex items-center">
+                          {depositAddress}
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="ml-2 h-6 w-6 text-amber-500"
+                            onClick={() => handleCopyToClipboard()}
+                          >
+                            <Clipboard className="h-4 w-4" />
+                          </Button>
+                        </p>
+
+                        <div className="bg-[#2b2a2a] p-4 rounded-md space-y-3">
+                          <div className="flex justify-between items-center space-x-7">
+                            <span className="text-gray-400">Asset</span>
+                            <div className="flex items-center">
+                              <span className="text-white">{selectedAsset?.name}</span>
+                              {/* <Button
+                              variant="ghost"
+                              size="icon"
+                              className="ml-2 h-6 w-6 text-amber-500"
+                              onClick={() => handleCopyToClipboard(selectedAsset?.name)}>
+                              <Clipboard className="h-4 w-4" />
+                            </Button> */}
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between items-center space-x-7">
+                            <span className="text-gray-400">Network</span>
+                            <div className="flex items-center">
+                              <span className="text-white">{network}</span>
+                              {/* <Button
+                              variant="ghost"
+                              size="icon"
+                              className="ml-2 h-6 w-6 text-amber-500"
+                              onClick={() => handleCopyToClipboard(network)}
+                            >
+                              <Clipboard className="h-4 w-4" />
+                            </Button> */}
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between items-center space-x-7">
+                            <span className="text-gray-400">Amount</span>
+                            <div className="flex items-center">
+                              <span className="text-white">{amount}</span>
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between items-center space-x-7">
+                            <span className="text-gray-400">Order No.</span>
+                            <div className="flex items-center">
+                              <span className="text-white">{depositNumber}</span>
+
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+            <li className="relative flex-1">
+              <div className="flex items-center font-medium w-full">
+                <span className="w-8 h-8 bg-gray-50 border-2 border-gray-200 rounded-full flex justify-center items-center mr-3 text-sm text-gray-600 lg:w-10 lg:h-10" >
+                  4
+                </span>
+                <div className="block">
+                  <div className="flex items-start">
+
+                    <p className="">Click on the "Payment Completed" button</p>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </li>
+          </ol>
+
+          <div className="flex items-center justify-center">
+            <Button
+              onClick={handlePaymentCompleted}
+              disabled={timeLeft === 0}
+              className="w-3/4 mx-auto bg-green-600 text-white"
+            >
+              Payment Completed
+            </Button>
+          </div>
+
+
         </div>
       )}
     </div>
