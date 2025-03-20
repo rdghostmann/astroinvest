@@ -1,3 +1,4 @@
+//RegisterForm.jsx// app/components/RegisterForm.jsx
 "use client";
 
 import React, { useState } from "react";
@@ -9,22 +10,14 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Loader } from "lucide-react";
 import Loading from "@/app/loading";
-import { RegionSelect, CountrySelect, StateSelect, CitySelect } from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
 
 const RegisterForm = () => {
   const { toast } = useToast();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  // State for region, country, state, and city
-  const [region, setRegion] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Use the correct event parameter
     setLoading(true);
 
     const formData = new FormData(event.target);
@@ -32,34 +25,22 @@ const RegisterForm = () => {
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
-    const phone = formData.get("phone");
 
-    if (!username || !email || !password || !confirmPassword || !phone || !region || !country || !state || !city) {
+    if (!username || !email || !password || !confirmPassword) {
       setLoading(false);
-      return toast({ title: "All fields are required" });
+      return toast({title:"All fields are required"});
     }
 
     if (password !== confirmPassword) {
       setLoading(false);
-      return toast({ title: "Passwords do not match" });
+      return toast({title:"Passwords do not match"});
     }
 
     try {
+      // Call the API route using fetch and pass the complete formData
       const response = await fetch("/api/auth/register", {
         method: "POST",
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-          phone,
-          region,
-          country,
-          state,
-          city,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: formData,
       });
 
       const data = await response.json();
@@ -67,11 +48,10 @@ const RegisterForm = () => {
       if (!response.ok) {
         throw new Error(data.message || "Registration failed");
       }
-
-      toast({ title: "Registration successful!" });
+      toast({title: "Registration successful!"});
       router.push("/login");
     } catch (error) {
-      toast({ title: "An error occurred while registering" });
+      toast({title: "An error occurred while registering"});
     } finally {
       setLoading(false);
     }
@@ -156,48 +136,33 @@ const RegisterForm = () => {
             />
           </div>
           <div>
-            <Label htmlFor="region" className="block text-sm font-medium text-gray-900">
-              Region
-            </Label>
-            <RegionSelect
-              value={region}
-              onChange={(value) => setRegion(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
-          </div>
-          <div>
             <Label htmlFor="country" className="block text-sm font-medium text-gray-900">
               Country
             </Label>
-            <CountrySelect
-              value={country}
-              onChange={(value) => setCountry(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
+            <Input
+              type="text"
+              name="country"
+              id="country"
+              placeholder="Country"
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
+              required
+              autoComplete="country"
             />
           </div>
           <div>
             <Label htmlFor="state" className="block text-sm font-medium text-gray-900">
               State
             </Label>
-            <StateSelect
-              country={country}
-              value={state}
-              onChange={(value) => setState(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
+            <Input
+              type="text"
+              name="state"
+              id="state"
+              placeholder="State"
+              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
+              required
             />
           </div>
-          <div>
-            <Label htmlFor="city" className="block text-sm font-medium text-gray-900">
-              City
-            </Label>
-            <CitySelect
-              country={country}
-              state={state}
-              value={city}
-              onChange={(value) => setCity(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
-          </div>
+
           <div>
             <Button
               type="submit"
