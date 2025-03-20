@@ -79,12 +79,13 @@
   await connectDB();
 
   const assets = [
-    { name: "Bitcoin", symbol: "BTC", network: "Bitcoin", depositAddress: "bc1qxyz..." },
-    { name: "Ethereum", symbol: "ETH", network: "Ethereum", depositAddress: "0x123..." },
-    { name: "Solana", symbol: "SOL", network: "Solana", depositAddress: "3abcxyz..." },
+    { name: "Bitcoin", symbol: "BTC", network: "Bitcoin", depositAddress: "bc1qx773xf2dt5us63j4pz9efc9wgdyy5h6cjlpjzj" },
+    { name: "Ethereum", symbol: "ETH", network: "Ethereum", depositAddress: "0x925B434d3AC9B8ceBd9cdcd7317e7c1C395d3994" },
+    { name: "Solana", symbol: "SOL", network: "Solana", depositAddress: "6JdvsGkzfTNiZyJfSU4oTeuP1fBf19bNJFwgqweArMzR" },
     { name: "Ripple", symbol: "XRP", network: "Ripple", depositAddress: "3abcxyz..." },
-    { name: "Dogecoin", symbol: "DOGE", network: "Dogecoin", depositAddress: "3abcxyz..." },
-    { name: "BNBChain", symbol: "BNB", network: "BEP20", depositAddress: "3abcxyz..." },
+    { name: "Dogecoin", symbol: "DOGE", network: "Dogecoin", depositAddress: "DJkYy2nibJHNiWSN4Qj1otTHBn19T4soUq" },
+    { name: "BNBChain", symbol: "BNB", network: "BEP20", depositAddress: "0x925B434d3AC9B8ceBd9cdcd7317e7c1C395d3994" },
+    { name: "XLM", symbol: "XLM", network: "XLM", depositAddress: "0x925B434d3AC9B8ceBd9cdcd7317e7c1C395d3994" },
   ];
   try {
 

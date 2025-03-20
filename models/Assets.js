@@ -12,7 +12,7 @@ const AssetSchema = new mongoose.Schema(
     network: {
       type: String,
       required: true,
-      enum: ["Ethereum", "Bitcoin", "Solana", "BNBChain", "Ripple", "BEP20", "Dogecoin", "Polygon", "Binance Smart Chain"],
+      enum: ["Ethereum", "Bitcoin", "Solana", "BNBChain", "XLM", "Ripple", "BEP20", "Dogecoin", "Polygon", "Binance Smart Chain"],
     },
     qrcodeImage: {
       type: String,

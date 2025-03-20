@@ -18,8 +18,7 @@ const Tawk = () => {
   }, []); // Empty dependency array ensures this runs only once after the component mounts
 
   return (
-    <div
-      className="fixed bottom-4 right-4 w-16 h-16 bg-blue-500 rounded-full shadow-lg flex items-center justify-center"
+    <div className="z-[100] "
       title="Chat with us"
     >
       {/* Tawk.to chat widget will be injected here */}
