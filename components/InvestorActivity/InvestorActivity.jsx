@@ -3,6 +3,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 
+// import { fetchDeposits, fetchWithdrawals } from "@/lib/actions"; 
+
+
 const deposits = [
   {
     id: "1",
@@ -52,6 +55,18 @@ const withdrawals = [
 ];
 
 const InvestorsActivity = () => {
+
+  // Fetch deposits and withdrawals in parallel using Promise.allSettled
+  // const [depositsResult, withdrawalsResult] = await Promise.allSettled([
+  //   fetchDeposits(),
+  //   fetchWithdrawals(),
+  // ]);
+
+  // Extract data from fulfilled promises
+  // const deposits = depositsResult.status === "fulfilled" ? depositsResult.value : [];
+  // const withdrawals = withdrawalsResult.status === "fulfilled" ? withdrawalsResult.value : [];
+
+
   return (
     <section className="relative w-full py-14 overflow-hidden">
       {/* Background Gradients */}
