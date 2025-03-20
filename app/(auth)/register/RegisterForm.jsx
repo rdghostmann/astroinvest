@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Loader } from "lucide-react";
 import Loading from "@/app/loading";
-import { RegionSelect, CountrySelect, StateSelect, CitySelect } from "react-country-state-city";
+import { RegionSelect, CountrySelect, StateSelect, CitySelect, PhonecodeSelect } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 
 const RegisterForm = () => {
@@ -17,11 +17,13 @@ const RegisterForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  // State for region, country, state, and city
+  // State for region, country, state, city, and phone code
   const [region, setRegion] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  const [phoneCode, setPhoneCode] = useState("");
+  const [phone, setPhone] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +34,6 @@ const RegisterForm = () => {
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
-    const phone = formData.get("phone");
 
     if (!username || !email || !password || !confirmPassword || !phone || !region || !country || !state || !city) {
       setLoading(false);
@@ -51,7 +52,7 @@ const RegisterForm = () => {
           username,
           email,
           password,
-          phone,
+          phone: `${phoneCode}${phone}`,
           region,
           country,
           state,
@@ -145,15 +146,23 @@ const RegisterForm = () => {
             <Label htmlFor="phone" className="block text-sm font-medium text-gray-900">
               Phone
             </Label>
-            <Input
-              type="number"
-              name="phone"
-              id="phone"
-              placeholder="Contact Number"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-              required
-              autoComplete="phone"
-            />
+            <div className="flex gap-2">
+              <PhonecodeSelect
+                value={phoneCode}
+                onChange={(value) => setPhoneCode(value)}
+                className="block w-1/3 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
+              />
+              <Input
+                type="number"
+                name="phone"
+                id="phone"
+                placeholder="Contact Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="block w-2/3 h-12 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
+                required
+              />
+            </div>
           </div>
           <div>
             <Label htmlFor="region" className="block text-sm font-medium text-gray-900">
