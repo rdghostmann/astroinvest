@@ -22,6 +22,7 @@ const availableNetworks = [
   "Ripple",
   "Base Mainnet",
   "Linea",
+  "XLM",
 ];
 
 export default function SwiftDeposit({ assets }) {
