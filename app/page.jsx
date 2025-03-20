@@ -13,10 +13,6 @@ import Stats from "@/components/OurStats/Stats";
 import AffiliateProgram from "@/components/AffliateProgram/improved-affiliate-program";
 import AchieveMore from "@/components/AchieveMore/AchieveMore";
 import TrustPilot from "@/components/TrustPilot/TrustPilot";
-import { connectToDB } from "@/lib/connectDB";
-import Asset from "@/models/Assets";
-// import AffiliateProgram from "@/components/AffliateProgram/AffiliateProgram";
-
 
 export default async function Home() {
 
