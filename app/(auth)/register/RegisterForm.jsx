@@ -9,21 +9,50 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Loader } from "lucide-react";
 import Loading from "@/app/loading";
-import { RegionSelect, CountrySelect, StateSelect, CitySelect, PhonecodeSelect } from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
+import { Country, State, City } from "country-state-city";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const RegisterForm = () => {
   const { toast } = useToast();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  // State for region, country, state, city, and phone code
-  const [region, setRegion] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [phoneCode, setPhoneCode] = useState("");
+  // Form state
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [phone, setPhone] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = (formData) => {
+    const errors = {};
+
+    if (!formData.username) errors.username = "Username is required.";
+    if (!formData.email) errors.email = "Email is required.";
+    else if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
+    )
+      errors.email = "Invalid email address.";
+    if (!formData.password) errors.password = "Password is required.";
+    if (!formData.confirmPassword)
+      errors.confirmPassword = "Confirm Password is required.";
+    else if (formData.password !== formData.confirmPassword)
+      errors.confirmPassword = "Passwords do not match.";
+    if (!phone) errors.phone = "Phone number is required.";
+    if (!selectedCountry) errors.country = "Country is required.";
+    if (!selectedState) errors.state = "State is required.";
+    if (!selectedCity) errors.city = "City is required.";
+
+    return errors;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,14 +64,11 @@ const RegisterForm = () => {
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
 
-    if (!username || !email || !password || !confirmPassword || !phone || !region || !country || !state || !city) {
+    const errors = validateForm({ username, email, password, confirmPassword });
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       setLoading(false);
-      return toast({ title: "All fields are required" });
-    }
-
-    if (password !== confirmPassword) {
-      setLoading(false);
-      return toast({ title: "Passwords do not match" });
+      return;
     }
 
     try {
@@ -52,11 +78,10 @@ const RegisterForm = () => {
           username,
           email,
           password,
-          phone: `${phoneCode}${phone}`,
-          region,
-          country,
-          state,
-          city,
+          phone,
+          country: selectedCountry.name,
+          state: selectedState.name,
+          city: selectedCity.name,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -89,123 +114,126 @@ const RegisterForm = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="username" className="block text-sm font-medium text-gray-900">
-              Username
-            </Label>
-            <Input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-              required
-              autoComplete="username"
-            />
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" name="username" id="username"  />
+            {formErrors.username && (
+              <p className="text-red-600 text-sm">{formErrors.username}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="email" className="block text-sm font-medium text-gray-900">
-              Email
-            </Label>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-              required
-              autoComplete="email"
-            />
+            <Label htmlFor="email">Email</Label>
+            <Input type="email" name="email" id="email"  />
+            {formErrors.email && (
+              <p className="text-red-600 text-sm">{formErrors.email}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="password" className="block text-sm font-medium text-gray-900">
-              Password
-            </Label>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-              required
-            />
+            <Label htmlFor="password">Password</Label>
+            <Input type="password" name="password" id="password"  />
+            {formErrors.password && (
+              <p className="text-red-600 text-sm">{formErrors.password}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-900">
-              Confirm Password
-            </Label>
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
             <Input
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="Confirm Password"
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-              required
+              
             />
+            {formErrors.confirmPassword && (
+              <p className="text-red-600 text-sm">
+                {formErrors.confirmPassword}
+              </p>
+            )}
           </div>
           <div>
-            <Label htmlFor="phone" className="block text-sm font-medium text-gray-900">
-              Phone
-            </Label>
-            <div className="flex gap-2">
-              <PhonecodeSelect
-                value={phoneCode}
-                onChange={(value) => setPhoneCode(value)}
-                className="block w-1/3 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-              />
-              <Input
-                type="number"
-                name="phone"
-                id="phone"
-                placeholder="Contact Number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="block w-2/3 h-12 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600 sm:text-sm"
-                required
-              />
-            </div>
+            <Label htmlFor="phone">Phone</Label>
+            <PhoneInput
+              name="phone"
+              id="phone"
+              defaultCountry="us"
+              value={phone}
+              onChange={(value) => setPhone(value)}
+              
+            />
+            {formErrors.phone && (
+              <p className="text-red-600 text-sm">{formErrors.phone}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="region" className="block text-sm font-medium text-gray-900">
-              Region
-            </Label>
-            <RegionSelect
-              value={region}
-              onChange={(value) => setRegion(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
+            <Label htmlFor="country">Country</Label>
+            <Select
+              onValueChange={(value) => {
+                const country = JSON.parse(value);
+                setSelectedCountry(country);
+                setSelectedState(null);
+                setSelectedCity(null);
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select Country" />
+              </SelectTrigger>
+              <SelectContent>
+                {Country.getAllCountries().map((country) => (
+                  <SelectItem key={country.isoCode} value={JSON.stringify(country)}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {formErrors.country && (
+              <p className="text-red-600 text-sm">{formErrors.country}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="country" className="block text-sm font-medium text-gray-900">
-              Country
-            </Label>
-            <CountrySelect
-              value={country}
-              onChange={(value) => setCountry(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
+            <Label htmlFor="state">State</Label>
+            <Select
+              onValueChange={(value) => {
+                const state = JSON.parse(value);
+                setSelectedState(state);
+                setSelectedCity(null);
+              }}
+              disabled={!selectedCountry}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select State" />
+              </SelectTrigger>
+              <SelectContent>
+                {selectedCountry &&
+                  State.getStatesOfCountry(selectedCountry.isoCode).map((state) => (
+                    <SelectItem key={state.isoCode} value={JSON.stringify(state)}>
+                      {state.name}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+            {formErrors.state && (
+              <p className="text-red-600 text-sm">{formErrors.state}</p>
+            )}
           </div>
           <div>
-            <Label htmlFor="state" className="block text-sm font-medium text-gray-900">
-              State
-            </Label>
-            <StateSelect
-              country={country}
-              value={state}
-              onChange={(value) => setState(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
-          </div>
-          <div>
-            <Label htmlFor="city" className="block text-sm font-medium text-gray-900">
-              City
-            </Label>
-            <CitySelect
-              country={country}
-              state={state}
-              value={city}
-              onChange={(value) => setCity(value)}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-            />
+            <Label htmlFor="city">City</Label>
+            <Select
+              onValueChange={(value) => setSelectedCity(JSON.parse(value))}
+              disabled={!selectedState}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select City" />
+              </SelectTrigger>
+              <SelectContent>
+                {selectedState &&
+                  City.getCitiesOfState(selectedState.countryCode, selectedState.isoCode).map((city) => (
+                    <SelectItem key={city.name} value={JSON.stringify(city)}>
+                      {city.name}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+            {formErrors.city && (
+              <p className="text-red-600 text-sm">{formErrors.city}</p>
+            )}
           </div>
           <div>
             <Button
@@ -218,9 +246,9 @@ const RegisterForm = () => {
           </div>
         </form>
         <p className="mt-10 text-center text-sm text-gray-500">
-          <span className="mr-1">Already have an account?</span>
+          Already have an account?{" "}
           <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
-            Log in
+            Sign in
           </Link>
         </p>
       </div>

@@ -6,6 +6,8 @@ import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import User from "@/models/User";
 import Wallet from "@/models/Wallet";
+import { verificationEmailTemplate } from "@/lib/verificationEmailTemplate ";
+import { sendMagicLink } from "@/lib/sendEmail";
 
 export async function POST(req) {
   try {
@@ -18,16 +20,52 @@ export async function POST(req) {
     const country = formData.get("country");
     const state = formData.get("state");
 
-    if (!username || !email || !password || !phone || !country || !state) {
+    // Improved validation messages for each field
+    if (!username) {
       return NextResponse.json(
-        { message: "All fields are required" },
-        { status: 401 }
+        { message: "Username is required" },
+        { status: 400 }
       );
     }
-
+    if (!email) {
+      return NextResponse.json(
+        { message: "Email is required" },
+        { status: 400 }
+      );
+    }
+    if (!password) {
+      return NextResponse.json(
+        { message: "Password is required" },
+        { status: 400 }
+      );
+    }
+    if (!confirmPassword) {
+      return NextResponse.json(
+        { message: "Confirm Password is required" },
+        { status: 400 }
+      );
+    }
     if (password !== confirmPassword) {
       return NextResponse.json(
         { message: "Passwords do not match" },
+        { status: 400 }
+      );
+    }
+    if (!phone) {
+      return NextResponse.json(
+        { message: "Phone number is required" },
+        { status: 400 }
+      );
+    }
+    if (!country) {
+      return NextResponse.json(
+        { message: "Country is required" },
+        { status: 400 }
+      );
+    }
+    if (!state) {
+      return NextResponse.json(
+        { message: "State is required" },
         { status: 400 }
       );
     }
@@ -56,21 +94,29 @@ export async function POST(req) {
       isVerified: false,
     });
 
-    await newUser.save();
-
     // Create default wallets for the user
     const wallets = [
-      { user: newUser._id, name: 'Bitcoin', balance: 0 },
-      { user: newUser._id, name: 'Ethereum', balance: 0 },
-      { user: newUser._id, name: 'Solana', balance: 0 },
-      { user: newUser._id, name: 'XRP', balance: 0 },
-      { user: newUser._id, name: 'Dogecoin', balance: 0 },
-      { user: newUser._id, name: 'BNB', balance: 0 },
+      { user: newUser._id, name: "Bitcoin", balance: 0 },
+      { user: newUser._id, name: "Ethereum", balance: 0 },
+      { user: newUser._id, name: "Solana", balance: 0 },
+      { user: newUser._id, name: "XRP", balance: 0 },
+      { user: newUser._id, name: "Dogecoin", balance: 0 },
+      { user: newUser._id, name: "BNB", balance: 0 },
+      { user: newUser._id, name: "XLM", balance: 0 },
     ];
 
     await Wallet.insertMany(wallets);
 
-    // TODO: Trigger Magic Link email verification via nodemailer
+    // Generate verification token and save user
+    const verificationToken = newUser.getVerificationToken();
+    await newUser.save();
+
+    // Generate verification link
+    const verificationLink = `${process.env.NEXTAUTH_URL}/auth/verify-email?verifyToken=${verificationToken}&id=${newUser?._id}`;
+    const message = verificationEmailTemplate(verificationLink);
+
+    // Send verification email
+    await sendMagicLink(newUser?.email, "Email Verification", message);
 
     return NextResponse.json(
       { message: "User registered and wallets created successfully" },
