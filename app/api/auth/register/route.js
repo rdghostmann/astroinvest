@@ -11,14 +11,23 @@ import { sendMagicLink } from "@/lib/sendEmail";
 
 export async function POST(req) {
   try {
-    const formData = await req.formData();
-    const username = formData.get("username");
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
-    const phone = formData.get("phone");
-    const country = formData.get("country");
-    const state = formData.get("state");
+    // Check the Content-Type of the request
+    const contentType = req.headers.get("content-type");
+
+    let body;
+    if (contentType === "application/json") {
+      body = await req.json(); // Parse JSON body
+    } else if (contentType === "multipart/form-data") {
+      const formData = await req.formData(); // Parse form-data body
+      body = Object.fromEntries(formData.entries());
+    } else {
+      return NextResponse.json(
+        { message: "Unsupported Content-Type" },
+        { status: 415 }
+      );
+    }
+
+    const { username, email, password, confirmPassword, phone, country, state } = body;
 
     // Improved validation messages for each field
     if (!username) {
@@ -94,6 +103,7 @@ export async function POST(req) {
       isVerified: false,
     });
 
+    console.log("New user created: ", newUser);
     // Create default wallets for the user
     const wallets = [
       { user: newUser._id, name: "Bitcoin", balance: 0 },
