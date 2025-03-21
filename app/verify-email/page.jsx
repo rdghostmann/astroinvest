@@ -29,6 +29,10 @@ const VerifyEmail = () => {
   }, []);
 
   const verifyEmailHandler = async () => {
+
+    console.log("Verification Token:", verifyToken);
+    console.log("User ID:", id);
+
     if (!verifyToken || !id) {
       toast({ variant: "destructive", title: "Invalid URL" });
       setError(true);
@@ -44,16 +48,19 @@ const VerifyEmail = () => {
         setLoading(false);
         setVerified(true);
         toast({ title: result.message });
+        console.log("Verified");
       } else {
         setError(true);
         setLoading(false);
-        toast({ variant: "destructive", title: result.message });
+        toast({ variant: "destructive", title: result.message, description: "Failed to verify email" });
+        // console.error("Failed to verify email");
       }
     } catch (error) {
       console.error(error);
       setError(true);
       setLoading(false);
-      toast({ variant: "destructive", title: "Something went wrong" });
+      toast({ variant: "destructive", title: "Something went wrong", description: "Failed to run verify email" });
+      // console.error("Failed to run verify email");
     }
   };
 
