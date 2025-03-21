@@ -99,7 +99,7 @@ const RegisterForm = () => {
       }
 
       toast({ title: "Registration successful!" });
-      router.push("/login");
+      // router.push("/register");
     } catch (error) {
       toast({ title: "An error occurred while registering" });
     } finally {

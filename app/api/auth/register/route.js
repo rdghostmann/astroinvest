@@ -179,7 +179,7 @@ export async function POST(req) {
     // Send verification email
     await sendMagicLink(newUser?.email, "Email Verification", message);
    
-    // revalidatePath("/login")
+    revalidatePath("/register")
 
     return NextResponse.json(
       { message: "User registered and wallets created successfully" },

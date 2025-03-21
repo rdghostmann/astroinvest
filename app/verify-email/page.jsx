@@ -75,13 +75,16 @@ const VerifyEmail = () => {
     <div className="flex justify-center items-center h-screen">
       <div className="w-full max-w-md">
         {verified && (
-          <Alert variant="default" className="mb-5">
+          <div>
+            <Alert variant="default" className="mb-5">
             <SquareCheckBig color="green" />
             <AlertTitle>Email Verified!</AlertTitle>
             <AlertDescription>
               Your email has been verified successfully.
             </AlertDescription>
           </Alert>
+          <Link className="" href="/login">Proceed to Login</Link>
+          </div>
         )}
 
         {error && (
