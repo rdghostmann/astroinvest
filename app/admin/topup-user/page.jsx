@@ -17,9 +17,13 @@ import {
 import { getAllUsers } from '@/lib/actions';
 import { AdminSidebar } from '../_component/AdminSidebar'
 import UsersCard from './UsersCard';
+import { fetchAllKycRecords } from '@/lib/actions';
 
 const page = async () => {
   const users = await getAllUsers();
+  const kycRecords = await fetchAllKycRecords();
+  
+
 
 
   return (
@@ -46,16 +50,9 @@ const page = async () => {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-1 p-4 pt-0">
-          {/* Left Section */}
-          {/* <div className="flex-1 space-y-6 basis-0"> */}
-            {/* Portfolio Overview */}
-            {/* <h2 className="text-lg font-semibold">TopUp Users</h2> */}
-          {/* </div> */}
           <div>
-            <UsersCard users={users} />
+            <UsersCard users={users} kycRecords={kycRecords} />
           </div>
-
-
         </div>
       </SidebarInset>
     </SidebarProvider>
