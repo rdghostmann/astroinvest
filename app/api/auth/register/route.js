@@ -3,7 +3,7 @@
 import { connectToDB } from "@/lib/connectDB";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
-// import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { v4 as uuidv4 } from "uuid";
 import User from "@/models/User";
 import Wallet from "@/models/Wallet";
