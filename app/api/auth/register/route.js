@@ -173,7 +173,7 @@ export async function POST(req) {
   
 
     // Generate verification link
-    const verificationLink = `${process.env.NEXTAUTH_URL}/auth/verify-email?verifyToken=${verificationToken}&id=${newUser?._id}`;
+    const verificationLink = `${process.env.NEXT_PUBLIC_URL}/verify-email?verifyToken=${verificationToken}&id=${newUser?._id}`;
     const message = verificationEmailTemplate(verificationLink);
 
     // Send verification email
