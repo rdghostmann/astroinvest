@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth";
-import { fetchWalletsByUser } from "@/lib/actions"; // Import the server action
+import { fetchWalletsByUser, fetchMarketPrices } from "@/lib/actions"; // Import the server actions
 import { cryptoImages } from "@/components/Crypto/Crypto"; // Import the image paths
 import Image from 'next/image';
 
@@ -10,6 +10,9 @@ const Wallet = async () => {
 
   // Fetch wallets made by the user
   const wallets = await fetchWalletsByUser(userID);
+
+  // Fetch market prices
+  const marketPrices = await fetchMarketPrices();
 
   return (
     <div>
@@ -22,6 +25,9 @@ const Wallet = async () => {
               <div className="flex flex-col">
                 <span className="font-semibold">{wallet.name}</span>
                 <span>${wallet.balance}</span>
+                <span className="text-sm text-gray-500">
+                  Market Price: ${marketPrices[wallet.name.toLowerCase()]?.usd || 'N/A'}
+                </span>
               </div>
             </div>
           ))
