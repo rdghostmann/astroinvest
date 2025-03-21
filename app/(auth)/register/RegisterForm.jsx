@@ -103,6 +103,7 @@ const RegisterForm = () => {
         ),
       });
       router.refresh();
+      router.push(`/confirm-your-email/?id=${email}`);
     } catch (error) {
       toast({ title: "An error occurred while registering" });
     } finally {

@@ -3,14 +3,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CircleX, SquareCheckBig } from "lucide-react";
-import { useSearchParams, useRouter } from "next/navigation"; 
+import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { verifyEmail } from "@/lib/verifyEmail";
 import Link from "next/link";
 
 const VerifyEmail = () => {
   const { toast } = useToast();
-  const router = useRouter(); 
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [verified, setVerified] = useState(false);
@@ -38,7 +38,7 @@ const VerifyEmail = () => {
         router.push("/login");
       }, 5000);
 
-      return () => clearTimeout(timer); 
+      return () => clearTimeout(timer);
     }
   }, [verified, router]);
 
@@ -75,7 +75,7 @@ const VerifyEmail = () => {
   if (loading)
     return (
       <h1 className="flex justify-center items-center h-screen">
-        Verifying your Email address. Please wait...
+        <p> Verifying your Email address. Please wait...</p>
       </h1>
     );
 
