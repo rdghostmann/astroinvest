@@ -7,9 +7,8 @@ import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import User from "@/models/User";
 import Wallet from "@/models/Wallet";
-import { verificationEmailTemplate } from "@/lib/verificationEmailTemplate";
 import { sendMagicLink } from "@/lib/sendEmail";
-
+import { verificationEmailTemplate } from "@/lib/verificationEmailTemplate";
 export async function POST(req) {
 
   try {
