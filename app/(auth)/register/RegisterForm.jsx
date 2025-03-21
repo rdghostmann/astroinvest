@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ToastAction } from "@/components/ui/toast";
 
 const RegisterForm = () => {
   const { toast } = useToast();
@@ -88,18 +89,21 @@ const RegisterForm = () => {
         },
       });
 
-      console.log("Body: " + JSON.stringify({
-        username, email, password, phone, country: selectedCountry.name, state: selectedState.name, city: selectedCity.name
-      }));
-
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Registration failed");
       }
 
-      toast({ title: "Registration successful!" });
-      // router.push("/register");
+      toast({
+        title: "Registration successful!",
+        description: "Check your email to verify your account",
+        action: (
+          <ToastAction altText="verify-email-account">Undo</ToastAction>
+        ),
+      });
+      router.refresh();
+      router.push("/verify-email");
     } catch (error) {
       toast({ title: "An error occurred while registering" });
     } finally {
@@ -119,21 +123,21 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="username">Username</Label>
-            <Input type="text" name="username" id="username"  />
+            <Input type="text" name="username" id="username" />
             {formErrors.username && (
               <p className="text-red-600 text-sm">{formErrors.username}</p>
             )}
           </div>
           <div>
             <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email" id="email"  />
+            <Input type="email" name="email" id="email" />
             {formErrors.email && (
               <p className="text-red-600 text-sm">{formErrors.email}</p>
             )}
           </div>
           <div>
             <Label htmlFor="password">Password</Label>
-            <Input type="password" name="password" id="password"  />
+            <Input type="password" name="password" id="password" />
             {formErrors.password && (
               <p className="text-red-600 text-sm">{formErrors.password}</p>
             )}
@@ -144,7 +148,7 @@ const RegisterForm = () => {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              
+
             />
             {formErrors.confirmPassword && (
               <p className="text-red-600 text-sm">
@@ -160,7 +164,7 @@ const RegisterForm = () => {
               defaultCountry="us"
               value={phone}
               onChange={(value) => setPhone(value)}
-              
+
             />
             {formErrors.phone && (
               <p className="text-red-600 text-sm">{formErrors.phone}</p>

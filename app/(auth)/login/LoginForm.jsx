@@ -27,12 +27,26 @@ const LoginForm = () => {
 
     if (!email) {
       setLoading(false);
-      return toast({ title: "Email field is required" });
+      return toast({ 
+        variant: "outline",
+        title: "Email field required",
+        description: "Please enter your email.",
+        action: (
+          <ToastAction altText="undo">Undo</ToastAction>
+        ),
+       });
     }
 
     if (!password) {
       setLoading(false);
-      return toast({ title: "Password field is required" });
+      return toast({ 
+        variant: "outline",
+        title: "Password field required",
+        description: "Please enter your password.",
+        action: (
+          <ToastAction altText="undo">Undo</ToastAction>
+        ),
+      });
     }
 
     try {
@@ -42,11 +56,17 @@ const LoginForm = () => {
         password,
       });
 
-      // console.log("SignIn Result:", result); // Debugging: Log the result
 
       if (result?.error) {
         setError(`Wrong Email or Password`);
-        toast({ title: `Wrong Email or Password` });
+        toast({
+          variant: "outline",
+          title: `Wrong Login Credentials`,
+          description: "Enter your valid email and password.",
+          action: (
+            <ToastAction altText="undo">Undo</ToastAction>
+          ),
+        });
         setLoading(false);
       } else {
         toast({ title: "Login successful!" });

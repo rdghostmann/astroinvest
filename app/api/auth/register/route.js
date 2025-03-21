@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import User from "@/models/User";
 import Wallet from "@/models/Wallet";
 import { sendMagicLink } from "@/lib/sendEmail";
+
 export async function POST(req) {
   
   const verificationEmailTemplate = (verificationLink) => {
