@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
+import React, { useEffect, useState, useRef } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CircleX, SquareCheckBig } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { verifyEmail } from "@/lib/verifyEmail";
 
 const VerifyEmail = () => {
   const { toast } = useToast();
@@ -18,40 +19,41 @@ const VerifyEmail = () => {
   const verifyToken = searchParams.get("verifyToken");
   const id = searchParams.get("id");
 
-  const initialized = React.useRef(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
     if (!initialized.current) {
       initialized.current = true;
-      verifyEmail();
+      verifyEmailHandler();
     }
   }, []);
 
-  const verifyEmail = async () => {
-    if (!verifyToken || !id)
-      return toast({ variant: "destructive", title: "Invalid URL" });
+  const verifyEmailHandler = async () => {
+    if (!verifyToken || !id) {
+      toast({ variant: "destructive", title: "Invalid URL" });
+      setError(true);
+      return;
+    }
 
     setLoading(true);
 
     try {
-      const res = await fetch(
-        `/api/auth/verify-email?verifyToken=${verifyToken}&id=${id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const result = await verifyEmail({ verificationToken: verifyToken, userId: id });
 
-      if (res.ok) {
+      if (result.success) {
         setLoading(false);
         setVerified(true);
+        toast({ title: result.message });
+      } else {
+        setError(true);
+        setLoading(false);
+        toast({ variant: "destructive", title: result.message });
       }
     } catch (error) {
-      console.log(error);
-      setLoading(false);
+      console.error(error);
       setError(true);
+      setLoading(false);
+      toast({ variant: "destructive", title: "Something went wrong" });
     }
   };
 
@@ -78,9 +80,9 @@ const VerifyEmail = () => {
         {error && (
           <Alert variant="destructive" className="mb-5">
             <CircleX color="red" />
-            <AlertTitle>Email Verified Failed!</AlertTitle>
+            <AlertTitle>Email Verification Failed!</AlertTitle>
             <AlertDescription>
-              Your verification token is invalid or Expired.
+              Your verification token is invalid or expired.
             </AlertDescription>
           </Alert>
         )}

@@ -42,7 +42,7 @@ export async function POST(req) {
             line-height: 1.5;
           }
   
-          .button {
+          p + a {
             display: block;
             margin: 0 auto;
             padding: 10px 20px;
