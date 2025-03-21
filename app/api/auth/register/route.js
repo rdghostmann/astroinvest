@@ -82,7 +82,7 @@ export async function POST(req) {
   try {
     await connectToDB();
 
-    const { username, email, password, confirmPassword, phone, country, state } = await req.json();
+    const { username, email, password, phone, country, state, city } = await req.json();
 
     // Improved validation messages for each field
     if (!username) {
@@ -103,18 +103,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-    if (!confirmPassword) {
-      return NextResponse.json(
-        { message: "Confirm Password is required" },
-        { status: 400 }
-      );
-    }
-    if (password !== confirmPassword) {
-      return NextResponse.json(
-        { message: "Passwords do not match" },
-        { status: 400 }
-      );
-    }
+
     if (!phone) {
       return NextResponse.json(
         { message: "Phone number is required" },
@@ -130,6 +119,12 @@ export async function POST(req) {
     if (!state) {
       return NextResponse.json(
         { message: "State is required" },
+        { status: 400 }
+      );
+    }
+    if (!city) {
+      return NextResponse.json(
+        { message: "City is required" },
         { status: 400 }
       );
     }

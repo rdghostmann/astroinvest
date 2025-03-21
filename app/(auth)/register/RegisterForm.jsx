@@ -88,6 +88,10 @@ const RegisterForm = () => {
         },
       });
 
+      console.log("Body: " + JSON.stringify({
+        username, email, password, phone, country: selectedCountry.name, state: selectedState.name, city: selectedCity.name
+      }));
+
       const data = await response.json();
 
       if (!response.ok) {
