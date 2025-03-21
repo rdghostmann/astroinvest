@@ -3,31 +3,19 @@
 import { connectToDB } from "@/lib/connectDB";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
+// import { revalidatePath } from "next/cache";
 import { v4 as uuidv4 } from "uuid";
 import User from "@/models/User";
 import Wallet from "@/models/Wallet";
-import { verificationEmailTemplate } from "@/lib/verificationEmailTemplate ";
+import { verificationEmailTemplate } from "@/lib/verificationEmailTemplate";
 import { sendMagicLink } from "@/lib/sendEmail";
 
 export async function POST(req) {
+
   try {
-    // Check the Content-Type of the request
-    const contentType = req.headers.get("content-type");
+    await connectToDB();
 
-    let body;
-    if (contentType === "application/json") {
-      body = await req.json(); // Parse JSON body
-    } else if (contentType === "multipart/form-data") {
-      const formData = await req.formData(); // Parse form-data body
-      body = Object.fromEntries(formData.entries());
-    } else {
-      return NextResponse.json(
-        { message: "Unsupported Content-Type" },
-        { status: 415 }
-      );
-    }
-
-    const { username, email, password, confirmPassword, phone, country, state } = body;
+    const { username, email, password, confirmPassword, phone, country, state } = await req.json();
 
     // Improved validation messages for each field
     if (!username) {
@@ -120,6 +108,7 @@ export async function POST(req) {
     // Generate verification token and save user
     const verificationToken = newUser.getVerificationToken();
     await newUser.save();
+  
 
     // Generate verification link
     const verificationLink = `${process.env.NEXTAUTH_URL}/auth/verify-email?verifyToken=${verificationToken}&id=${newUser?._id}`;
@@ -127,6 +116,8 @@ export async function POST(req) {
 
     // Send verification email
     await sendMagicLink(newUser?.email, "Email Verification", message);
+   
+    // revalidatePath("/login")
 
     return NextResponse.json(
       { message: "User registered and wallets created successfully" },
