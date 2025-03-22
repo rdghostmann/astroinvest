@@ -90,6 +90,11 @@ const UserSchema = new mongoose.Schema(
     verifyTokenExpire: {
       type: Date,
     },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "inactive",
+    },
   },
   {
     timestamps: true,
