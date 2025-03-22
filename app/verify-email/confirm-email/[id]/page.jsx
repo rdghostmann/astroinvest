@@ -5,6 +5,8 @@ import mailSentImg from "../../../../public/mail-sent.gif";
 
 const page = async ({ params }) => {
   const { id } = params; // Get email ID from route
+  const decodedEmail = decodeURIComponent(id); // Decode the email
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
@@ -20,7 +22,7 @@ const page = async ({ params }) => {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-700 mb-4">Check your inbox, please!</h1>
           <p className="text-gray-600 mb-8">
-            We've already sent the email verification link to <strong>{id}</strong>. Please check it and confirm it's really you to continue.
+          We've already sent the email verification link to <strong>{decodedEmail}</strong>. Please check it and confirm it's really you to continue.
           </p>
 
           <Link href="/login" className="bg-cyan-400 hover:bg-cyan-500 text-white font-medium py-2 px-12 rounded-full mb-6 transition-colors">

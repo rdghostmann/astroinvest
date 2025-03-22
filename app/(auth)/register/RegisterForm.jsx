@@ -106,7 +106,8 @@ const RegisterForm = () => {
 
       // router.push(`/verify-email/confirm-email/?id=${email}`);
 
-      router.push(`/verify-email/confirm-email/${email}`);
+      // Updated to use encodeURIComponent
+      router.push(`/verify-email/confirm-email/${encodeURIComponent(email)}`);
 
     } catch (error) {
       toast({ title: "An error occurred while registering" });
