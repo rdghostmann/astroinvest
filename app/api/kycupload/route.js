@@ -1,7 +1,7 @@
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectDB"; 
-import Kyc from "@/models/kyc";
+import Kyc from "@/models/Kyc";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth"; // Ensure you have this authOptions defined
 
