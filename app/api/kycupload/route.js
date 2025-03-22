@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectDB"; 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth"; // Ensure you have this authOptions defined
-import Kyc from "@/models/Kyc";
+import Kyc from "@/models/kyc";
 
 export async function POST(req) {
   try {
