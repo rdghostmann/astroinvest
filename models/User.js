@@ -108,11 +108,11 @@ UserSchema.methods.getVerificationToken = function () {
   // Hash the token
   this.verifyToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
 
-  this.verifyTokenExpire = new Date(Date.now() + 30 * 60 * 1000);
+  this.verifyTokenExpire = new Date(Date.now() + 10 * 60 * 1000);
 
   return verificationToken;
+  
+  // Fix the model export
+  const User = mongoose.models?.User || mongoose.model("User", UserSchema);
 };
-
-// Fix the model export
-const User = mongoose.models?.User || mongoose.model("User", UserSchema);
 export default User;

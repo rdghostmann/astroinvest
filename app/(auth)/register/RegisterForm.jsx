@@ -96,9 +96,7 @@ const RegisterForm = () => {
         });
 
         // Redirect to confirmation page
-        router.push(
-          `/verify-email/confirm-email/${encodeURIComponent(email)}`
-        );
+        router.push(`/verify-email/confirm-email/${encodeURIComponent(email)}`);
       } else {
         toast({
           title: "Registration failed",
