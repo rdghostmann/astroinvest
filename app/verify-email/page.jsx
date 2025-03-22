@@ -33,16 +33,18 @@ const VerifyEmail = () => {
 
   useEffect(() => {
     if (verified) {
-      // Redirect to /login after 5 seconds
+      // Redirect to /login after 8 seconds
       const timer = setTimeout(() => {
         router.push("/login");
-      }, 5000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
   }, [verified, router]);
 
   const verifyEmailHandler = async () => {
+    console.log("Verification Token:", verifyToken);
+    console.log("User ID:", id);
 
     if (!verifyToken || !id) {
       toast({ variant: "destructive", title: "Invalid URL" });
@@ -81,9 +83,9 @@ const VerifyEmail = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-md">
+      <div className="w-full flex items-center justify-center max-w-md mx-auto">
         {verified && (
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto flex items-center justify-center flex-col space-y-2">
             <Alert variant="default" className="mb-5">
               <SquareCheckBig color="green" />
               <AlertTitle>Email Verified!</AlertTitle>

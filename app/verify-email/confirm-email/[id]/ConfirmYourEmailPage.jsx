@@ -2,13 +2,41 @@
 
 import React from "react";
 import Link from "next/link";
-import mailSentImg from "../../../public/mail-sent.gif";
+import mailSentImg from "../../../../public/mail-sent.gif";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation"; // Import useSearchParams to access query parameters
+import { useParams } from "next/navigation";
+
+// import { useSearchParams } from 'next/navigation';
+
 
 const ConfirmYourEmailPage = () => {
-  const searchParams = useSearchParams();
-  const email = searchParams.get("id"); // Get the email from the query parameter
+  const params = useParams();
+  const email = params.id; // Get the email from the dynamic route
+
+  // const searchParams = useSearchParams();
+  // const email = searchParams.get('id'); // Extract email from query
+
+
+  if (!email) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white p-4">
+        <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-700 mb-4">Error</h1>
+            <p className="text-gray-600 mb-8">
+              No email address found. Please try again.
+            </p>
+            <Link
+              href="/"
+              className="bg-cyan-400 hover:bg-cyan-500 text-white font-medium py-2 px-12 rounded-full mb-6 transition-colors"
+            >
+              Go Back
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
