@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import mailSentImg from "../../../../public/mail-sent.gif";
 
-const page = ({ params }) => {
+const page = async ({ params }) => {
   const { id } = params; // Get email ID from route
 
   return (
