@@ -1,9 +1,9 @@
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectDB"; 
-import Kyc from "@/models/Kyc";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth"; // Ensure you have this authOptions defined
+import Kyc from "@/models/Kyc";
 
 export async function POST(req) {
   try {
