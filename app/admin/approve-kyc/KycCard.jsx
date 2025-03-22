@@ -5,11 +5,11 @@ import { updateKycStatus } from "@/lib/actions";
 import { useToast } from "@/hooks/use-toast";
 
 const KycCard = ({ user, kyc }) => {
-    const { toast } = useToast();
-    
+  const { toast } = useToast();
+
   const handleKycUpdate = async (kycId, status) => {
     await updateKycStatus(kycId, status);
-    toast({ title: `Kyc status updated to ${status}` });
+    toast({ title: `KYC status updated to ${status}` });
 
     window.location.reload(); // Refresh the page to show updates
   };

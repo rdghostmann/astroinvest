@@ -20,6 +20,16 @@ import { AdminSidebar } from '../_component/AdminSidebar';
 
 const page = async () => {
   const users = await getAllUsers();
+  const plainUsers = users.map(user => ({
+    _id: user._id.toString(),
+    username: user.username,
+    email: user.email,
+    phone: user.phone,
+    country: user.country,
+    state: user.state,
+    role: user.role,
+    isVerified: user.isVerified,
+  }));
 
   return (
     <SidebarProvider>
@@ -45,16 +55,9 @@ const page = async () => {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-1 p-4 pt-0">
-          {/* Left Section */}
-          {/* <div className="flex-1 space-y-6 basis-0"> */}
-            {/* Portfolio Overview */}
-            {/* <h2 className="text-lg font-semibold">Users Lisiting</h2> */}
-          {/* </div> */}
           <div>
-            <UsersTable users={users} />
+            <UsersTable users={plainUsers} />
           </div>
-
-
         </div>
       </SidebarInset>
     </SidebarProvider>
