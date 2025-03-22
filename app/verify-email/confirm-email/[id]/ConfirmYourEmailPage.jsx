@@ -1,3 +1,6 @@
+
+// when using router.push(`/verify-email/confirm-email/?id=${email}`);
+
 "use client";
 
 import React from "react";

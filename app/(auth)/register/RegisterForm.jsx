@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToastAction } from "@/components/ui/toast";
+import { registerUser } from "@/lib/registerUser";
 
 const RegisterForm = () => {
   const { toast } = useToast();
@@ -36,18 +37,18 @@ const RegisterForm = () => {
   const validateForm = (formData) => {
     const errors = {};
 
-    if (!formData.username) errors.username = "Username is required.";
-    if (!formData.email) errors.email = "Email is required.";
+    if (!formData.username.trim()) errors.username = "Username is required.";
+    if (!formData.email.trim()) errors.email = "Email is required.";
     else if (
       !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
     )
       errors.email = "Invalid email address.";
-    if (!formData.password) errors.password = "Password is required.";
-    if (!formData.confirmPassword)
+    if (!formData.password.trim()) errors.password = "Password is required.";
+    if (!formData.confirmPassword.trim())
       errors.confirmPassword = "Confirm Password is required.";
     else if (formData.password !== formData.confirmPassword)
       errors.confirmPassword = "Passwords do not match.";
-    if (!phone) errors.phone = "Phone number is required.";
+    if (!phone.trim()) errors.phone = "Phone number is required.";
     if (!selectedCountry) errors.country = "Country is required.";
     if (!selectedState) errors.state = "State is required.";
     if (!selectedCity) errors.city = "City is required.";
@@ -60,10 +61,10 @@ const RegisterForm = () => {
     setLoading(true);
 
     const formData = new FormData(event.target);
-    const username = formData.get("username");
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
+    const username = formData.get("username").trim();
+    const email = formData.get("email").trim();
+    const password = formData.get("password").trim();
+    const confirmPassword = formData.get("confirmPassword").trim();
 
     const errors = validateForm({ username, email, password, confirmPassword });
     if (Object.keys(errors).length > 0) {
@@ -72,45 +73,46 @@ const RegisterForm = () => {
       return;
     }
 
+    const userData = {
+      username,
+      email,
+      password,
+      phone,
+      country: selectedCountry.name,
+      state: selectedState.name,
+      city: selectedCity.name,
+    };
+
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-          phone,
-          country: selectedCountry.name,
-          state: selectedState.name,
-          city: selectedCity.name,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const result = await registerUser(userData);
 
-      const data = await response.json();
+      if (result.success) {
+        toast({
+          title: "Registration successful!",
+          description: "Check your email to verify your account",
+          action: (
+            <ToastAction altText="verify-email-account">Undo</ToastAction>
+          ),
+        });
 
-      if (!response.ok) {
-        throw new Error(data.message || "Registration failed");
+        // Redirect to confirmation page
+        router.push(
+          `/verify-email/confirm-email/${encodeURIComponent(email)}`
+        );
+      } else {
+        toast({
+          title: "Registration failed",
+          description: result.message,
+          variant: "destructive",
+        });
       }
-
-      toast({
-        title: "Registration successful!",
-        description: "Check your email to verify your account",
-        action: (
-          <ToastAction altText="verify-email-account">Undo</ToastAction>
-        ),
-      });
-      router.refresh();
-
-      // router.push(`/verify-email/confirm-email/?id=${email}`);
-
-      // Updated to use encodeURIComponent
-      router.push(`/verify-email/confirm-email/${encodeURIComponent(email)}`);
-
     } catch (error) {
-      toast({ title: "An error occurred while registering" });
+      console.error("Error during registration:", error);
+      toast({
+        title: "An error occurred",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -153,7 +155,6 @@ const RegisterForm = () => {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-
             />
             {formErrors.confirmPassword && (
               <p className="text-red-600 text-sm">
@@ -169,7 +170,6 @@ const RegisterForm = () => {
               defaultCountry="us"
               value={phone}
               onChange={(value) => setPhone(value)}
-
             />
             {formErrors.phone && (
               <p className="text-red-600 text-sm">{formErrors.phone}</p>
@@ -190,7 +190,10 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {Country.getAllCountries().map((country) => (
-                  <SelectItem key={country.isoCode} value={JSON.stringify(country)}>
+                  <SelectItem
+                    key={country.isoCode}
+                    value={JSON.stringify(country)}
+                  >
                     {country.name}
                   </SelectItem>
                 ))}
@@ -215,11 +218,16 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {selectedCountry &&
-                  State.getStatesOfCountry(selectedCountry.isoCode).map((state) => (
-                    <SelectItem key={state.isoCode} value={JSON.stringify(state)}>
-                      {state.name}
-                    </SelectItem>
-                  ))}
+                  State.getStatesOfCountry(selectedCountry.isoCode).map(
+                    (state) => (
+                      <SelectItem
+                        key={state.isoCode}
+                        value={JSON.stringify(state)}
+                      >
+                        {state.name}
+                      </SelectItem>
+                    )
+                  )}
               </SelectContent>
             </Select>
             {formErrors.state && (
@@ -237,7 +245,10 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {selectedState &&
-                  City.getCitiesOfState(selectedState.countryCode, selectedState.isoCode).map((city) => (
+                  City.getCitiesOfState(
+                    selectedState.countryCode,
+                    selectedState.isoCode
+                  ).map((city) => (
                     <SelectItem key={city.name} value={JSON.stringify(city)}>
                       {city.name}
                     </SelectItem>
@@ -254,13 +265,20 @@ const RegisterForm = () => {
               disabled={loading}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {loading ? <Loader className="text-white animate-spin" size={20} /> : "Register"}
+              {loading ? (
+                <Loader className="text-white animate-spin" size={20} />
+              ) : (
+                "Register"
+              )}
             </Button>
           </div>
         </form>
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
+          <Link
+            href="/login"
+            className="font-semibold text-indigo-600 hover:text-indigo-500"
+          >
             Sign in
           </Link>
         </p>

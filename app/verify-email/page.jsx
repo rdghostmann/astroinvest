@@ -43,8 +43,6 @@ const VerifyEmail = () => {
   }, [verified, router]);
 
   const verifyEmailHandler = async () => {
-    console.log("Verification Token:", verifyToken);
-    console.log("User ID:", id);
 
     if (!verifyToken || !id) {
       toast({ variant: "destructive", title: "Invalid URL" });
@@ -70,15 +68,15 @@ const VerifyEmail = () => {
       console.error(error);
       setError(true);
       setLoading(false);
-      toast({ variant: "destructive", title: "Something went wrong", description: "Failed to run verify email" });
+      toast({ variant: "destructive", title: "Error Verifying Email", description: "Failed to run verify email" });
     }
   };
 
   if (loading)
     return (
-      <h1 className="flex justify-center items-center h-screen">
-        <p> Verifying your Email address. Please wait...</p>
-      </h1>
+      <div className="flex justify-center items-center h-screen">
+        <p className="font-semibold"> Verifying your Email address. Please wait...</p>
+      </div>
     );
 
   return (
