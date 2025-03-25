@@ -46,14 +46,18 @@ const VerifyEmail = () => {
       toast({ variant: "destructive", title: "OTP is required" });
       return;
     }
-  
+
     setLoading(true);
-  
+
     try {
       const result = await verifyOTP({ userId: id, otp }); // Pass userId or email/phone as needed
-  
+
       if (result.success) {
+
+        //User.status = "active";
         setVerified(true);
+
+
         toast({ title: result.message });
       } else {
         setError(true);
@@ -115,17 +119,17 @@ const VerifyEmail = () => {
               </button>
             </div>
           </div>)}
-   
-          { error && (
-            <Alert variant="destructive" className="mb-5">
-              <CircleX color="red" />
-              <AlertTitle>Email Verification Failed!</AlertTitle>
-              <AlertDescription>
-                Your verification token is invalid or expired.
-              </AlertDescription>
-            </Alert>
-          )}
-        
+
+        {error && (
+          <Alert variant="destructive" className="mb-5">
+            <CircleX color="red" />
+            <AlertTitle>Email Verification Failed!</AlertTitle>
+            <AlertDescription>
+              Your verification token is invalid or expired.
+            </AlertDescription>
+          </Alert>
+        )}
+
 
 
       </div>
