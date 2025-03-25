@@ -38,27 +38,8 @@ const VerifyEmail = () => {
       setError(true);
       return;
     }
-
     setLoading(true);
 
-    try {
-      // Simulate sending OTP to the user's email
-
-
-
-      setIsOtpSent(true);
-      toast({ title: "OTP sent to your email. Please check your inbox." });
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setError(true);
-      setLoading(false);
-      toast({
-        variant: "destructive",
-        title: "Error Sending OTP",
-        description: "Failed to send OTP. Please try again.",
-      });
-    }
   };
 
   const handleVerifyOtp = async () => {

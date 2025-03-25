@@ -1,14 +1,14 @@
+
 "use client";
 
-import React, { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React, { useActionState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Loader } from "lucide-react";
+import { registerUser } from "@/lib/registerUser";
 import { Country, State, City } from "country-state-city";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
@@ -19,20 +19,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { registerUser } from "@/lib/registerUser";
 
-const initialState = { errors: null };
-
-function RegisterForm() {
+const RegisterForm = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const [state, formAction] = useFormState(registerUser, initialState);
-  const { pending } = useFormStatus();
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [phone, setPhone] = useState("");
+  // Form state
+  const [selectedCountry, setSelectedCountry] = React.useState(null);
+  const [selectedState, setSelectedState] = React.useState(null);
+  const [selectedCity, setSelectedCity] = React.useState(null);
+  const [phone, setPhone] = React.useState("");
+
+  const handleRegister = async (prevState, formData) => {
+    const username = formData.get("username").trim();
+    const email = formData.get("email").trim();
+    const password = formData.get("password").trim();
+
+    const userData = {
+      username,
+      email,
+      password,
+      phone,
+      country: selectedCountry?.name || "",
+      state: selectedState?.name || "",
+      city: selectedCity?.name || "",
+    };
+
+    try {
+      const result = await registerUser(userData);
+
+      if (result.success) {
+        return { type: "success", text: "Registration successful! Check your email to verify your account." };
+      } else {
+        return { type: "error", text: result.message };
+      }
+    } catch (error) {
+      return { type: "error", text: "An error occurred. Please try again later." };
+    }
+  };
+
+  const [message, registerUserAction, pending] = useActionState(handleRegister, null);
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -41,41 +67,48 @@ function RegisterForm() {
           Create an Account
         </h2>
       </div>
+
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action={formAction} className="space-y-6">
+        {message && (
+          <div
+            className={`p-3 text-center text-sm font-semibold rounded-md ${message.type === "success" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+              }`}
+          >
+            {message.text}
+          </div>
+        )}
+
+        <form action={registerUserAction} className="space-y-6">
           <div>
             <Label htmlFor="username">Username</Label>
             <Input type="text" name="username" id="username" required />
-            {state.errors?.username && (
-              <p className="text-red-600 text-sm">{state.errors.username}</p>
-            )}
+            {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
           </div>
+
           <div>
             <Label htmlFor="email">Email</Label>
             <Input type="email" name="email" id="email" required />
-            {state.errors?.email && (
-              <p className="text-red-600 text-sm">{state.errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
+
           <div>
             <Label htmlFor="password">Password</Label>
             <Input type="password" name="password" id="password" required />
-            {state.errors?.password && (
-              <p className="text-red-600 text-sm">{state.errors.password}</p>
-            )}
+            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           </div>
-          <div>
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
-            <Input type="password" name="confirmPassword" id="confirmPassword" required />
-            {state.errors?.confirmPassword && (
-              <p className="text-red-600 text-sm">{state.errors.confirmPassword}</p>
-            )}
-          </div>
+
           <div>
             <Label htmlFor="phone">Phone</Label>
-            <PhoneInput name="phone" id="phone" defaultCountry="us" value={phone} onChange={setPhone} />
-            {state.errors?.phone && <p className="text-red-600 text-sm">{state.errors.phone}</p>}
+            <PhoneInput
+              name="phone"
+              id="phone"
+              defaultCountry="us"
+              value={phone}
+              onChange={setPhone}
+            />
+            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
           </div>
+
           <div>
             <Label htmlFor="country">Country</Label>
             <Select
@@ -97,8 +130,9 @@ function RegisterForm() {
                 ))}
               </SelectContent>
             </Select>
-            {state.errors?.country && <p className="text-red-600 text-sm">{state.errors.country}</p>}
+            {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
           </div>
+
           <div>
             <Label htmlFor="state">State</Label>
             <Select
@@ -121,11 +155,15 @@ function RegisterForm() {
                   ))}
               </SelectContent>
             </Select>
-            {state.errors?.state && <p className="text-red-600 text-sm">{state.errors.state}</p>}
+            {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
           </div>
+
           <div>
             <Label htmlFor="city">City</Label>
-            <Select onValueChange={(value) => setSelectedCity(JSON.parse(value))} disabled={!selectedState}>
+            <Select
+              onValueChange={(value) => setSelectedCity(JSON.parse(value))}
+              disabled={!selectedState}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select City" />
               </SelectTrigger>
@@ -138,14 +176,20 @@ function RegisterForm() {
                   ))}
               </SelectContent>
             </Select>
-            {state.errors?.city && <p className="text-red-600 text-sm">{state.errors.city}</p>}
+            {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
           </div>
+          {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
           <div>
-            <Button type="submit" disabled={pending} className="flex w-full justify-center bg-indigo-600 text-white px-3 py-1.5 text-sm font-semibold rounded-md hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              {pending ? <Loader className="text-white animate-spin" size={20} /> : "Register"}
+            <Button
+              type="submit"
+              disabled={pending}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
+            >
+              {pending ? "Registering..." : "Register"}
             </Button>
           </div>
         </form>
+
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
           <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
@@ -155,6 +199,6 @@ function RegisterForm() {
       </div>
     </div>
   );
-}
+};
 
 export default RegisterForm;
