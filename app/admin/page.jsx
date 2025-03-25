@@ -75,7 +75,7 @@ const Page = () => {
             {/* Card for Total Balance */}
             <div className="p-4 border rounded-lg shadow-md flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-semibold text-gray-900">Total Balance</h3>
+                <h3 className="text-sm font-semibold text-gray-900">Total B</h3>
                 <p className="text-lg font-semibold text-gray-900">${totalBalance.toLocaleString()}</p>
               </div>
               <div className="text-green-500">
