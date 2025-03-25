@@ -47,12 +47,12 @@ const VerifyEmail = () => {
       toast({ variant: "destructive", title: "OTP is required" });
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
-      const result = await verifyOTP({ userId, email, otp }); // Call the verifyOTP server action
-
+      const result = await verifyOTP({ userId: id, otp }); // Pass userId or email/phone as needed
+  
       if (result.success) {
         setVerified(true);
         toast({ title: result.message });
