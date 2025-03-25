@@ -16,7 +16,6 @@ const VerifyEmail = () => {
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
   const [otp, setOtp] = useState(""); // State for OTP input
-  const [isOtpSent, setIsOtpSent] = useState(false); // State to track OTP sent status
 
   const searchParams = useSearchParams();
   const verifyToken = searchParams.get("verifyToken");
