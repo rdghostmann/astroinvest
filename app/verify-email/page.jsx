@@ -51,7 +51,7 @@ const VerifyEmail = () => {
     setLoading(true);
 
     try {
-      const result = await verifyOTP({ email: id, otp }); // Call the verifyOTP server action
+      const result = await verifyOTP({ userId, email, otp }); // Call the verifyOTP server action
 
       if (result.success) {
         setVerified(true);
@@ -87,7 +87,7 @@ const VerifyEmail = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full flex items-center justify-center max-w-md mx-auto">
-        {verified ? (
+        {verified && (
           <div className="max-w-md mx-auto flex items-center justify-center flex-col space-y-2">
             <Alert variant="default" className="mb-5">
               <SquareCheckBig color="green" />
@@ -96,35 +96,27 @@ const VerifyEmail = () => {
                 Your email has been verified successfully.
               </AlertDescription>
             </Alert>
-            <div className="max-w-md mx-auto flex items-center justify-center flex-col space-y-4">
-              {isOtpSent ? (
-                <>
-                  <p className="text-center font-semibold">
-                    Enter the 6-digit OTP sent to your email.
-                  </p>
-                  <input
-                    type="text"
-                    maxLength="6"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded mb-4 text-center"
-                    placeholder="Enter OTP"
-                  />
-                  <button
-                    onClick={handleVerifyOtp}
-                    className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600"
-                  >
-                    Verify OTP
-                  </button>
-                </>
-              ) : (
-                <p className="text-center font-semibold">
-                  Sending OTP to your email. Please wait...
-                </p>
-              )}
+            <div>
+              <p className="text-center font-semibold">
+                Enter the 6-digit OTP sent to your email.
+              </p>
+              <input
+                type="text"
+                maxLength="6"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded mb-4 text-center"
+                placeholder="Enter OTP"
+              />
+              <button
+                onClick={handleVerifyOtp}
+                className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600"
+              >
+                Verify OTP
+              </button>
             </div>
-          </div>
-        ) : (
+          </div>)}
+   
           { error && (
             <Alert variant="destructive" className="mb-5">
               <CircleX color="red" />
@@ -134,7 +126,7 @@ const VerifyEmail = () => {
               </AlertDescription>
             </Alert>
           )}
-        )}
+        
 
 
       </div>
