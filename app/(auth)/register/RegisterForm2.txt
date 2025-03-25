@@ -1,7 +1,6 @@
-
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
@@ -25,15 +24,23 @@ const RegisterForm = () => {
   const router = useRouter();
 
   // Form state
-  const [selectedCountry, setSelectedCountry] = React.useState(null);
-  const [selectedState, setSelectedState] = React.useState(null);
-  const [selectedCity, setSelectedCity] = React.useState(null);
-  const [phone, setPhone] = React.useState("");
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [phone, setPhone] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handleRegister = async (prevState, formData) => {
+  const handleRegister = async (formData) => {
     const username = formData.get("username").trim();
     const email = formData.get("email").trim();
     const password = formData.get("password").trim();
+    const confirmPassword = formData.get("confirm-password").trim();
+
+    // Validate password confirmation
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return { type: "password", text: "Passwords do not match" };
+    }
 
     const userData = {
       username,
@@ -49,9 +56,14 @@ const RegisterForm = () => {
       const result = await registerUser(userData);
 
       if (result.success) {
-        return { type: "success", text: "Registration successful! Check your email to verify your account." };
+        toast({
+          title: "Registration successful!",
+          description: "Check your email to verify your account.",
+        });
+        router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+        return { type: "success", text: "Registration successful!" };
       } else {
-        return { type: "error", text: result.message };
+        return { type: result.type || "error", text: result.text || result.message };
       }
     } catch (error) {
       return { type: "error", text: "An error occurred. Please try again later." };
@@ -69,32 +81,35 @@ const RegisterForm = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        {message && (
-          <div
-            className={`p-3 text-center text-sm font-semibold rounded-md ${message.type === "success" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
-              }`}
-          >
-            {message.text}
-          </div>
-        )}
-
         <form action={registerUserAction} className="space-y-6">
           <div>
             <Label htmlFor="username">Username</Label>
             <Input type="text" name="username" id="username" required />
-            {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
+            {message?.type === "username" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
 
           <div>
             <Label htmlFor="email">Email</Label>
             <Input type="email" name="email" id="email" required />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            {message?.type === "email" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
 
           <div>
             <Label htmlFor="password">Password</Label>
             <Input type="password" name="password" id="password" required />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+            {message?.type === "password" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
+          </div>
+
+          <div>
+            <Label htmlFor="confirm-password">Confirm Password</Label>
+            <Input type="password" name="confirm-password" id="confirm-password" required />
+            {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
           </div>
 
           <div>
@@ -106,7 +121,9 @@ const RegisterForm = () => {
               value={phone}
               onChange={setPhone}
             />
-            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+            {message?.type === "phone" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
 
           <div>
@@ -130,7 +147,9 @@ const RegisterForm = () => {
                 ))}
               </SelectContent>
             </Select>
-            {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
+            {message?.type === "country" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
 
           <div>
@@ -155,7 +174,9 @@ const RegisterForm = () => {
                   ))}
               </SelectContent>
             </Select>
-            {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
+            {message?.type === "state" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
 
           <div>
@@ -169,16 +190,23 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {selectedState &&
-                  City.getCitiesOfState(selectedState.countryCode, selectedState.isoCode).map((city) => (
-                    <SelectItem key={city.name} value={JSON.stringify(city)}>
-                      {city.name}
-                    </SelectItem>
-                  ))}
+                  City.getCitiesOfState(selectedState.countryCode, selectedState.isoCode).map(
+                    (city) => (
+                      <SelectItem key={city.name} value={JSON.stringify(city)}>
+                        {city.name}
+                      </SelectItem>
+                    )
+                  )}
               </SelectContent>
             </Select>
-            {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
+            {message?.type === "city" && (
+              <p className="text-red-500 text-sm">{message.text}</p>
+            )}
           </div>
-          {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+
+          {message?.type === "error" && (
+            <p className="text-red-500 text-center">{message.text}</p>
+          )}
           <div>
             <Button
               type="submit"

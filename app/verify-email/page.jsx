@@ -6,7 +6,6 @@ import { CircleX, SquareCheckBig } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { verifyOTP } from "@/lib/verifyOTP"; // Import the verifyOTP server action
-import Link from "next/link";
 
 const VerifyEmail = () => {
   const { toast } = useToast();
