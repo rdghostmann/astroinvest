@@ -12,6 +12,7 @@ const CardSchema = new mongoose.Schema({
   },
   cardType: {
     type: String,
+    enum: ["Mastercard", "Visa", "Verve"],
     required: true,
   },
   bankName: {
