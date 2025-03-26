@@ -3,13 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
-<<<<<<< HEAD
-import { verifyEmail } from "@/lib/verifyEmail"; // Import the verifyEmail server action
-import { verifyOTP } from "@/lib/verifyOTP"; // Import the verifyOTP server action
-=======
 import { CircleX, SquareCheckBig } from "lucide-react";
 import { verifyEmail } from "@/lib/verifyEmail"; // Import the server action
->>>>>>> 62c46983f4c964c085887aa536f4bf814457173c
 
 const VerifyEmail = () => {
   const { toast } = useToast();
@@ -34,56 +29,9 @@ const VerifyEmail = () => {
         description: "The verification link is invalid or incomplete.",
       });
     }
-<<<<<<< HEAD
-  }, []);
-
-  const verifyEmailHandler = async () => {
-    if (!verifyToken || !id) {
-      toast({ variant: "destructive", title: "Invalid URL" });
-      setError(true);
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const result = await verifyEmail({ verifyToken, id }); // Call the server action to verify the email
-
-      if (result.success) {
-        setVerified(true);
-        toast({ title: "Email Verified Successfully!" });
-      } else {
-        setError(true);
-        toast({
-          variant: "destructive",
-          title: "Email Verification Failed",
-          description: result.message,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      setError(true);
-      toast({
-        variant: "destructive",
-        title: "Error Verifying Email",
-        description: "Failed to verify email. Please try again.",
-      });
-    } finally {
-      setLoading(false); // Ensure loading is set to false
-    }
-  };
-
-  const handleVerifyOtp = async () => {
-    if (!otp) {
-      toast({ variant: "destructive", title: "OTP is required" });
-      return;
-    }
-
-=======
   }, [verifyToken, id]);
 
   const verifyEmailHandler = async () => {
->>>>>>> 62c46983f4c964c085887aa536f4bf814457173c
     setLoading(true);
 
     try {
@@ -92,16 +40,12 @@ const VerifyEmail = () => {
 
       if (result.success) {
         setVerified(true);
-<<<<<<< HEAD
-        toast({ title: result.message });
-=======
         toast({ title: "Email Verified Successfully!" });
 
         // Redirect to OTP verification page
         setTimeout(() => {
           router.push(`/verify-email/verify-otp/?id=${id}`);
         }, 2000);
->>>>>>> 62c46983f4c964c085887aa536f4bf814457173c
       } else {
         setError(true);
         toast({
@@ -119,7 +63,7 @@ const VerifyEmail = () => {
         description: "An error occurred while verifying your email. Please try again.",
       });
     } finally {
-      setLoading(false); // Ensure loading is set to false
+      setLoading(false);
     }
   };
 
@@ -134,47 +78,6 @@ const VerifyEmail = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="w-full flex items-center justify-center max-w-md mx-auto">
-<<<<<<< HEAD
-        {verified && (
-          <div className="max-w-md mx-auto flex items-center justify-center flex-col space-y-2">
-            <Alert variant="default" className="mb-5">
-              <SquareCheckBig color="green" />
-              <AlertTitle>Email Verified!</AlertTitle>
-              <AlertDescription>
-                Your email has been verified successfully.
-              </AlertDescription>
-            </Alert>
-            <div>
-              <p className="text-center font-semibold">
-                Enter the 6-digit OTP sent to your email.
-              </p>
-              <input
-                type="text"
-                maxLength="6"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded mb-4 text-center"
-                placeholder="Enter OTP"
-              />
-              <button
-                onClick={handleVerifyOtp}
-                className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600"
-              >
-                Verify OTP
-              </button>
-            </div>
-          </div>
-        )}
-
-        {error && (
-          <Alert variant="destructive" className="mb-5">
-            <CircleX color="red" />
-            <AlertTitle>Email Verification Failed!</AlertTitle>
-            <AlertDescription>
-              Your verification token is invalid or expired.
-            </AlertDescription>
-          </Alert>
-=======
         {verified ? (
           <div className="text-center">
             <SquareCheckBig color="green" size={48} className="mx-auto mb-4" />
@@ -195,7 +98,6 @@ const VerifyEmail = () => {
           <div className="text-center">
             <p className="font-semibold">Please wait while we verify your email...</p>
           </div>
->>>>>>> 62c46983f4c964c085887aa536f4bf814457173c
         )}
       </div>
     </div>
