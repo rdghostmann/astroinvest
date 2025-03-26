@@ -46,7 +46,7 @@ const VerifyEmail = () => {
 
         // Redirect to OTP verification page
         setTimeout(() => {
-          router.push(`/verify-email/verify-otp/?id=${id}`);
+          router.push(`/verify-email/otp/${id}`);
         }, 2000);
       } else {
         setError(true);
