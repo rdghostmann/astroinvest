@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import Loading from "@/app/loading";
+import { checkUserStatus } from "@/lib/checkUserStatus"; // Import the server action
 
 const LoginForm = () => {
   const router = useRouter();
@@ -27,56 +28,62 @@ const LoginForm = () => {
 
     if (!email) {
       setLoading(false);
-      return toast({ 
+      return toast({
         variant: "outline",
         title: "Email field required",
         description: "Please enter your email.",
-        action: (
-          <ToastAction altText="undo">Undo</ToastAction>
-        ),
-       });
+      });
     }
 
     if (!password) {
       setLoading(false);
-      return toast({ 
+      return toast({
         variant: "outline",
         title: "Password field required",
         description: "Please enter your password.",
-        action: (
-          <ToastAction altText="undo">Undo</ToastAction>
-        ),
       });
     }
 
     try {
+      // Call the server action to check user status
+      const userId = email; // Assuming email is used as the user ID
+      const statusResult = await checkUserStatus(userId);
+
+      if (!statusResult.success) {
+        // If the user's account is inactive, show a toast and stop the login process
+        toast({
+          variant: "destructive",
+          title: "Account Inactive",
+          description: statusResult.message,
+        });
+        setLoading(false);
+        return;
+      }
+
+      // Proceed with login if the user's status is active
       const result = await signIn("credentials", {
         redirect: false,
         email,
         password,
       });
 
-
       if (result?.error) {
-        setError(`Wrong Email or Password`);
+        setError("Wrong Email or Password");
         toast({
           variant: "destructive",
-          title: `Wrong Login Credentials`,
+          title: "Wrong Login Credentials",
           description: "Enter your valid email and password.",
-          action: (
-            <ToastAction altText="undo">Undo</ToastAction>
-          ),
         });
         setLoading(false);
       } else {
         toast({ title: "Login successful!" });
-        router.push("/dashboard"); // Use only router.push for redirection
+        router.push("/dashboard"); // Redirect to the dashboard
       }
     } catch (err) {
-      toast({ 
+      toast({
         variant: "destructive",
-        title: "Error occurred." ,
-        description: "Error occured while signing request",
+        title: "Error occurred.",
+        description: "An error occurred while processing your request.",
       });
     } finally {
       setLoading(false);
