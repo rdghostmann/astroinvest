@@ -3,8 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import mailSentImg from "../../../../public/mail-sent.gif";
 
-const page = async ({ params }) => {
-  const decodedEmail = decodeURIComponent(await params.id); // Await params properly
+const page = ({ params }) => {
+  const { id } = params; // Get email ID from route
+  const decodedEmail = decodeURIComponent(id); // Decode the email
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">

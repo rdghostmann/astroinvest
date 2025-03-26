@@ -1,30 +1,38 @@
-"use client";
-import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card } from '@/components/ui/card'
-import { ArrowUpRight, Loader } from 'lucide-react';
-import Link from 'next/link';
-import { useFetchUser } from "@/hooks/useFetchUser";
-import { useUserStore } from "@/store/userStore";
-import Loading from '@/app/loading';
+import React from "react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
+import { getCurrentUser } from "@/lib/actions";
+import ActiveDeposit from "../ActiveDeposit/ActiveDeposit";
+import EarnTotal from "../EarnTotal/EarnTotal";
+import TotalDeposit from "../TotalDeposit/TotalDeposit";
+import TotalWithdraw from "../TotalWithdraw/TotalWithdraw";
+import TotalUserBalance from "../Totaluserbalance/Totaluserbalance";
 
 
-const DashboardView = ({ userId }) => {
+const DashboardScreen = async () => {
 
-  // Trigger fetching and updating the store on mount or when userId changes.
-  useFetchUser(userId);
-  const user = useUserStore((state) => state.user);
+  const session = await getServerSession(authOptions)
+  const userID = session?.user?.id;
+
+  const user = await getCurrentUser(userID);
 
   if (!user) {
-    return <Loading />
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="font-semibold text-red-500">Failed to load user data. Please log in.</p>
+      </div>
+    );
   }
-  // Extract user details for display.
-  const userName = user?.username || "Guest";
-  const ID = user?.userID.slice(0, 5);
-  const userEmail = user?.email || "No Email";
-  const userBalance = user.walletBalance;
-  const userTotalProfit = user.profitTotal;
 
+  // Extract user details for display
+  const userName = user?.username || "Guest";
+  const ID = user?.userID?.slice(0, 5) || "N/A";
+  const userEmail = user?.email || "No Email";
+  const userTotalProfit = user?.profitTotal || 0;
 
   return (
     <>
@@ -32,69 +40,57 @@ const DashboardView = ({ userId }) => {
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
             <Avatar className="h-8 w-8 rounded-lg bg-slate-700">
-              <AvatarFallback className="rounded-lg font-semibold text-gray-700">{userEmail[0].toUpperCase()}</AvatarFallback>
+              <AvatarFallback className="rounded-lg font-semibold text-gray-700">
+                {userEmail[0]?.toUpperCase()}
+              </AvatarFallback>
             </Avatar>
           </div>
           <div>
             <h3 className="font-semibold">{userName}</h3>
-            <p className="text-sm text-white">ID:{ID}</p>
+            <p className="text-sm text-white">ID: {ID}</p>
           </div>
         </div>
         <div className="flex justify-between mb-6 bg-white shadow-md p-4 rounded-lg">
           <div className="border-r-2 flex-1 p-2 w-1/2 lg:px-2">
             <p className="text-xs md:hidden text-gray-500">BALANCE</p>
             <p className="hidden md:block text-sm/8 text-gray-500">ACCOUNT BALANCE</p>
-            <div className="flex items-center gap-2">
-              {!userBalance ? <Loader className="animate-spin" /> : (
-                <>
-                  <h2 className="text-2xl text-black font-bold md:text-3xl">${userBalance}</h2>
-                  <span className="flex items-center text-sm text-green-500">
-                    <ArrowUpRight className="h-4 w-4" />
-                    1.25%
-                  </span>
-                </>
-              )}
-
-            </div>
+            <TotalUserBalance userID={userID} />
           </div>
           <div className="flex-1 p-2 w-1/2 lg:px-2">
             <p className="text-xs md:hidden text-gray-500">PROFIT</p>
             <p className="hidden md:block text-sm/8 text-gray-500">TOTAL PROFIT</p>
             <div className="flex items-center gap-2">
-              {!userTotalProfit ? <Loader className="animate-spin" /> : (
-                <>
-                  <h2 className="text-2xl text-black font-bold md:text-3xl">${userTotalProfit}</h2>
-                  <span className="flex items-center text-sm text-green-500">
-                    <ArrowUpRight className="h-4 w-4" />
-                    1.25%
-                  </span>
-                </>
-              )}
-
+              <h2 className="text-2xl text-black font-bold md:text-3xl">${userTotalProfit}</h2>
+              <span className="flex items-center text-sm text-green-500">
+                <ArrowUpRight className="h-4 w-4" />
+                1.25%
+              </span>
             </div>
           </div>
         </div>
 
-
         <div className="grid grid-cols-2 gap-4 mb-6">
-          <Link href="/dashboard/deposit" className="bg-blue-400 text-blue-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-300 transition-colors">
+          <Link
+            href="/dashboard/deposit"
+            className="bg-blue-400 text-blue-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-300 transition-colors"
+          >
             Make a Deposit
           </Link>
-          <Link href="/dashboard/withdraw" className="bg-blue-700 text-blue-100 px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+          <Link
+            href="/dashboard/withdraw"
+            className="bg-blue-700 text-blue-100 px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+          >
             Withdraw Funds
           </Link>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {["$5789.00", "$2500.00", "$7000.00", "$7000.00"].map((amount, index) => (
-            <div key={index} className="bg-amber-800/50 p-3 rounded-lg">
-              <p className="text-lg font-semibold">{amount}</p>
-              <p className="text-xs text-amber-200">
-                {["Active Deposits", "Earn Total", "Total Deposits", "Total Withdraw"][index]}
-              </p>
-            </div>
-          ))}
+          <ActiveDeposit />
+          <EarnTotal />
+          <TotalDeposit />
+          <TotalWithdraw />
         </div>
+        
       </Card>
       <div className="w-full mx-auto px-4">
         {/* Main Stats */}
@@ -145,7 +141,7 @@ const DashboardView = ({ userId }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default DashboardView
+export default DashboardScreen;

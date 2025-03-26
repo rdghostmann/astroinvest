@@ -8,6 +8,7 @@ const Wallet = async () => {
   const session = await getServerSession(authOptions);
   const userID = session?.user?.id;
 
+  
   // Fetch wallets made by the user
   const wallets = await fetchWalletsByUser(userID);
 
@@ -17,7 +18,7 @@ const Wallet = async () => {
   return (
     <div>
       <h2 className="font-semibold">My Assets</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {wallets.length > 0 ? (
           wallets.map((wallet) => (
             <div key={wallet._id} className="flex items-center gap-4 p-4 border rounded-lg shadow-md">
@@ -26,7 +27,7 @@ const Wallet = async () => {
                 <span className="font-semibold">{wallet.name}</span>
                 <span>${wallet.balance}</span>
                 <span className="text-sm text-gray-500">
-                  Market Price: ${marketPrices[wallet.name.toLowerCase()]?.usd || 'N/A'}
+                  MKT Price: ${marketPrices[wallet.name.toLowerCase()]?.usd || 'N/A'}
                 </span>
               </div>
             </div>

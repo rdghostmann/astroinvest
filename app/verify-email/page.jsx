@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CircleX, SquareCheckBig } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { verifyEmail } from "@/lib/verifyEmail"; // Import the verifyEmail server action
 import { verifyOTP } from "@/lib/verifyOTP"; // Import the verifyOTP server action
 
 const VerifyEmail = () => {
@@ -29,15 +30,40 @@ const VerifyEmail = () => {
     }
   }, []);
 
-
   const verifyEmailHandler = async () => {
     if (!verifyToken || !id) {
       toast({ variant: "destructive", title: "Invalid URL" });
       setError(true);
       return;
     }
+
     setLoading(true);
 
+    try {
+      const result = await verifyEmail({ verifyToken, id }); // Call the server action to verify the email
+
+      if (result.success) {
+        setVerified(true);
+        toast({ title: "Email Verified Successfully!" });
+      } else {
+        setError(true);
+        toast({
+          variant: "destructive",
+          title: "Email Verification Failed",
+          description: result.message,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      setError(true);
+      toast({
+        variant: "destructive",
+        title: "Error Verifying Email",
+        description: "Failed to verify email. Please try again.",
+      });
+    } finally {
+      setLoading(false); // Ensure loading is set to false
+    }
   };
 
   const handleVerifyOtp = async () => {
@@ -52,11 +78,7 @@ const VerifyEmail = () => {
       const result = await verifyOTP({ userId: id, otp }); // Pass userId or email/phone as needed
 
       if (result.success) {
-
-        //User.status = "active";
         setVerified(true);
-
-
         toast({ title: result.message });
       } else {
         setError(true);
@@ -75,7 +97,7 @@ const VerifyEmail = () => {
         description: "Failed to verify OTP. Please try again.",
       });
     } finally {
-      setLoading(false);
+      setLoading(false); // Ensure loading is set to false
     }
   };
 
@@ -117,7 +139,8 @@ const VerifyEmail = () => {
                 Verify OTP
               </button>
             </div>
-          </div>)}
+          </div>
+        )}
 
         {error && (
           <Alert variant="destructive" className="mb-5">
@@ -128,9 +151,6 @@ const VerifyEmail = () => {
             </AlertDescription>
           </Alert>
         )}
-
-
-
       </div>
     </div>
   );

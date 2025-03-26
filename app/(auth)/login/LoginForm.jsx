@@ -60,7 +60,7 @@ const LoginForm = () => {
       if (result?.error) {
         setError(`Wrong Email or Password`);
         toast({
-          variant: "outline",
+          variant: "destructive",
           title: `Wrong Login Credentials`,
           description: "Enter your valid email and password.",
           action: (
@@ -73,7 +73,11 @@ const LoginForm = () => {
         router.push("/dashboard"); // Use only router.push for redirection
       }
     } catch (err) {
-      toast({ title: "Error occurred." });
+      toast({ 
+        variant: "destructive",
+        title: "Error occurred." ,
+        description: "Error occured while signing request",
+      });
     } finally {
       setLoading(false);
     }

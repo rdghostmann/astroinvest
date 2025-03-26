@@ -13,15 +13,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import DashboardView from "./_components/DashboardView/DashboardView";
-// import AppSidebarWrapper from "./_components/AppSideWrapper/AppSideWrapper";
+import DashboardScreen from "./_components/DashboardView/DashboardScreen";
 
 
 export default async function Page() {
 
   return (
     <SidebarProvider>
-      {/* <AppSidebarWrapper /> */}
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -47,7 +45,8 @@ export default async function Page() {
           {/* Left Section */}
           <div className="flex-1 space-y-6 basis-0">
             {/* Portfolio Overview */}
-            <DashboardView />
+            {/* <DashboardView /> */}
+            <DashboardScreen />
 
           </div>
 

@@ -6,6 +6,7 @@ import solanaImage from '../../public/crypto/sol.png';
 import xrpImage from '../../public/crypto/xrp.png';
 import dogeImage from '../../public/crypto/doge.png';
 import bnbImage from '../../public/crypto/bnb.png';
+import xlmImage from '../../public/crypto/xlm.png';
 
 // Array of cryptocurrency objects
 const cryptos = [
@@ -15,6 +16,7 @@ const cryptos = [
   { id: 4, name: 'XRP', path: xrpImage },
   { id: 5, name: 'Dogecoin', path: dogeImage },
   { id: 6, name: 'BNB', path: bnbImage },
+  { id: 7, name: 'XLM', path: xlmImage },
 ];
 
 // Export the image paths
@@ -25,8 +27,8 @@ export const cryptoImages = {
   XRP: xrpImage,
   Dogecoin: dogeImage,
   BNB: bnbImage,
+  XLM: xlmImage,
 };
-
 // Main Crypto component
 const Crypto = () => (
   <div>
