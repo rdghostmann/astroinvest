@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 
 const OtpSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   email: {
-    type: String, 
+    type: String,
   }, // Email field
   phoneNumber: {
     type: String,

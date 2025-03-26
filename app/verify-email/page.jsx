@@ -39,6 +39,8 @@ const VerifyEmail = () => {
       const result = await verifyEmail({ verificationToken: verifyToken, userId: id });
 
       if (result.success) {
+
+        //User.status = "active";
         setVerified(true);
         toast({ title: "Email Verified Successfully!" });
 

@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Loader } from "lucide-react";
-import Loading from "@/app/loading";
+import { registerUser } from "@/lib/registerUser";
 import { Country, State, City } from "country-state-city";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
@@ -19,57 +18,61 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ToastAction } from "@/components/ui/toast";
-import { registerUser } from "@/lib/registerUser";
+import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
 
   // Form state
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [phone, setPhone] = useState("");
-  const [formErrors, setFormErrors] = useState({});
+  const [passwordError, setPasswordError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({}); // To track field-specific errors
+  const [loading, setLoading] = useState(false); // To track submission state
 
-  const validateForm = (formData) => {
+  const validateFields = (userData) => {
     const errors = {};
 
-    if (!formData.username.trim()) errors.username = "Username is required.";
-    if (!formData.email.trim()) errors.email = "Email is required.";
-    else if (
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
-    )
-      errors.email = "Invalid email address.";
-    if (!formData.password.trim()) errors.password = "Password is required.";
-    if (!formData.confirmPassword.trim())
-      errors.confirmPassword = "Confirm Password is required.";
-    else if (formData.password !== formData.confirmPassword)
-      errors.confirmPassword = "Passwords do not match.";
-    if (!phone.trim()) errors.phone = "Phone number is required.";
-    if (!selectedCountry) errors.country = "Country is required.";
-    if (!selectedState) errors.state = "State is required.";
-    if (!selectedCity) errors.city = "City is required.";
+    if (!userData.username) {
+      errors.username = "Username is required";
+    }
+    if (!userData.email) {
+      errors.email = "Email is required";
+    } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(userData.email)) {
+      errors.email = "Invalid email format";
+    }
+    if (!userData.password) {
+      errors.password = "Password is required";
+    }
+    if (!phone) {
+      errors.phone = "Phone number is required";
+    }
+    if (!userData.country) {
+      errors.country = "Country is required";
+    }
+    if (!userData.state) {
+      errors.state = "State is required";
+    }
+    if (!userData.city) {
+      errors.city = "City is required";
+    }
 
     return errors;
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-    const formData = new FormData(event.target);
-    const username = formData.get("username").trim();
-    const email = formData.get("email").trim();
-    const password = formData.get("password").trim();
-    const confirmPassword = formData.get("confirmPassword").trim();
-
-    const errors = validateForm({ username, email, password, confirmPassword });
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      setLoading(false);
+    // Validate password confirmation
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
       return;
     }
 
@@ -78,88 +81,120 @@ const RegisterForm = () => {
       email,
       password,
       phone,
-      country: selectedCountry.name,
-      state: selectedState.name,
-      city: selectedCity.name,
+      country: selectedCountry?.name || "",
+      state: selectedState?.name || "",
+      city: selectedCity?.name || "",
     };
 
+    // Validate input fields
+    const errors = validateFields(userData);
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setLoading(true); // Set loading to true during submission
     try {
       const result = await registerUser(userData);
 
       if (result.success) {
         toast({
           title: "Registration successful!",
-          description: "Check your email to verify your account",
-          action: (
-            <ToastAction altText="verify-email-account">Undo</ToastAction>
-          ),
+          description: "Check your email to verify your account.",
         });
-
-        // Redirect to confirmation page
         router.push(`/verify-email/confirm-email/${encodeURIComponent(email)}`);
+
+        // Reset form fields
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setSelectedCountry(null);
+        setSelectedState(null);
+        setSelectedCity(null);
+        setPhone("");
+        setFieldErrors({});
+        setPasswordError("");
       } else {
         toast({
+          variant: "destructive",
           title: "Registration failed",
           description: result.message,
-          variant: "destructive",
         });
       }
     } catch (error) {
-      console.error("Error during registration:", error);
       toast({
-        title: "An error occurred",
-        description: "Please try again later.",
         variant: "destructive",
+        title: "Error",
+        description: "An error occurred. Please try again later.",
       });
     } finally {
-      setLoading(false);
+      setLoading(false); // Reset loading state after submission
     }
   };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      {loading && <Loading />}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
           Create an Account
         </h2>
       </div>
+
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleRegister} className="space-y-6">
           <div>
             <Label htmlFor="username">Username</Label>
-            <Input type="text" name="username" id="username" />
-            {formErrors.username && (
-              <p className="text-red-600 text-sm">{formErrors.username}</p>
-            )}
+            <Input
+              type="text"
+              name="username"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            {fieldErrors.username && <p className="text-red-500 text-sm">{fieldErrors.username}</p>}
           </div>
+
           <div>
             <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email" id="email" />
-            {formErrors.email && (
-              <p className="text-red-600 text-sm">{formErrors.email}</p>
-            )}
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {fieldErrors.email && <p className="text-red-500 text-sm">{fieldErrors.email}</p>}
           </div>
+
           <div>
             <Label htmlFor="password">Password</Label>
-            <Input type="password" name="password" id="password" />
-            {formErrors.password && (
-              <p className="text-red-600 text-sm">{formErrors.password}</p>
-            )}
-          </div>
-          <div>
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
             <Input
               type="password"
-              name="confirmPassword"
-              id="confirmPassword"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            {formErrors.confirmPassword && (
-              <p className="text-red-600 text-sm">
-                {formErrors.confirmPassword}
-              </p>
-            )}
+            {fieldErrors.password && <p className="text-red-500 text-sm">{fieldErrors.password}</p>}
           </div>
+
+          <div>
+            <Label htmlFor="confirm-password">Confirm Password</Label>
+            <Input
+              type="password"
+              name="confirm-password"
+              id="confirm-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+          </div>
+
           <div>
             <Label htmlFor="phone">Phone</Label>
             <PhoneInput
@@ -167,12 +202,11 @@ const RegisterForm = () => {
               id="phone"
               defaultCountry="us"
               value={phone}
-              onChange={(value) => setPhone(value)}
+              onChange={setPhone}
             />
-            {formErrors.phone && (
-              <p className="text-red-600 text-sm">{formErrors.phone}</p>
-            )}
+            {fieldErrors.phone && <p className="text-red-500 text-sm">{fieldErrors.phone}</p>}
           </div>
+
           <div>
             <Label htmlFor="country">Country</Label>
             <Select
@@ -182,25 +216,22 @@ const RegisterForm = () => {
                 setSelectedState(null);
                 setSelectedCity(null);
               }}
+              value={selectedCountry ? JSON.stringify(selectedCountry) : ""}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select Country" />
               </SelectTrigger>
               <SelectContent>
                 {Country.getAllCountries().map((country) => (
-                  <SelectItem
-                    key={country.isoCode}
-                    value={JSON.stringify(country)}
-                  >
+                  <SelectItem key={country.isoCode} value={JSON.stringify(country)}>
                     {country.name}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            {formErrors.country && (
-              <p className="text-red-600 text-sm">{formErrors.country}</p>
-            )}
+            {fieldErrors.country && <p className="text-red-500 text-sm">{fieldErrors.country}</p>}
           </div>
+
           <div>
             <Label htmlFor="state">State</Label>
             <Select
@@ -209,6 +240,7 @@ const RegisterForm = () => {
                 setSelectedState(state);
                 setSelectedCity(null);
               }}
+              value={selectedState ? JSON.stringify(selectedState) : ""}
               disabled={!selectedCountry}
             >
               <SelectTrigger>
@@ -216,26 +248,21 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {selectedCountry &&
-                  State.getStatesOfCountry(selectedCountry.isoCode).map(
-                    (state) => (
-                      <SelectItem
-                        key={state.isoCode}
-                        value={JSON.stringify(state)}
-                      >
-                        {state.name}
-                      </SelectItem>
-                    )
-                  )}
+                  State.getStatesOfCountry(selectedCountry.isoCode).map((state) => (
+                    <SelectItem key={state.isoCode} value={JSON.stringify(state)}>
+                      {state.name}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
-            {formErrors.state && (
-              <p className="text-red-600 text-sm">{formErrors.state}</p>
-            )}
+            {fieldErrors.state && <p className="text-red-500 text-sm">{fieldErrors.state}</p>}
           </div>
+
           <div>
             <Label htmlFor="city">City</Label>
             <Select
               onValueChange={(value) => setSelectedCity(JSON.parse(value))}
+              value={selectedCity ? JSON.stringify(selectedCity) : ""}
               disabled={!selectedState}
             >
               <SelectTrigger>
@@ -243,40 +270,34 @@ const RegisterForm = () => {
               </SelectTrigger>
               <SelectContent>
                 {selectedState &&
-                  City.getCitiesOfState(
-                    selectedState.countryCode,
-                    selectedState.isoCode
-                  ).map((city) => (
-                    <SelectItem key={city.name} value={JSON.stringify(city)}>
-                      {city.name}
-                    </SelectItem>
-                  ))}
+                  City.getCitiesOfState(selectedState.countryCode, selectedState.isoCode).map(
+                    (city) => (
+                      <SelectItem key={city.name} value={JSON.stringify(city)}>
+                        {city.name}
+                      </SelectItem>
+                    )
+                  )}
               </SelectContent>
             </Select>
-            {formErrors.city && (
-              <p className="text-red-600 text-sm">{formErrors.city}</p>
-            )}
+            {fieldErrors.city && <p className="text-red-500 text-sm">{fieldErrors.city}</p>}
           </div>
+
           <div>
             <Button
               type="submit"
-              disabled={loading}
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={loading} // Disable button while loading
+              className={`flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-sm ${
+                loading ? "bg-gray-400" : "bg-indigo-600 hover:bg-indigo-500"
+              }`}
             >
-              {loading ? (
-                <Loader className="text-white animate-spin" size={20} />
-              ) : (
-                "Register"
-              )}
+              {loading ? <Loader size={20} /> : "Register"}
             </Button>
           </div>
         </form>
+
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <Link
-            href="/login"
-            className="font-semibold text-indigo-600 hover:text-indigo-500"
-          >
+          <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
             Sign in
           </Link>
         </p>
