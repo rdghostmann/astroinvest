@@ -13,7 +13,7 @@ export default function Error({ error, reset }) {
   return (
     <>
       <h3>Something went wrong during authentication</h3>
-      <ErrorDisplay message={message} reset={reset} />
+      {/* <ErrorDisplay message={message} reset={reset} /> */}
     </>
   );
 }

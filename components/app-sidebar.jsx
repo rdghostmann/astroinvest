@@ -7,6 +7,7 @@ import {
   CircleDollarSign,
   Command,
   CreditCard,
+  Gem,
   HandCoins,
   IdCard,
   Landmark,
@@ -74,6 +75,11 @@ const data = {
     },
     {
       title: "Manage Assets",
+      icon: Gem,
+      url: "/dashboard/manage-assets",
+    },
+    {
+      title: "Manage Wallet", 
       icon: Wallet,
       url: "/dashboard/manage-wallet",
     },
@@ -99,16 +105,16 @@ const data = {
     },
   ],
   navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
+    // {
+    //   title: "Support",
+    //   url: "#",
+    //   icon: LifeBuoy,
+    // },
+    // {
+    //   title: "Feedback",
+    //   url: "#",
+    //   icon: Send,
+    // },
   ],
 
 }

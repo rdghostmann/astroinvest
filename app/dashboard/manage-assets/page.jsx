@@ -13,10 +13,8 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Wallet from "../_components/Wallet/Wallet";
-import Crypto from "@/components/Crypto/Crypto";
-// import { ManageWallet } from "../_components/ManageWallet/ManageWallet";
-// import CryptoList from "@/components/CryptoList/CryptoList";
+import MyAssets from "../_components/MyAssets/MyAssets";
+
 
 
 export default function Page() {
@@ -37,7 +35,7 @@ export default function Page() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Manage Wallet</BreadcrumbPage>
+                  <BreadcrumbPage>Manage Asset</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -45,11 +43,11 @@ export default function Page() {
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="text-sm/5">
-            <h2 className="text-purple-600 font-bold text-xl">Manage Wallet</h2>
-            <p className="text-slate-700">Manage what Wallet to recieve your profit</p>
+            <h2 className="text-purple-600 font-bold text-xl">Manage Asset</h2>
+            <p className="text-slate-700">Manage Where your money goes to</p>
           </div>
           <div>
-            <Wallet />
+            <MyAssets />
           </div>
         
 
