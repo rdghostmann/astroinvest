@@ -34,7 +34,8 @@ const OurAmazingFeatures = () => {
   ]
 
   return (
-    <section className='bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-950'>
+    <div className='w-full bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-950'>
+      <div className='container mx-auto px-4'>
       <div className="relative py-10 px-7 overflow-hidden ">
         {/* Background Gradients */}
         <div className="absolute inset-0 " />
@@ -94,7 +95,8 @@ const OurAmazingFeatures = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    </div>
 
   )
 }
