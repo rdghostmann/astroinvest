@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { PlusCircleIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
@@ -74,7 +75,11 @@ export default function CardDetail({ userID }) {
       <div className="mx-auto max-w-full space-y-8">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-slate-900">Card Details</h1>
-          <Button variant="outline" size="sm" onClick={() => setShowPopup(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowPopup(true)}
+          >
             <PlusCircleIcon className="mr-2 h-4 w-4" />
             Add A New Card
           </Button>
@@ -105,8 +110,10 @@ export default function CardDetail({ userID }) {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-            onClick={() => setShowPopup(false)} >
+          <button
+            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            onClick={() => setShowPopup(false)}
+          >
             <XIcon className="h-6 w-6" />
           </button>
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
@@ -148,30 +155,6 @@ export default function CardDetail({ userID }) {
                         <SelectItem value="Visa">Visa</SelectItem>
                       </SelectContent>
                     </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Card Holder Name</Label>
-                    <Input id="name" placeholder="Enter card holder name" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="expiry">Expiry Date</Label>
-                      <Select>
-                        <SelectTrigger id="expiry">
-                          <SelectValue placeholder="MM/YY" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="12/28">12/23</SelectItem>
-                          <SelectItem value="01/28">01/28</SelectItem>
-                          <SelectItem value="02/28">02/28</SelectItem>
-                          <SelectItem value="03/28">03/28</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input id="cvv" placeholder="123" maxLength={3} />
-                    </div>
                   </div>
                   <CardFooter>
                     <Button type="submit" className="w-full" disabled={isSubmitting}>
