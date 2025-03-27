@@ -87,9 +87,9 @@ export default function Bank({ userID }) {
 
         <div className="grid grid-col-1">
           {/* Bank List */}
-          <div class="flex flex-col overflow-x-auto">
-            <div class="sm:-mx-6 lg:-mx-8">
-              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div className="flex flex-col overflow-x-auto">
+            <div className="sm:-mx-6 lg:-mx-8">
+              <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="rounded-t-lg overflow-x-auto border">
                   <Table className="min-w-full text-start text-sm font-light">
                     <TableHeader>
@@ -126,9 +126,9 @@ export default function Bank({ userID }) {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <button className="absolute m-2  top-2 right-2 text-gray-500 hover:text-gray-700"
+          <button className="absolute top-2 right-2 rounded-full border border-white text-gray-50 hover:text-gray-700"
             onClick={() => setShowPopup(false)} >
-            <XIcon className="h-6 w-6" />
+            <XIcon color="#fff" className="h-6 w-6" />
           </button>
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             {/* Bank Details Form */}

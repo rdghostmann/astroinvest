@@ -13,6 +13,7 @@ export default function CardDetail({ userID }) {
   const [cardNumber, setCardNumber] = useState("");
   const [cardType, setCardType] = useState("");
   const [bankName, setBankName] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -94,7 +95,7 @@ export default function CardDetail({ userID }) {
                   </div>
                   <div>
                     <div className="text-xs opacity-75">Expires</div>
-                    <div className="text-sm font-medium">12/24</div>
+                    <div className="text-sm font-medium">{expiryDate}</div>
                   </div>
                 </div>
               </div>
@@ -105,9 +106,9 @@ export default function CardDetail({ userID }) {
 
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          <button className="absolute top-2 right-2 rounded-full border border-white text-gray-50 hover:text-gray-700"
             onClick={() => setShowPopup(false)} >
-            <XIcon className="h-6 w-6" />
+            <XIcon color="#fff" className="h-6 w-6" />
           </button>
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
             {/* Card Details Form */}
@@ -153,20 +154,17 @@ export default function CardDetail({ userID }) {
                     <Label htmlFor="name">Card Holder Name</Label>
                     <Input id="name" placeholder="Enter card holder name" />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4 mb-5">
                     <div className="space-y-2">
                       <Label htmlFor="expiry">Expiry Date</Label>
-                      <Select>
-                        <SelectTrigger id="expiry">
-                          <SelectValue placeholder="MM/YY" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="12/28">12/23</SelectItem>
-                          <SelectItem value="01/28">01/28</SelectItem>
-                          <SelectItem value="02/28">02/28</SelectItem>
-                          <SelectItem value="03/28">03/28</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input
+                        id="expiry"
+                        placeholder="MM/YY"
+                        maxLength={5}
+                        type="month"
+                        value={expiryDate}
+                        onChange={(e) => setExpiryDate(e.target.value)}
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="cvv">CVV</Label>
