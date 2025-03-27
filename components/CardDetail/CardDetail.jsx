@@ -88,6 +88,9 @@ export default function CardDetail({ userID }) {
             <CardContent className="p-6">
               <div className="space-y-8">
                 <div className="text-xl font-semibold">{bankName || "Bank Name"}</div>
+               <div classNam>
+
+               </div>
                 <div className="font-mono text-2xl tracking-wider">{cardNumber || "•••• •••• •••• ••••"}</div>
                 <div className="flex justify-between">
                   <div>
