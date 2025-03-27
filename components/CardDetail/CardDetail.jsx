@@ -8,6 +8,7 @@ import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { addCardDetails } from "@/lib/actions"; // Import the server action
+import ATMCARD from "../ATMCARD/ATMCARD";
 
 export default function CardDetail({ userID }) {
   const [cardNumber, setCardNumber] = useState("");
@@ -101,6 +102,9 @@ export default function CardDetail({ userID }) {
               </div>
             </CardContent>
           </Card>
+
+
+          <ATMCARD />
         </div>
       </div>
 
