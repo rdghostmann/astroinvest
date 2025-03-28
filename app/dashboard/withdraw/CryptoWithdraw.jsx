@@ -12,11 +12,10 @@ import { useToast } from "@/hooks/use-toast";
 import { getUserWallets, getWithdrawBalance, requestViaCrypto } from "@/lib/actions";
 
 const CryptoWithdraw = ({ userID }) => {
-
   const { toast } = useToast();
 
   const [wallets, setWallets] = useState([]);
-  const [selectedWallet, setSelectedWallet] = useState(null);
+  const [selectedWallet, setSelectedWallet] = useState(null); // Store the full wallet object
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [loading, setLoading] = useState(true);
   const [availableBalance, setAvailableBalance] = useState(0);
@@ -62,7 +61,7 @@ const CryptoWithdraw = ({ userID }) => {
     try {
       const response = await requestViaCrypto({
         userId: userID,
-        withdrawWallet: selectedWallet,
+        withdrawWallet: selectedWallet.name, // Use the wallet name
         requestedAmount: parseFloat(withdrawAmount),
       });
 
@@ -91,7 +90,12 @@ const CryptoWithdraw = ({ userID }) => {
               {loading ? (
                 <p className="text-sm text-gray-500">Loading wallets...</p>
               ) : (
-                <Select onValueChange={(value) => setSelectedWallet(value)}>
+                <Select
+                  onValueChange={(walletId) => {
+                    const wallet = wallets.find((w) => w.id === walletId); // Find the full wallet object
+                    setSelectedWallet(wallet); // Store the full wallet object
+                  }}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Choose Wallet" />
                   </SelectTrigger>
