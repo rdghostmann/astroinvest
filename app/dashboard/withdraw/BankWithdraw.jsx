@@ -69,7 +69,7 @@ const BankWithdraw = ({ userID }) => {
             <div className="w-full">
               <p className="text-sm text-gray-500">Enter Withdrawal Amount:</p>
               <input
-                placeholder="Enter Withdrawal Amount Here"
+                placeholder="Amount"
                 type="number"
                 className="bg-transparent p-2 rounded w-full"
               />
