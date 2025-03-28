@@ -3,30 +3,29 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Logo from "../../public/logo-white.png";
 import Image from "next/image";
-import { TriangleAlert } from "lucide-react";
 
 const sections = [
-  {
-    title: "Product",
-    links: [
-      { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { name: "Help", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-    ],
-  },
+  // {
+  //   title: "Product",
+  //   links: [
+  //     { name: "Pricing", href: "#" },
+  //     { name: "Marketplace", href: "#" },
+  //   ],
+  // },
+  // {
+  //   title: "Company",
+  //   links: [
+  //     { name: "About", href: "#" },
+  //     { name: "Team", href: "#" },
+  //   ],
+  // },
+  // {
+  //   title: "Resources",
+  //   links: [
+  //     { name: "Help", href: "#" },
+  //     { name: "Privacy Policy", href: "#" },
+  //   ],
+  // },
 ];
 
 const Footer7 = () => {
@@ -49,7 +48,7 @@ const Footer7 = () => {
                   />
                   <p className="text-3xl text-white font-semibold">AstroInvest</p>
                 </span>
-                <p className="mt-6 text-sm text-center text-muted-foreground">
+                <p className="mt-3 text-sm text-center text-muted-foreground">
                   Empowering your financial future,<br/> one smart investment at a time.
                 </p>
               </div>
@@ -93,7 +92,7 @@ const Footer7 = () => {
               ))}
             </div>
           </div>
-          <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+          <div className="mt-4 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>© 2025 AstroInvest. All rights reserved.</p>
             <ul className="flex justify-center gap-4 lg:justify-start">
               <li className="hover:text-white">
@@ -104,16 +103,7 @@ const Footer7 = () => {
               </li>
             </ul>
           </div>
-          {/* <div className="mt-8 text-left text-muted-foreground text-xs">
-            <h6 className="mt-4 text-lg font-semibold flex items-center"><TriangleAlert size={20} className="inline-block" color="#ee5353" /> Risk warning</h6>
-            <p className="mt-2 text-sm">
-              Financial spread trading comes with a high risk of losing money rapidly due to leverage. 83.5% of retail investor accounts lose money when trading CFDs with this provider.
-              You should consider whether you understand how spread trading works and whether you can afford to take the high risk of losing your money.
-            </p>
-            <p className="mt-2 text-sm">
-              The content of this website must not be construed as personal advice. We recommend that you seek advice from an independent financial advisor.
-            </p>
-          </div> */}
+      
         </footer>
       </div>
     </section>
