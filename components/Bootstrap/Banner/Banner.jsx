@@ -28,9 +28,10 @@ export default function Banner() {
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Welcome to Our Website
-              </h2>
+              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
+              we are ready to help you
+              </h6>
+              <h4>Financial Analysis<br/>&amp; Consulting</h4>
               <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
                 Discover amazing products and services tailored just for you.
               </p>
@@ -50,9 +51,10 @@ export default function Banner() {
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Special Offers
-              </h2>
+              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
+              we are here to support you
+              </h6>
+              <h4>Accounting<br/>&amp; Management</h4>
               <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
                 Take advantage of our limited-time promotions and exclusive deals.
               </p>
@@ -72,9 +74,10 @@ export default function Banner() {
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Join Our Community
-              </h2>
+              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
+              we have a solid background
+              </h6>
+              <h4>Market Analysis<br/>&amp; Statistics</h4>
               <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
                 Connect with like-minded individuals and be part of something special.
               </p>

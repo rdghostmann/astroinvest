@@ -18,6 +18,8 @@ import { Navbar1 } from "@/components/Bootstrap/Nav/Nav";
 import FinancialService from "@/components/Bootstrap/Financial-Service/FinancialService";
 import Banner from "@/components/Bootstrap/Banner/Banner";
 import WhoWeAre from "@/components/Bootstrap/WhoWeAre/WhoWeAre";
+import Testimonial from "@/components/Bootstrap/Testimonial/Testimonial";
+import Partners from "@/components/Bootstrap/Partners/Partners";
 
 export default async function Home() {
 
@@ -32,6 +34,8 @@ export default async function Home() {
       <CallToAction />
       <FinancialService />
       <WhoWeAre />
+      <Testimonial />
+      <Partners />
       {/* <Hero1 /> */}
       <TrustPilot />
       <Stats />
