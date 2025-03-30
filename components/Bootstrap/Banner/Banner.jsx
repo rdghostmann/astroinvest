@@ -4,7 +4,7 @@ import "@splidejs/react-splide/css";
 
 export default function Banner() {
   return (
-    <div className="banner-container">
+    <div className="banner-container w-full">
       <Splide
         options={{
           type: "loop",
