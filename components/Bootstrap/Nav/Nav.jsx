@@ -141,14 +141,13 @@ const Navbar1 = ({
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden  border">
-          <div className="w-full flex items-center justify-between border">
+        <div className="block lg:hidden ">
+          <div className="w-full flex space-x-11 items-center justify-between ">
             {/* Logo */}
             <Link href={logo.url} className="flex items-center gap-2">
-              {/* <img src={logo.src} className="max-h-8" alt={logo.alt} /> */}
-              <span className="text-lg font-semibold tracking-tighter pb-2">
+              <h2 className="text-lg font-semibold tracking-tighter pb-2">
                 {logo.title}
-              </span>
+              </h2>
             </Link>
             <Sheet>
               <SheetTrigger asChild>
