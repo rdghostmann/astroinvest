@@ -55,7 +55,6 @@ const FinancialService = () => {
               autoplay: true,
               pauseOnHover: true,
               interval: 5000,
-              arrows: true,
               pagination: true,
             }}
             aria-label="Financial Services"

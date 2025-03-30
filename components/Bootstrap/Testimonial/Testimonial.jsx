@@ -38,7 +38,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="testimonials py-12 bg-gray-100">
+    <div className="testimonials w-full py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">
@@ -56,7 +56,6 @@ const Testimonial = () => {
             autoplay: true,
             pauseOnHover: true,
             interval: 5000,
-            arrows: true,
             pagination: true,
           }}
           aria-label="Testimonials"
@@ -74,7 +73,7 @@ const Testimonial = () => {
                 <h4 className="text-lg font-semibold text-gray-800">
                   {testimonial.name}
                 </h4>
-                <span className="text-sm text-blue-600 font-medium">
+                <span style={{color: "#2563eb"}} className="text-sm text-blue-600 font-medium">
                   {testimonial.role}
                 </span>
                 <p className="text-gray-600 mt-4">{testimonial.feedback}</p>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import simchip from "../../public/sim-card-chip.jpg"
+import simchip from "@/public/sim-card-chip.png"
 import Image from "next/image";
 
 const ATMCARD = () => {

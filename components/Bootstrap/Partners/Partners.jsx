@@ -12,7 +12,7 @@ const Partners = () => {
   ];
 
   return (
-    <div className="partners py-12 bg-gray-100">
+    <div className="partners w-full py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
           {partners.map((partner) => (
