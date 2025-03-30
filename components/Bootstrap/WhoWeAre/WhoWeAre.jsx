@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import moreinfo from '@/public/images/moreinfo.jpg';
+import moreinfo from '@/public/images/more-info.jpg';
 
 const WhoWeAre = () => {
   return (
