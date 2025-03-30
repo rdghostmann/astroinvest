@@ -13,6 +13,10 @@ import Stats from "@/components/OurStats/Stats";
 import AffiliateProgram from "@/components/AffliateProgram/improved-affiliate-program";
 import AchieveMore from "@/components/AchieveMore/AchieveMore";
 import TrustPilot from "@/components/TrustPilot/TrustPilot";
+import Header from "@/components/Bootstrap/Header/Header";
+import { Navbar1 } from "@/components/Bootstrap/Nav/Nav";
+import FinancialService from "@/components/Bootstrap/Financial-Service/FinancialService";
+import Banner from "@/components/Bootstrap/Banner/Banner";
 
 export default async function Home() {
 
@@ -20,14 +24,18 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
+      <Header />
       <CoinPriceMarqueeWidget />
-      <Hero1 />
+      <Navbar1 />
+      <Banner />
+      <CallToAction />
+      <FinancialService />
+      {/* <Hero1 /> */}
       <TrustPilot />
       <Stats />
       <AboutAstroInvest />
       <OurAmazingFeatures />
       <Fiat />
-      <CallToAction />
       <AchieveMore />
       <InvestorsActivity />
       <AffiliateProgram />

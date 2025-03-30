@@ -1,4 +1,3 @@
-// app/layout.jsx
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,6 +5,8 @@ import SessionProviderWrapper from "./SessionProviderWrapper";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth";
 import Tawk from "@/components/Tawk/Tawk";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   // Fetch the session from the server
   const session = await getServerSession(authOptions);
-  
+
   return (
     <html lang="en">
       <body
