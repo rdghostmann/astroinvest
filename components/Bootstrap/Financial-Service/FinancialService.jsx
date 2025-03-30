@@ -7,7 +7,7 @@ import service_03 from '@/public/images/service_03.jpg';
 
 const FinancialService = () => {
   return (
-    <div className="py-12 bg-gray-100">
+    <div className="w-full py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">
