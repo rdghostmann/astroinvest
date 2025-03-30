@@ -43,7 +43,7 @@ const Testimonial = () => {
         {/* Section Heading */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-800">
-            What they say <em className="text-green-600">about us</em>
+            What they say <em className="text-blue-600">about us</em>
           </h2>
           <p className="text-gray-600">Testimonials from our greatest clients</p>
         </div>
@@ -74,7 +74,7 @@ const Testimonial = () => {
                 <h4 className="text-lg font-semibold text-gray-800">
                   {testimonial.name}
                 </h4>
-                <span className="text-sm text-green-600 font-medium">
+                <span className="text-sm text-blue-600 font-medium">
                   {testimonial.role}
                 </span>
                 <p className="text-gray-600 mt-4">{testimonial.feedback}</p>
