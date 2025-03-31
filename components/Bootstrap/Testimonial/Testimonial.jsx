@@ -43,7 +43,7 @@ const Testimonial = () => {
         {/* Section Heading */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-800">
-            What they say <em className="text-blue-600">about us</em>
+            What they say <span className="text-blue-600">about us</span>
           </h2>
           <p className="text-gray-600">Testimonials from our greatest clients</p>
         </div>
@@ -56,13 +56,13 @@ const Testimonial = () => {
             autoplay: true,
             pauseOnHover: true,
             interval: 5000,
-            pagination: true,
+            // pagination: true,
           }}
           aria-label="Testimonials"
         >
           {testimonials.map((testimonial, index) => (
             <SplideSlide key={index}>
-              <div className="testimonial-item bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
+              <div className="testimonial-item w-2/3 mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
                 <Image
                   src={testimonial.image}
                   alt={testimonial.name}

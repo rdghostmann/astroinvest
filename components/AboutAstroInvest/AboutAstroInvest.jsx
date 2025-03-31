@@ -10,7 +10,7 @@ const AboutAstroInvest = () => {
       {/* Hero Section */}
       <section className="w-full py-4 md:py-8">
         <div className="px-4">
-          <div className="flex pb-6 flex-col lg:flex-row items-center gap-8 lg:gap-12 px-8 py-16 md:py-24">
+          <div className="flex pb-6 flex-col lg:flex-row items-center gap-8 lg:gap-12 px-2 py-16 md:py-24">
             <div className="w-full sm:w-3/4">
               <Image
                 src={About1}

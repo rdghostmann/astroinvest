@@ -35,12 +35,12 @@ export default async function Home() {
       <CoinPriceMarqueeWidget />
       <Navbar1 />
       {/* <Banner /> */}
-      <CallToAction />
+      {/* <CallToAction /> */}
       <FinancialService slides={SLIDES} options={OPTIONS} />
       <WhoWeAre />
       <Testimonial />
-      <Partners />
       <RequestCallbackForm />
+      <Partners />
       {/* <Hero1 /> */}
       <TrustPilot />
       <Stats />
