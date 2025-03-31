@@ -111,23 +111,24 @@ const Navbar1 = ({
   },
 }) => {
   return (
-    // <div className="w-full bg-background shadow-sm sticky top-0 z-50"> 
     <div className="w-full relative">
       <section className="w-full absolute top-0 left-0 z-20 py-4">
-        <div className=" flex items-center justify-between px-4 lg:px-0">
+        <div className="flex items-center justify-between px-4 lg:px-10">
           {/* Desktop Menu */}
           <nav className="hidden lg:flex justify-between w-full">
             <div className="flex items-center gap-6">
               {/* Logo */}
-              <Link style={{color: "#fff", textDecoration: "none"}} href={logo.url} className="flex items-center gap-2 text-white">
-                {/* <img src={logo.src} className="max-h-8" alt={logo.alt} /> */}
+              <Link
+                href={logo.url}
+                className="flex items-center gap-2 text-white"
+              >
                 <h3 className="text-lg font-semibold tracking-tighter pb-2">
                   {logo.title}
                 </h3>
               </Link>
               <div className="flex items-center">
                 <NavigationMenu>
-                  <NavigationMenuList className="bg-transparent">
+                  <NavigationMenuList className="bg-transparent text-white border-b-1">
                     {menu.map((item) => renderMenuItem(item))}
                   </NavigationMenuList>
                 </NavigationMenu>
@@ -144,10 +145,13 @@ const Navbar1 = ({
           </nav>
 
           {/* Mobile Menu */}
-          <div className="block lg:hidden w-full ">
-            <div className="flex items-center justify-between  ">
+          <div className="block lg:hidden w-full">
+            <div className="flex items-center justify-between">
               {/* Logo */}
-              <Link style={{color: "#fff", textDecoration: "none"}} href={logo.url} className="text-white flex items-center gap-2">
+              <Link
+                href={logo.url}
+                className="text-white flex items-center gap-2"
+              >
                 <div className="text-lg align-middle font-semibold tracking-tighter pb-2">
                   {logo.title}
                 </div>
@@ -162,8 +166,11 @@ const Navbar1 = ({
                   <SheetContent className="overflow-y-auto">
                     <SheetHeader>
                       <SheetTitle>
-                        <Link href={logo.url} className="flex items-center gap-2">
-                          <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                        <Link
+                          href={logo.url}
+                          className="flex text-blue-600 items-center gap-2"
+                        >
+                          InvestFolio
                         </Link>
                       </SheetTitle>
                     </SheetHeader>
@@ -180,7 +187,7 @@ const Navbar1 = ({
                         <Button asChild variant="outline">
                           <Link href={auth.login.url}>{auth.login.title}</Link>
                         </Button>
-                        <Button asChild>
+                        <Button className="bg-blue-600" asChild>
                           <Link href={auth.signup.url}>{auth.signup.title}</Link>
                         </Button>
                       </div>
@@ -217,7 +224,7 @@ const renderMenuItem = (item) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-white transition-colors hover:border-b-2 hover:border-blue-600 hover:text-blue-600"
       >
         {item.title}
       </NavigationMenuLink>

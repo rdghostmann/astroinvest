@@ -21,6 +21,7 @@ import WhoWeAre from "@/components/Bootstrap/WhoWeAre/WhoWeAre";
 import Testimonial from "@/components/Bootstrap/Testimonial/Testimonial";
 import Partners from "@/components/Bootstrap/Partners/Partners";
 import RequestCallbackForm from "@/components/Bootstrap/RequestCallbackForm/RequestCallbackForm";
+import OurSolution from "@/components/Bootstrap/OurSolution/OurSolution";
 
 export default async function Home() {
 
@@ -46,6 +47,7 @@ export default async function Home() {
       <AboutAstroInvest />
       <CallToAction />
       <OurAmazingFeatures />
+      <OurSolution />
       <Fiat />
       <AchieveMore />
       <InvestorsActivity />

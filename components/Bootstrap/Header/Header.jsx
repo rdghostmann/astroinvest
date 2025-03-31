@@ -7,14 +7,14 @@ const Header = () => {
     // <div className="w-full bg-blue-600 py-2 hidden md:block">
     <div className="w-full bg-blue-600 py-2 sticky ">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="flex flex-col justify-between items-center sm:flex-row ">
           {/* Left Info */}
-          <div className="flex space-x-6 mb-4">
-            <div className="flex items-center space-x-2 border-l-0 border-r-0 border-white ">
+          <div className="flex my-auto space-x-6 mb-4 sm:mb-0">
+            <div className="flex p-1 text-xs sm:text-sm items-center space-x-2 border-l-0 border-r-0 border-white ">
               <FaClock className="text-white" />
               <span className="text-white text-xs font-medium">Mon-Fri 09:00 - 17:00</span>
             </div>
-            <div className="flex items-center space-x-2 border-r-0 border-white ">
+            <div className="flex p-1 text-xs sm:text-sm items-center space-x-2 border-r-0 border-white ">
               <FaPhone className="text-white" />
               <span className="text-white text-xs font-medium">090 - 080 - 0760</span>
             </div>
