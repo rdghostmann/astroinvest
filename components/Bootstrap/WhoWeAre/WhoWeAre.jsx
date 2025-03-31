@@ -7,19 +7,20 @@ const WhoWeAre = () => {
   return (
     <div className="w-full bg-white py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center"> */}
+        <div className="flex flex-wrap items-center justify-center">
           {/* Left Image */}
-          <div className="w-full">
+          <div className="w-full lg:w-[33.75rem]">
             <Image
               src={moreinfo}
               alt="Who we are"
-              className="rounded-lg shadow-md"
+              className="rounded-lg md:mx-auto shadow-md"
               placeholder="blur"
             />
           </div>
 
           {/* Right Content */}
-          <div className="w-full">
+          <div className="w-full py-7 pl-7 h-full lg:w-[33.75rem]">
             <div className="space-y-4">
               <span className="text-blue-600 font-medium uppercase">
                 Who we are
@@ -35,8 +36,7 @@ const WhoWeAre = () => {
               </p>
               <Link
                 href="#"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
-              >
+                className="px-6 py-3 rounded inline-block bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white transition">
                 Read More
               </Link>
             </div>

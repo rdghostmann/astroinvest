@@ -56,7 +56,7 @@ const OurAmazingFeatures = () => {
                 We are a worldwide investment company committed to the principle of revenue maximization and
                 reduction of financial risks in investing.
               </p>
-              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white">
+              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition text-white">
                 Discover More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

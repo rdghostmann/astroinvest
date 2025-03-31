@@ -127,7 +127,7 @@ const Navbar1 = ({
                 </h3>
               </Link>
               <div className="flex items-center">
-                <NavigationMenu>
+                <NavigationMenu style={{}} className="bg-transparent">
                   <NavigationMenuList className="bg-transparent text-white border-b-1">
                     {menu.map((item) => renderMenuItem(item))}
                   </NavigationMenuList>

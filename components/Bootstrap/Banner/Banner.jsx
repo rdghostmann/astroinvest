@@ -80,7 +80,7 @@ const Banner = () => {
                   alt={slide.title}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40" />
+                {/* <div className="absolute inset-0 bg-black/40" /> */}
                 <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-12 lg:px-16 text-left text-white">
                   <div className="flex flex-col w-11/12">
                     <h6 className="text-blue-600 uppercase text-lg md:text-2xl lg:text-3xl font-semibold mb-4">

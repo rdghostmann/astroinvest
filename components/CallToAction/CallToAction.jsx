@@ -39,14 +39,14 @@ export default function CallToAction() {
               Have any questions? Call us during 9am-5pm weekdays.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button variant="outline" className="rounded-full">
+              {/* <Button variant="outline" className="rounded-full">
                 <Phone className="mr-2 h-4 w-4" />
                 Call Us
               </Button>
               <Button variant="outline" className="rounded-full">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Live Chat
-              </Button>
+              </Button> */}
               <Link href="/register">
                 <Button className="bg-blue-600 text-white hover:bg-blue-500/90 rounded-full">
                   Get Started Now

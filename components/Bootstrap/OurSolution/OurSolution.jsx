@@ -6,7 +6,7 @@ import CountUp from "react-countup";
 const OurSolution = () => {
   return (
     <div
-      className="relative mx-auto h-[80vh] w-full bg-fixed bg-cover bg-center bg-no-repeat shadow-lg"
+      className="relative mx-auto h-fit py-10 w-full bg-fixed bg-cover bg-center bg-no-repeat shadow-lg"
       style={{
         backgroundImage: `url(${ParallaxImg.src})`, // Dynamically use the imported image
       }}
@@ -24,12 +24,10 @@ const OurSolution = () => {
               Our solutions for your <span className="text-blue-400">business growth</span>
             </h2>
             <p className="text-gray-300">
-              Pellentesque ultrices at turpis in vestibulum. Aenean pretium elit nec congue elspanentum. Nulla luctus
-              laoreet porta. Maecenas at nisi tspanpus, porta metus vitae, faucibus augue.
+            Our innovative solutions are tailored to deliver transformative results, leaving a lasting impression on your business. We prioritize excellence to fuel your growth and success.
               <br />
               <br />
-              Fusce et venenatis ex. Quisque varius, velit quis dictum sagittis, odio velit molestie nunc, ut posuere
-              ante tortor ut neque.
+              Whether your aim is to boost efficiency, amplify revenue, or elevate customer satisfaction, our dedicated team is committed to helping you reach your objectives and make a tangible impact in your sector.
             </p>
             <a
               href="#"

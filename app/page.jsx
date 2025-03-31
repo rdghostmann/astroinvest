@@ -6,7 +6,6 @@ import InvestorsActivity from "@/components/InvestorActivity/InvestorActivity";
 import Hero1 from "@/components/Jumbotron/Jumbotron2";
 import OurAmazingFeatures from "@/components/OurAmazingFeatures/OurAmazingFeatures";
 import CoinPriceMarqueeWidget from "@/components/CoinPriceMarqueeWidget/CoinPriceMarqueeWidget";
-import OurAmazingFeatures2 from "@/components/OurAmazingFeatures/OurAmazingFeatures2";
 import AboutAstroInvest from "@/components/AboutAstroInvest/AboutAstroInvest";
 import Fiat from "@/components/Fiat/Fiat";
 import Stats from "@/components/OurStats/Stats";
@@ -35,15 +34,12 @@ export default async function Home() {
       <Header />
       <CoinPriceMarqueeWidget />
       <Navbar1 />
-      {/* <Banner /> */}
       <FinancialService slides={SLIDES} options={OPTIONS} />
       <WhoWeAre />
       <Testimonial />
       <RequestCallbackForm />
       <Partners />
-      {/* <Hero1 /> */}
       <TrustPilot />
-      <Stats />
       <AboutAstroInvest />
       <CallToAction />
       <OurAmazingFeatures />
