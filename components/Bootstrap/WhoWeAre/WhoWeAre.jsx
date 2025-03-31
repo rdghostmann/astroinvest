@@ -25,7 +25,7 @@ const WhoWeAre = () => {
                 Who we are
               </span>
               <h2 className="text-3xl font-bold text-gray-800">
-                Get to know about <em className="text-blue-600">our company</em>
+                Get to know about <span className="text-blue-600">our company</span>
               </h2>
               <p className="text-gray-600 leading-relaxed">
                 Curabitur pulvinar sem a leo tempus facilisis. Sed non sagittis neque. Nulla consequat tellus nibh, id molestie felis sagittis ut. Nam ullamcorper tempus ipsum in cursus.

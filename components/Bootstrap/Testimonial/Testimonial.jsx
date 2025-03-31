@@ -38,7 +38,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="testimonials w-full py-12 bg-gray-100">
+    <div className="testimonials border w-full py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">

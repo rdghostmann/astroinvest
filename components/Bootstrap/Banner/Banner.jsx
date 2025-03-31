@@ -1,93 +1,132 @@
 "use client";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import banner1 from "@/public/images/slide_01.jpg";
+import banner2 from "@/public/images/slide_02.jpg";
+import banner3 from "@/public/images/slide_03.jpg";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Banner() {
+const Banner = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const slides = [
+    {
+      id: 1,
+      image: banner1,
+      title: "We are ready to help you",
+      subtitle: "Financial Analysis & Consulting",
+      description:
+        "Discover amazing products and services tailored just for you.",
+      buttonText: "Learn More",
+    },
+    {
+      id: 2,
+      image: banner2,
+      title: "We are here to support you",
+      subtitle: "Accounting & Management",
+      description:
+        "Take advantage of our limited-time promotions and exclusive deals.",
+      buttonText: "Shop Now",
+    },
+    {
+      id: 3,
+      image: banner3,
+      title: "We have a solid background",
+      subtitle: "Market Analysis & Statistics",
+      description:
+        "Connect with like-minded individuals and be part of something special.",
+      buttonText: "Sign Up",
+    },
+  ];
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    return () => emblaApi.off("select", onSelect);
+  }, [emblaApi, onSelect]);
+
   return (
-    <div className="banner-container w-full">
-      <Splide
-        options={{
-          type: "loop",
-          perPage: 1,
-          autoplay: true,
-          pauseOnHover: false,
-          resetProgress: false,
-          height: "500px",
-          arrows: true,
-          pagination: true,
-          interval: 5000,
-        }}
-        aria-label="Banner Slides"
+    <div className="banner-container w-full overflow-hidden relative">
+      <div className="embla" ref={emblaRef}>
+        <div className="embla__container flex">
+          {slides.map((slide) => (
+            <div
+              key={slide.id}
+              className="embla__slide flex-[0_0_100%] relative w-full h-[400px] md:h-[500px] lg:h-[600px]"
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 lg:px-16 text-left text-white">
+                <h6 className="text-blue-600 text-lg md:text-2xl lg:text-3xl font-medium mb-4">
+                  {slide.title}
+                </h6>
+                <h4 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
+                  {slide.subtitle}
+                </h4>
+                <p className="text-sm md:text-lg lg:text-xl max-w-lg mb-6">
+                  {slide.description}
+                </p>
+                <button className="w-fit px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                  {slide.buttonText}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Previous and Next Buttons */}
+      <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2  text-white p-2 w-fit h-fit rounded-full hover:bg-gray-700 transition"
+        onClick={scrollPrev}
       >
-        {/* Slide 1 */}
-        <SplideSlide>
-          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/placeholder.svg?height=500&width=1200')" }}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
-              we are ready to help you
-              </h6>
-              <h4>Financial Analysis<br/>&amp; Consulting</h4>
-              <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
-                Discover amazing products and services tailored just for you.
-              </p>
-              <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </SplideSlide>
+        <ChevronLeft  />
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2  text-white p-2 w-fit h-fit rounded-full hover:bg-gray-700 transition"
+        onClick={scrollNext}
+      >
+        <ChevronRight  />
+      </button>
 
-        {/* Slide 2 */}
-        <SplideSlide>
-          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/placeholder.svg?height=500&width=1200')" }}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
-              we are here to support you
-              </h6>
-              <h4>Accounting<br/>&amp; Management</h4>
-              <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
-                Take advantage of our limited-time promotions and exclusive deals.
-              </p>
-              <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                Shop Now
-              </button>
-            </div>
-          </div>
-        </SplideSlide>
-
-        {/* Slide 3 */}
-        <SplideSlide>
-          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/placeholder.svg?height=500&width=1200')" }}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8 text-center">
-              <h6 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4">
-              we have a solid background
-              </h6>
-              <h4>Market Analysis<br/>&amp; Statistics</h4>
-              <p className="text-sm md:text-lg lg:text-xl max-w-2xl">
-                Connect with like-minded individuals and be part of something special.
-              </p>
-              <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </SplideSlide>
-      </Splide>
+      {/* Pagination Indicators */}
+      <div className="absolute left-1/2 bottom-4 transform -translate-x-1/2 flex justify-center mt-4">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full mx-1 ${index === selectedIndex
+                ? "bg-blue-600"
+                : "bg-gray-400 hover:bg-gray-500"
+              }`}
+            onClick={() => emblaApi && emblaApi.scrollTo(index)}
+          />
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Banner;

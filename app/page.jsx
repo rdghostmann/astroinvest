@@ -20,22 +20,27 @@ import Banner from "@/components/Bootstrap/Banner/Banner";
 import WhoWeAre from "@/components/Bootstrap/WhoWeAre/WhoWeAre";
 import Testimonial from "@/components/Bootstrap/Testimonial/Testimonial";
 import Partners from "@/components/Bootstrap/Partners/Partners";
+import RequestCallbackForm from "@/components/Bootstrap/RequestCallbackForm/RequestCallbackForm";
 
 export default async function Home() {
 
 
-
+  const OPTIONS = { align: 'start' }
+  const SLIDE_COUNT = 6
+  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+  
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
       <Header />
-      <Navbar1 />
       <CoinPriceMarqueeWidget />
-      <Banner />
+      <Navbar1 />
+      {/* <Banner /> */}
       <CallToAction />
-      <FinancialService />
+      <FinancialService slides={SLIDES} options={OPTIONS} />
       <WhoWeAre />
       <Testimonial />
       <Partners />
+      <RequestCallbackForm />
       {/* <Hero1 /> */}
       <TrustPilot />
       <Stats />
