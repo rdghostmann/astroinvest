@@ -4,30 +4,30 @@ import Logo from "../../public/logo-white.png";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const sections = [
-  {
-    // title: "Product",
-    links: [
-      { name: "Overview", href: "#" },
-      { name: "Pricing", href: "#" },
-      { name: "Features", href: "#" },
-    ],
-  },
-  {
-    // title: "Company",
-    links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-      { name: "Blog", href: "#" },
-    ],
-  },
-  {
-    // title: "Resources",
-    links: [
-      { name: "Sales", href: "#" },
-      { name: "Advertise", href: "#" },
-      { name: "Privacy", href: "#" },
-    ],
-  },
+  // {
+  //   // title: "Product",
+  //   links: [
+  //     { name: "Overview", href: "#" },
+  //     { name: "Pricing", href: "#" },
+  //     { name: "Features", href: "#" },
+  //   ],
+  // },
+  // {
+  //   // title: "Company",
+  //   links: [
+  //     { name: "About", href: "#" },
+  //     { name: "Team", href: "#" },
+  //     { name: "Blog", href: "#" },
+  //   ],
+  // },
+  // {
+  //   // title: "Resources",
+  //   links: [
+  //     { name: "Sales", href: "#" },
+  //     { name: "Advertise", href: "#" },
+  //     { name: "Privacy", href: "#" },
+  //   ],
+  // },
 ];
 
 
@@ -45,15 +45,15 @@ const Footer7 = ({
         <footer className="w-full">
           <div className="flex flex-col justify-between px-4 pb-4 gap-10 text-center lg:flex-row lg:text-left">
             {/* Left Section */}
-            <div className="text-left flex w-full max-w-96 shrink flex-col items-start justify-between gap-6">
+            <div className="text-left md:text-center flex w-full max-w-96 md:mx-auto shrink flex-col items-start justify-between gap-6">
               {/* Logo */}
-              <div className="flex items-center gap-2">
+              <div className="text-left md:mx-auto flex items-center justify-center gap-2">
                 <h2 className="text-xl font-semibold">{logo.title}</h2>
               </div>
-              <p className="text-sm text-muted-foreground">
+              {/* <p className="text-sm text-muted-foreground">
                 A collection of 100+ responsive HTML templates for your startup business or side project.
-              </p>
-              <ul className="flex items-center space-x-6 text-muted-foreground">
+              </p> */}
+              <ul className="flex items-center md:mx-auto space-x-6 text-muted-foreground">
                 <li className="font-medium hover:text-primary">
                   <Link href="#">
                     <FaInstagram className="size-6" />
@@ -94,7 +94,7 @@ const Footer7 = ({
             </div>
           </div>
 
-          <div className="bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 border-t py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+          <div className="bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>© 2021 InvestFolio.com. All rights reserved.</p>
             <ul className="flex items-center justify-center gap-4 lg:justify-start">
               <li className="hover:text-primary">
