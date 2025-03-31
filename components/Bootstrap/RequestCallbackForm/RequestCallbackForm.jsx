@@ -17,7 +17,7 @@ const RequestCallbackForm = () => {
             Etiam suscipit ante a odio consequat
           </span>
         </div>
-        <div className="bg-blue-600 shadow-md rounded-lg p-6">
+        <div className="w-full md:w-8/12 mx-auto bg-blue-600 shadow-md rounded-lg p-6">
           <form id="contact" action="" method="post" className="">
             <div className="grid grid-cols-1 gap-3 ">
               <div>

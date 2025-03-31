@@ -35,7 +35,6 @@ export default async function Home() {
       <CoinPriceMarqueeWidget />
       <Navbar1 />
       {/* <Banner /> */}
-      {/* <CallToAction /> */}
       <FinancialService slides={SLIDES} options={OPTIONS} />
       <WhoWeAre />
       <Testimonial />
@@ -45,11 +44,12 @@ export default async function Home() {
       <TrustPilot />
       <Stats />
       <AboutAstroInvest />
+      <CallToAction />
       <OurAmazingFeatures />
       <Fiat />
       <AchieveMore />
       <InvestorsActivity />
-      <AffiliateProgram />
+      {/* <AffiliateProgram /> */}
       <HowItWorks />
       <FAQ />
       <Footer7 />

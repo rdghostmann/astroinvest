@@ -4,33 +4,34 @@ import { FaClock, FaPhone, FaFacebook, FaTwitter, FaLinkedin, FaBehance } from "
 
 const Header = () => {
   return (
-    <div className="w-full bg-blue-600 py-2 hidden md:block">
+    // <div className="w-full bg-blue-600 py-2 hidden md:block">
+    <div className="w-full bg-blue-600 py-2 sticky ">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-center">
           {/* Left Info */}
-          <div className="flex space-x-6">
-            <div className="flex items-center space-x-2 border-l pl-4 border-r border-white pr-4">
+          <div className="flex space-x-6 mb-4">
+            <div className="flex items-center space-x-2 border-l-0 border-r-0 border-white ">
               <FaClock className="text-white" />
-              <span className="text-white text-sm font-medium">Mon-Fri 09:00-17:00</span>
+              <span className="text-white text-xs font-medium">Mon-Fri 09:00 - 17:00</span>
             </div>
-            <div className="flex items-center space-x-2 border-r border-white pr-4">
+            <div className="flex items-center space-x-2 border-r-0 border-white ">
               <FaPhone className="text-white" />
-              <span className="text-white text-sm font-medium">090-080-0760</span>
+              <span className="text-white text-xs font-medium">090 - 080 - 0760</span>
             </div>
           </div>
 
           {/* Right Icons */}
-          <div className="flex space-x-4">
-            <Link href="#" className="text-white hover:opacity-75 transition border-l pl-4 border-r border-white pr-4">
+          <div className="flex space-x-6">
+            <Link href="#" className="text-white hover:opacity-75 transition border rounded-md border-white p-1">
               <FaFacebook />
             </Link>
-            <Link href="#" className="text-white hover:opacity-75 transition">
+            <Link href="#" className="text-white hover:opacity-75 transition border rounded-md border-white p-1">
               <FaTwitter />
             </Link>
-            <Link href="#" className="text-white hover:opacity-75 transition border-l pl-4 border-r border-white pr-4">
+            <Link href="#" className="text-white hover:opacity-75 transition border rounded-md border-white p-1">
               <FaLinkedin />
             </Link>
-            <Link href="#" className="text-white hover:opacity-75 transition pr-2 border-r border-white ">
+            <Link href="#" className="text-white hover:opacity-75 transition border rounded-md border-white p-1">
               <FaBehance />
             </Link>
           </div>

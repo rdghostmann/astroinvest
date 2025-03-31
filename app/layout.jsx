@@ -5,7 +5,6 @@ import SessionProviderWrapper from "./SessionProviderWrapper";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth";
 import Tawk from "@/components/Tawk/Tawk";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 
 const geistSans = Geist({

@@ -81,7 +81,7 @@ const OurAmazingFeatures = () => {
               ))}
 
               {/* Decorative Image */}
-              <div className="absolute -right-20 bottom-0 hidden lg:block">
+              {/* <div className="absolute -right-20 z-30 bottom-0 hidden lg:block">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Amazing-Features.PNG-NJG8g5ifzOYIMKY2ZB0KSr13yjQg7S.png"
                 alt="Investment Illustration"
@@ -89,7 +89,7 @@ const OurAmazingFeatures = () => {
                 height={300}
                 className="object-contain"
               />
-            </div>
+            </div> */}
             </div>
 
           </div>

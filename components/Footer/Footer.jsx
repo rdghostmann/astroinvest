@@ -5,27 +5,24 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const sections = [
   {
-    title: "Product",
+    // title: "Product",
     links: [
       { name: "Overview", href: "#" },
       { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
       { name: "Features", href: "#" },
     ],
   },
   {
-    title: "Company",
+    // title: "Company",
     links: [
       { name: "About", href: "#" },
       { name: "Team", href: "#" },
       { name: "Blog", href: "#" },
-      { name: "Careers", href: "#" },
     ],
   },
   {
-    title: "Resources",
+    // title: "Resources",
     links: [
-      { name: "Help", href: "#" },
       { name: "Sales", href: "#" },
       { name: "Advertise", href: "#" },
       { name: "Privacy", href: "#" },
@@ -36,17 +33,17 @@ const sections = [
 
 const Footer7 = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "https://www.astroinvest.vercel.app",
     src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
     title: "InvestFolio",
   },
 }) => {
   return (
-    <section className="py-32">
-      <div className="container">
-        <footer>
-          <div className="flex flex-col justify-between gap-10 text-center lg:flex-row lg:text-left">
+    <section className="w-full pt-4">
+      <div className="container mx-auto">
+        <footer className="w-full">
+          <div className="flex flex-col justify-between px-4 pb-4 gap-10 text-center lg:flex-row lg:text-left">
             {/* Left Section */}
             <div className="text-left flex w-full max-w-96 shrink flex-col items-start justify-between gap-6">
               {/* Logo */}
@@ -97,9 +94,9 @@ const Footer7 = ({
             </div>
           </div>
 
-          <div className="bg-gray- text-gray-100 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+          <div className="bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 border-t py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>© 2021 InvestFolio.com. All rights reserved.</p>
-            <ul className="flex justify-center gap-4 lg:justify-start">
+            <ul className="flex items-center justify-center gap-4 lg:justify-start">
               <li className="hover:text-primary">
                 <Link href="#"> Terms and Conditions</Link>
               </li>
