@@ -1,5 +1,6 @@
 import React from 'react'
 import { Clock, Lock, CreditCard, ArrowRight, Vault } from "lucide-react"
+import { FcCalendar, FcSafe, FcCurrencyExchange, FcBriefcase } from "react-icons/fc";
 import { Card, CardContent } from '../ui/card'
 import { Button } from '../ui/button'
 
@@ -66,7 +67,7 @@ const OurAmazingFeatures = () => {
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className={`${feature.bgColor} z-20 border-0 backdrop-blur-sm  `}
+                  className={`${feature.bgColor} z-20 border-0 backdrop-blur-sm relative ${index === 1 ? "lg:translate-y-10" : ""} ${index === 3 ? "lg:translate-y-12" : ""}`}
                 >
                   <CardContent className="p-6 space-y-4">
                     <div

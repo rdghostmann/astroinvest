@@ -21,6 +21,10 @@ import Testimonial from "@/components/Bootstrap/Testimonial/Testimonial";
 import Partners from "@/components/Bootstrap/Partners/Partners";
 import RequestCallbackForm from "@/components/Bootstrap/RequestCallbackForm/RequestCallbackForm";
 import OurSolution from "@/components/Bootstrap/OurSolution/OurSolution";
+import Services from "@/components/Bootstrap/Services/Services";
+import WhyChooseUs from "@/components/Bootstrap/WhyChooseUs/WhyChooseUs";
+import ROIPlan from "@/components/ROIPlan/ROIPlan";
+import OurTeam from "@/components/Bootstrap/OurTeam/OurTeam";
 
 export default async function Home() {
 
@@ -34,21 +38,27 @@ export default async function Home() {
       <Header />
       <CoinPriceMarqueeWidget />
       <Navbar1 />
+      {/* <Hero1 /> */}
+      <Stats />
       <FinancialService slides={SLIDES} options={OPTIONS} />
       <WhoWeAre />
+      {/* Why CHoose Us */}
+      <WhyChooseUs />
+      <HowItWorks />
+      {/* Our Team  */}
+      <OurTeam />
+      <CallToAction />
       <Testimonial />
       <RequestCallbackForm />
       <Partners />
       <TrustPilot />
+      <ROIPlan />
+      <Fiat />
       <AboutAstroInvest />
-      <CallToAction />
       <OurAmazingFeatures />
       <OurSolution />
-      <Fiat />
       <AchieveMore />
       <InvestorsActivity />
-      {/* <AffiliateProgram /> */}
-      <HowItWorks />
       <FAQ />
       <Footer7 />
     </div>

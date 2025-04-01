@@ -94,7 +94,7 @@ const Footer7 = ({
             </div>
           </div>
 
-          <div className="bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+          <div className="w-full bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
             <p>© 2021 InvestFolio.com. All rights reserved.</p>
             <ul className="flex items-center justify-center gap-4 lg:justify-start">
               <li className="hover:text-primary">

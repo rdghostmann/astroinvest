@@ -1,160 +1,173 @@
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import AutoScroll from "embla-carousel-auto-scroll";
-import Image from "next/image";
-import placeholder from "@/public/images/team_01.jpg"; // Local placeholder image
+"use client"
+import useEmblaCarousel from "embla-carousel-react"
+import AutoScroll from "embla-carousel-auto-scroll"
+import Image from "next/image"
 
-const Testimonial = () => {
-  const testimonials = [
-    {
-      name: "George Walker",
-      role: "Chief Financial Analyst",
-      feedback:
-        "Nulla ullamcorper, ipsum vel condimentum congue, mi odio vehicula tellus, sit amet malesuada justo sem sit amet quam. Pellentesque in sagittis lacus.",
-      image: placeholder,
-    },
-    {
-      name: "John Smith",
-      role: "Market Specialist",
-      feedback:
-        "In eget leo ante. Sed nibh leo, laoreet accumsan euismod quis, scelerisque a nunc. Mauris accumsan, arcu id ornare malesuada, est nulla luctus nisi.",
-      image: placeholder,
-    },
-    {
-      name: "David Wood",
-      role: "Chief Accountant",
-      feedback:
-        "Ut ultricies maximus turpis, in sollicitudin ligula posuere vel. Donec finibus maximus neque, vitae egestas quam imperdiet nec. Proin nec mauris eu tortor consectetur tristique.",
-      image: placeholder,
-    },
-    {
-      name: "Andrew Boom",
-      role: "Marketing Head",
-      feedback:
-        "Curabitur sollicitudin, tortor at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis quis libero. Quisque vulputate lacinia nisl ac lobortis.",
-      image: placeholder,
-    },
-  ];
+// Sample testimonial data
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "Marketing Director",
+    content:
+      "Working with this team has transformed our business. The attention to detail and creative solutions have exceeded our expectations.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    role: "CEO, TechStart",
+    content:
+      "Incredible service and support. They've been instrumental in helping us achieve our goals and scale our operations.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 3,
+    name: "Emma Rodriguez",
+    role: "Product Manager",
+    content:
+      "The team's expertise and dedication have made all the difference. They're not just vendors, they're partners in our success.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 4,
+    name: "David Kim",
+    role: "CTO, InnovateCorp",
+    content:
+      "We've seen remarkable results since we started working together. Their strategic approach has helped us navigate complex challenges.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 5,
+    name: "Lisa Thompson",
+    role: "Operations Manager",
+    content:
+      "Responsive, reliable, and results-driven. I couldn't ask for a better team to work with on our critical projects.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 6,
+    name: "James Wilson",
+    role: "Finance Director",
+    content:
+      "Their insights have been invaluable to our growth strategy. The ROI on our partnership has been exceptional.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+]
 
-  const [viewportWidth, setViewportWidth] = useState(1);
+// More testimonials for the second row
+const moreTestimonials = [
+  {
+    id: 7,
+    name: "Olivia Martinez",
+    role: "HR Director",
+    content:
+      "The level of professionalism and expertise is outstanding. They've helped us build a stronger, more cohesive team.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 8,
+    name: "Daniel Lee",
+    role: "Creative Director",
+    content:
+      "Their creative approach and technical skills have elevated our brand presence significantly in the market.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 9,
+    name: "Sophia Garcia",
+    role: "Sales Manager",
+    content:
+      "Since implementing their strategies, we've seen a 40% increase in conversion rates. The results speak for themselves.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 10,
+    name: "Robert Taylor",
+    role: "IT Director",
+    content: "Their technical knowledge and problem-solving abilities have saved us countless hours and resources.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 11,
+    name: "Jennifer Brown",
+    role: "Customer Success",
+    content:
+      "Our customers have noticed the difference in quality and service since we started working with this amazing team.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+  {
+    id: 12,
+    name: "Thomas Wright",
+    role: "Strategy Consultant",
+    content:
+      "Strategic, thoughtful, and effective. They've become an essential part of our long-term business planning.",
+    avatar: "/placeholder.svg?height=80&width=80",
+  },
+]
 
-  // Dynamically set the number of slides per view based on screen size
-  useEffect(() => {
-    const updateViewportWidth = () => {
-      if (window.innerWidth >= 1024) {
-        setViewportWidth(3); // Large screens
-      } else if (window.innerWidth >= 768) {
-        setViewportWidth(2); // Medium screens
-      } else {
-        setViewportWidth(1); // Small screens
-      }
-    };
+export default function TestimonialCarousel() {
+  // First carousel (scrolling left)
+  const [emblaRef1, emblaApi1] = useEmblaCarousel({ loop: true }, [AutoScroll({ direction: "backward", speed: 1 })])
 
-    updateViewportWidth();
-    window.addEventListener("resize", updateViewportWidth);
-    return () => window.removeEventListener("resize", updateViewportWidth);
-  }, []);
-
-  // Embla carousel for the left slider
-  const [emblaRefLeft, emblaApiLeft] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "start",
-      draggable: true,
-      slidesToScroll: viewportWidth,
-    },
-    [
-      AutoScroll({
-        interval: 5000, // Auto-scroll every 5 seconds
-        stopOnInteraction: true,
-        direction: "ltr", // Slide left-to-right
-      }),
-    ]
-  );
-
-  // Embla carousel for the right slider
-  const [emblaRefRight, emblaApiRight] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "start",
-      draggable: true,
-      slidesToScroll: viewportWidth,
-    },
-    [
-      AutoScroll({
-        interval: 5000, // Auto-scroll every 5 seconds
-        stopOnInteraction: true,
-        direction: "rtl", // Slide right-to-left
-      }),
-    ]
-  );
+  // Second carousel (scrolling right)
+  const [emblaRef2, emblaApi2] = useEmblaCarousel({ loop: true }, [AutoScroll({ direction: "forward", speed: 1 })])
 
   return (
-    <div className="testimonials border w-full py-12 bg-gray-100">
-      <div className="container mx-auto px-4 space-y-16">
-        {/* Section Heading */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800">
-            What they say <span className="text-blue-600">about us</span>
-          </h2>
-          <p className="text-gray-600">Testimonials from our greatest clients</p>
-        </div>
+    <div className="py-12 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
 
-        {/* Testimonial Slider sliding left */}
-        <div className="embla" ref={emblaRefLeft}>
-          <div className="embla__container flex">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`embla__slide flex-[0_0_${100 / viewportWidth}%] px-4`}
-              >
-                <div className="bg-white text-gray-800 flex flex-col gap-6 rounded-xl border shadow-sm max-w-96 p-6 select-none">
-                  <div className="mb-4 flex gap-4">
-                    <span className="relative flex shrink-0 overflow-hidden w-16 h-16 rounded-full ring-1 ring-gray-300">
+        {/* First row - scrolling left */}
+        <div className="overflow-hidden mb-8" ref={emblaRef1}>
+          <div className="flex">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="flex-none min-w-[300px] md:min-w-[350px] px-4">
+                <div className="bg-white rounded-lg shadow-lg p-6 h-full">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4">
                       <Image
-                        src={testimonial.image}
+                        src={testimonial.avatar || "/placeholder.svg"}
                         alt={testimonial.name}
-                        className="object-cover"
-                        fill
+                        width={50}
+                        height={50}
+                        className="rounded-full"
                       />
-                    </span>
-                    <div className="text-sm">
-                      <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-gray-500">{testimonial.role}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">{testimonial.name}</h3>
+                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
                     </div>
                   </div>
-                  <q className="text-gray-600">{testimonial.feedback}</q>
+                  <p className="text-gray-700 italic">&ldquo;{testimonial.content}&rdquo;</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Testimonial Slider sliding right */}
-        <div className="embla" ref={emblaRefRight}>
-          <div className="embla__container flex">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`embla__slide flex-[0_0_${100 / viewportWidth}%] px-4`}
-              >
-                <div className="bg-white text-gray-800 flex flex-col gap-6 rounded-xl border shadow-sm max-w-96 p-6 select-none">
-                  <div className="mb-4 flex gap-4">
-                    <span className="relative flex shrink-0 overflow-hidden w-16 h-16 rounded-full ring-1 ring-gray-300">
+        {/* Second row - scrolling right */}
+        <div className="overflow-hidden" ref={emblaRef2}>
+          <div className="flex">
+            {moreTestimonials.map((testimonial) => (
+              <div key={testimonial.id} className="flex-none min-w-[300px] md:min-w-[350px] px-4">
+                <div className="bg-white rounded-lg shadow-lg p-6 h-full">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4">
                       <Image
-                        src={testimonial.image}
+                        src={testimonial.avatar || "/placeholder.svg"}
                         alt={testimonial.name}
-                        className="object-cover"
-                        fill
+                        width={50}
+                        height={50}
+                        className="rounded-full"
                       />
-                    </span>
-                    <div className="text-sm">
-                      <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-gray-500">{testimonial.role}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">{testimonial.name}</h3>
+                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
                     </div>
                   </div>
-                  <q className="text-gray-600">{testimonial.feedback}</q>
+                  <p className="text-gray-700 italic">&ldquo;{testimonial.content}&rdquo;</p>
                 </div>
               </div>
             ))}
@@ -162,7 +175,6 @@ const Testimonial = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Testimonial;

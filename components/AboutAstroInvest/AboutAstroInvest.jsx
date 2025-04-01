@@ -1,17 +1,16 @@
 import React from 'react';
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowDownRight, ArrowRight, Badge } from "lucide-react";
-import About1 from "../../public/aboutX.png";
+import { ArrowRight } from "lucide-react";
+import About1 from "@/public/aboutX.png";
 
 const AboutAstroInvest = () => {
   return (
     <div className="bg-white text-slate-700">
-      {/* Hero Section */}
       <section className="w-full py-4 md:py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="w-full border lg:w-4/6 mx-auto">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="w-full border lg:w-4/6 mx-auto">
               <Image
                 src={About1}
                 alt="Analytics Dashboard"
@@ -21,11 +20,11 @@ const AboutAstroInvest = () => {
                 className="border rounded-lg w-full h-auto"
               />
             </div>
-            <div className="w-full space-y-2">
-              <span className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-full" >
+            <div className="w-full space-y-4">
+              <span className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 px-3 rounded-full" >
                 About AstroInvest
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-blue-700">
+              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-blue-700">
                 Stable Earnings
                 <br className='block ' />
                 With a guaranteed
