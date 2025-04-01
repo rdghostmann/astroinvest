@@ -16,7 +16,7 @@ const RequestCallbackForm = () => {
           <h2 className="text-3xl font-bold text-gray-800">
             Request a <span className="text-blue-600">call back</span>
           </h2>
-          <p className="text-gray-600 border ">
+          <p className="text-gray-600 w-10/12 lg:w-6/12 mx-auto ">
             The investment team has a unique mixture of technology and operating expertise in the distributed ledger systems as well as financial and capital markets experience
           </p>
         </div>

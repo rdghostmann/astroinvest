@@ -27,21 +27,21 @@ import Logo from "@/public/logo-white.png"; // Update the path to your logo
 
 const Footer = () => {
   return (
-    <footer className="main-footer alternet-2 bg-zinc-50 text-gray-600 dark:bg-neutral-800 dark:text-gray-300">
+    <footer className="w-full bg-gray-500 text-zinc-50 dark:bg-neutral-800 dark:text-gray-300">
       {/* Footer Top Section */}
-      <div className="footer-top border-b border-gray-200 dark:border-gray-700 py-10">
+      <div className="px-5 border-b border-gray-200 dark:border-gray-700 py-10">
         <div className="container mx-auto">
           <div className="widget-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Logo and Description */}
             <div className="footer-widget logo-widget">
-              <figure className="footer-logo mb-4">
-                <Link href="/">
-                  <Image src={Logo} alt="Logo" width={200} height={50} />
+              <figure className="footer-logo mb-4 ">
+                <Link className="flex space-x-2 items-baseline" href="/">
+                  <Image src={Logo} alt="Logo" className="" width={30} height={8} /> <span className="">InvestFolio</span>
                 </Link>
               </figure>
               <div className="text mb-4">
                 <p>
-                  Binance investment is the first registered digital asset investment company that provides services with a secure and fast transaction infrastructure developed by world standards, governed by an expert team and experienced advisory board.
+                  An investment company that provides services with a secure and fast transaction infrastructure developed by world standards, governed by an expert team and experienced advisory board.
                 </p>
               </div>
               <ul className="info-list space-y-2">
@@ -142,7 +142,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom Section */}
-      <div className="footer-bottom bg-gray-100 dark:bg-neutral-700 py-4 text-center">
+      <div className="px-5  bg-gray-100 text-gray-500 dark:bg-neutral-700 py-4 text-center">
         <p className="text-sm">
           © 2023 Binance Investment. All rights reserved.
         </p>
