@@ -9,38 +9,7 @@ const AchieveMore = () => {
     <section className='w-full bg-gray-400'>
       <div className="py-12 ">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-5">
-            <div className="mb-8 lg:mb-0">
-              <span className="text-sm uppercase text-gray-500">Achieve more</span>
-              <h1 className="mt-2 text-3xl font-bold">Purpose of a convoy is to keep your team</h1>
-            </div>
-            <div className="flex flex-col gap-8">
-              <div className="flex items-start gap-4">
-                <div className="bg-purple-500 rounded-full p-3">
-                <ChartNoAxesColumn color='#fff' />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">Designed for Impact</h3>
-                  <p className="text-gray-600">
-                    Our innovative solutions are tailored to deliver transformative results, leaving a lasting impression on your business. We prioritize excellence to fuel your growth and success.
-                  </p>
-                  <a href="#" className="text-blue-500 hover:underline">Discover More<i className="fas fa-circle-chevron-right ml-1"></i></a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="bg-red-500 rounded-full p-3">
-                <RefreshCw color='#fff' />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">Harmonized with Your Vision</h3>
-                  <p className="text-gray-600">
-                    Whether your aim is to boost efficiency, amplify revenue, or elevate customer satisfaction, our dedicated team is committed to helping you reach your objectives and make a tangible impact in your sector.
-                  </p>
-                  <a href="#" className="text-blue-500 hover:underline">Explore Further<i className="fas fa-circle-chevron-right ml-1"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div className="flex flex-col lg:flex-row items-center justify-center mt-12">
             <div className="flex-shrink-0">
               <Image src={AwardImage} alt="Award" width={320} height={370} />

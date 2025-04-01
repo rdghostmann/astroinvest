@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marquee } from "../ui/marquee";
+import { Marquee } from '../magicui/marquee';
 
 const reviews = [
   {

@@ -65,8 +65,9 @@ export default async function Page() {
                           <TableRow className="bg-blue-950/50 hover:bg-blue-900/50">
                             {/* <TableHead className="text-blue-100 px-6 py-4">Transaction ID</TableHead> */}
                             <TableHead className="text-blue-100 px-6 py-4">Date</TableHead>
-                            <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Plan Name</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Asset</TableHead>
+                            <TableHead className="text-blue-100 px-6 py-4">Amount</TableHead>
                             <TableHead className="text-blue-100 px-6 py-4">Profit</TableHead>
                           </TableRow>
                         </TableHeader>
@@ -75,8 +76,9 @@ export default async function Page() {
                             <TableRow key={investment._id} className="border-b hover:bg-blue-900/20">
                               {/* <TableCell className="text-gray-600 px-6 py-4">{investment._id}</TableCell> */}
                               <TableCell className="text-gray-600 px-6 py-4">{new Date(investment.createdAt).toLocaleDateString()}</TableCell>
-                              <TableCell className="text-gray-600 px-6 py-4">${investment.amount.toLocaleString()}</TableCell>
                               <TableCell className="text-gray-600 px-6 py-4">{investment.planName}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">{investment.assetName}</TableCell>
+                              <TableCell className="text-gray-600 px-6 py-4">${investment.amount.toLocaleString()}</TableCell>
                               <TableCell className="text-gray-600 px-6 py-4">${investment.profit.toLocaleString()}</TableCell>
                             </TableRow>
                           ))}

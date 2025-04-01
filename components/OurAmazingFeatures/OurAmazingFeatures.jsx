@@ -1,5 +1,6 @@
 import React from 'react'
 import { Clock, Lock, CreditCard, ArrowRight, Vault } from "lucide-react"
+import { FcCalendar, FcSafe, FcCurrencyExchange, FcBriefcase } from "react-icons/fc";
 import { Card, CardContent } from '../ui/card'
 import { Button } from '../ui/button'
 
@@ -9,7 +10,7 @@ const OurAmazingFeatures = () => {
     {
       icon: <Clock className="w-8 h-8 text-blue-400" />,
       title: "Fast & Simple",
-      description: "Start investing in under 10 minutes",
+      description: "Start investing in under 10 minutes.",
       bgColor: "bg-blue-500/10",
     },
     {
@@ -20,14 +21,14 @@ const OurAmazingFeatures = () => {
     },
     {
       icon: <CreditCard className="w-8 h-8 text-blue-400" />,
-      title: "Easy deposit & withdrawals",
-      description: "Quickly add & withdraw funds to your bank account",
+      title: "Easy Deposit & Withdrawals",
+      description: "Quickly add & withdraw funds to your bank account.",
       bgColor: "bg-blue-500/10",
     },
     {
       icon: <Vault className="w-8 h-8 text-blue-400" />,
       title: "Safe and Secure",
-      description: "World class security features ensure your investment are safe",
+      description: "World-class security features ensure your investments are safe.",
       bgColor: "bg-blue-500/10",
     },
 
@@ -42,7 +43,7 @@ const OurAmazingFeatures = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.1),transparent_50%)]" /> */}
 
-        <div className="container relative px-8 py-16 md:py-24">
+        <div className="w-full relative px-2 py-16 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-6">
@@ -53,10 +54,10 @@ const OurAmazingFeatures = () => {
                 Invest
               </h2>
               <p className="text-blue-100/80 max-w-lg">
-                We are worldwide investment company who are committed to the principle of revenue maximization and
-                reduction of the financial risks at investing.
+                We are a worldwide investment company committed to the principle of revenue maximization and
+                reduction of financial risks in investing.
               </p>
-              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white">
+              <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition text-white">
                 Discover More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -66,7 +67,7 @@ const OurAmazingFeatures = () => {
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className={`${feature.bgColor} z-20 border-0 backdrop-blur-sm  `}
+                  className={`${feature.bgColor} z-20 border-0 backdrop-blur-sm relative ${index === 1 ? "lg:translate-y-10" : ""} ${index === 3 ? "lg:translate-y-12" : ""}`}
                 >
                   <CardContent className="p-6 space-y-4">
                     <div
@@ -81,7 +82,7 @@ const OurAmazingFeatures = () => {
               ))}
 
               {/* Decorative Image */}
-              {/* <div className="absolute -right-20 bottom-0 hidden lg:block">
+              {/* <div className="absolute -right-20 z-30 bottom-0 hidden lg:block">
               <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Amazing-Features.PNG-NJG8g5ifzOYIMKY2ZB0KSr13yjQg7S.png"
                 alt="Investment Illustration"

@@ -1,91 +1,91 @@
-'use client';
+import Link from "next/link";
+import Logo from "../../public/logo-white.png";
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import Logo from "../../public/logo-white.png";
-import Image from "next/image";
-import { TriangleAlert } from "lucide-react";
 
 const sections = [
-  {
-    title: "Product",
-    links: [
-      { name: "Pricing", href: "#" },
-      { name: "Marketplace", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "About", href: "#" },
-      { name: "Team", href: "#" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { name: "Help", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-    ],
-  },
+  // {
+  //   // title: "Product",
+  //   links: [
+  //     { name: "Overview", href: "#" },
+  //     { name: "Pricing", href: "#" },
+  //     { name: "Features", href: "#" },
+  //   ],
+  // },
+  // {
+  //   // title: "Company",
+  //   links: [
+  //     { name: "About", href: "#" },
+  //     { name: "Team", href: "#" },
+  //     { name: "Blog", href: "#" },
+  //   ],
+  // },
+  // {
+  //   // title: "Resources",
+  //   links: [
+  //     { name: "Sales", href: "#" },
+  //     { name: "Advertise", href: "#" },
+  //     { name: "Privacy", href: "#" },
+  //   ],
+  // },
 ];
 
-const Footer7 = () => {
+
+const Footer7 = ({
+  logo = {
+    url: "https://www.astroinvest.vercel.app",
+    src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
+    alt: "logo",
+    title: "InvestFolio",
+  },
+}) => {
   return (
-    <section className="pt-20 pb-10 px-8 bg-black w-full text-cyan-50 text-center">
+    <section className="w-full pt-4">
       <div className="container mx-auto">
-        <footer>
-          <div className="flex flex-col items-center justify-between gap-10 text-center ">
-            <div className="flex w-full max-w-96 mx-auto shrink flex-col items-center justify-center gap-6">
-              <div className="text-center">
-                <span className="w-full py-2 mx-auto flex items-center justify-center gap-4">
-                  <Image
-                    src={Logo}
-                    alt="logo"
-                    style={{
-                      width: '40px',
-                      height: 'auto',
-                    }}
-                    className="object-cover"
-                  />
-                  <p className="text-3xl text-white font-semibold">AstroInvest</p>
-                </span>
-                <p className="mt-6 text-sm text-center text-muted-foreground">
-                  Empowering your financial future,<br/> one smart investment at a time.
-                </p>
+        <footer className="w-full">
+          <div className="flex flex-col justify-between px-4 pb-4 gap-10 text-center lg:flex-row lg:text-left">
+            {/* Left Section */}
+            <div className="text-left md:text-center flex w-full max-w-96 md:mx-auto shrink flex-col items-start justify-between gap-6">
+              {/* Logo */}
+              <div className="text-left md:mx-auto flex items-center justify-center gap-2">
+                <h2 className="text-xl font-semibold">{logo.title}</h2>
               </div>
-              <ul className="flex items-center justify-center space-x-6 text-muted-foreground">
-                <li className="font-medium hover:text-white">
-                  <a href="#">
+              {/* <p className="text-sm text-muted-foreground">
+                A collection of 100+ responsive HTML templates for your startup business or side project.
+              </p> */}
+              <ul className="flex items-center md:mx-auto space-x-6 text-muted-foreground">
+                <li className="font-medium hover:text-primary">
+                  <Link href="#">
                     <FaInstagram className="size-6" />
-                  </a>
+                  </Link>
                 </li>
-                <li className="font-medium hover:text-white">
-                  <a href="#">
+                <li className="font-medium hover:text-primary">
+                  <Link href="#">
                     <FaFacebook className="size-6" />
-                  </a>
+                  </Link>
                 </li>
-                <li className="font-medium hover:text-white">
-                  <a href="#">
+                <li className="font-medium hover:text-primary">
+                  <Link href="#">
                     <FaTwitter className="size-6" />
-                  </a>
+                  </Link>
                 </li>
-                <li className="font-medium hover:text-white">
-                  <a href="#">
+                <li className="font-medium hover:text-primary">
+                  <Link href="#">
                     <FaLinkedin className="size-6" />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
+
+            {/* Right Section */}
             <div className="grid grid-cols-3 gap-6 lg:gap-20">
               {sections.map((section, sectionIdx) => (
                 <div key={sectionIdx}>
                   <h3 className="mb-6 font-bold">{section.title}</h3>
                   <ul className="space-y-4 text-sm text-muted-foreground">
                     {section.links.map((link, linkIdx) => (
-                      <li
-                        key={linkIdx}
-                        className="font-medium hover:text-white">
-                        <a href={link.href}>{link.name}</a>
+                      <li key={linkIdx} className="font-medium hover:text-primary">
+                        <Link href={link.href}>{link.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -93,31 +93,22 @@ const Footer7 = () => {
               ))}
             </div>
           </div>
-          <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
-            <p>© 2025 AstroInvest. All rights reserved.</p>
-            <ul className="flex justify-center gap-4 lg:justify-start">
-              <li className="hover:text-white">
-                <a href="#"> Terms and Conditions</a>
+
+          <div className="w-full bg-gray-300 text-gray-100 flex flex-col justify-between gap-4 py-4 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+            <p>© 2021 InvestFolio.com. All rights reserved.</p>
+            <ul className="flex items-center justify-center gap-4 lg:justify-start">
+              <li className="hover:text-primary">
+                <Link href="#"> Terms and Conditions</Link>
               </li>
-              <li className="hover:text-white">
-                <a href="#"> Privacy Policy</a>
+              <li className="hover:text-primary">
+                <Link href="#"> Privacy Policy</Link>
               </li>
             </ul>
           </div>
-          {/* <div className="mt-8 text-left text-muted-foreground text-xs">
-            <h6 className="mt-4 text-lg font-semibold flex items-center"><TriangleAlert size={20} className="inline-block" color="#ee5353" /> Risk warning</h6>
-            <p className="mt-2 text-sm">
-              Financial spread trading comes with a high risk of losing money rapidly due to leverage. 83.5% of retail investor accounts lose money when trading CFDs with this provider.
-              You should consider whether you understand how spread trading works and whether you can afford to take the high risk of losing your money.
-            </p>
-            <p className="mt-2 text-sm">
-              The content of this website must not be construed as personal advice. We recommend that you seek advice from an independent financial advisor.
-            </p>
-          </div> */}
         </footer>
       </div>
     </section>
-  )
+  );
 };
 
 export default Footer7;

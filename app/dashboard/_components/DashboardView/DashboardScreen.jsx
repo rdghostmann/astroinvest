@@ -7,10 +7,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 import { getCurrentUser } from "@/lib/actions";
 import ActiveDeposit from "../ActiveDeposit/ActiveDeposit";
-import EarnTotal from "../EarnTotal/EarnTotal";
 import TotalDeposit from "../TotalDeposit/TotalDeposit";
 import TotalWithdraw from "../TotalWithdraw/TotalWithdraw";
 import TotalUserBalance from "../Totaluserbalance/Totaluserbalance";
+import UserProfit from "../UserProfit/UserProfit";
+import PendingWithdrawal from "../PendingWithdraw/PendingWithdraw";
 
 
 const DashboardScreen = async () => {
@@ -59,13 +60,7 @@ const DashboardScreen = async () => {
           <div className="flex-1 p-2 w-1/2 lg:px-2">
             <p className="text-xs md:hidden text-gray-500">PROFIT</p>
             <p className="hidden md:block text-sm/8 text-gray-500">TOTAL PROFIT</p>
-            <div className="flex items-center gap-2">
-              <h2 className="text-2xl text-black font-bold md:text-3xl">${userTotalProfit}</h2>
-              <span className="flex items-center text-sm text-green-500">
-                <ArrowUpRight className="h-4 w-4" />
-                1.25%
-              </span>
-            </div>
+            <UserProfit userID={userID} />
           </div>
         </div>
 
@@ -86,7 +81,7 @@ const DashboardScreen = async () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <ActiveDeposit />
-          <EarnTotal />
+          <PendingWithdrawal />
           <TotalDeposit />
           <TotalWithdraw />
         </div>

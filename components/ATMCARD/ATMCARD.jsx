@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import simchip from "../../public/sim-card-chip.jpg"
+import simchip from "@/public/sim-card-chip.png"
 import Image from "next/image";
 
 const ATMCARD = () => {
@@ -24,7 +24,8 @@ const ATMCARD = () => {
                 height={50}
                 src={simchip}
                 alt="Sim Card Chip"
-                className="mt-14 ml-4"            
+                // className="mt-14 ml-4"            
+                className="chip"            
               />
             <p className="number mt-3">**** **** **** 1234</p>
             <p className="valid-thru">VALID THRU</p>
@@ -125,7 +126,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     bottom: 40px;
     left: 20px;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: bold;
   }
 
@@ -133,7 +134,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     bottom: 40px;
     left: 100px;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: bold;
   }
 
@@ -141,7 +142,7 @@ const StyledWrapper = styled.div`
     position: absolute;
     bottom: 20px;
     left: 20px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
   }
 
