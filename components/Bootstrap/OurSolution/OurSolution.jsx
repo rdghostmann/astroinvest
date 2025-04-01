@@ -19,7 +19,7 @@ const OurSolution = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Content */}
           <div className="text-white space-y-6">
-            <span className="text-lg font-medium">Lorspan ipsum dolor sit amet</span>
+            <span className="text-lg font-medium">Empowering Your Business for a Brighter Future</span>
             <h2 className="text-4xl font-bold">
               Our solutions for your <span className="text-blue-400">business growth</span>
             </h2>

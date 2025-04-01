@@ -8,7 +8,7 @@ import AboutImg from "@/public/images/about-image.jpg";
 
 const AboutAstroInvest = () => {
   return (
-    <div className="bg-white text-slate-700">
+    <div className="w-full bg-white text-slate-700">
       {/* About Section */}
       <section className="w-full py-8 md:py-16">
         <div className="container mx-auto px-4">
@@ -30,10 +30,8 @@ const AboutAstroInvest = () => {
               <span className="text-sm text-blue-600 uppercase">
                 About AstroInvest
               </span>
-              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-blue-700">
-                Stable Earnings
-                <br />
-                With a guaranteed
+              <h2 className="text-2xl md:text-3xl font-bold text-blue-700">
+                Stable Earnings With a guaranteed
                 <br />
                 floating rate
               </h2>
@@ -58,7 +56,7 @@ const AboutAstroInvest = () => {
       {/* More Info Section */}
       <section className="w-full py-8 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="border grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-between">
             {/* Text Section */}
             <div className="space-y-6">
               <span className="text-sm text-blue-600 uppercase">
@@ -82,14 +80,14 @@ const AboutAstroInvest = () => {
             </div>
 
             {/* Image Section */}
-            <div className="w-full">
+            <div className="w-2/3 mx-auto">
               <Image
                 src={AboutImg}
                 alt="About AstroInvest"
                 width={500}
                 height={400}
                 placeholder="blur"
-                className="rounded-lg w-full h-auto shadow-md"
+                className="rounded-lg w-fit h-auto shadow-md"
               />
             </div>
           </div>
