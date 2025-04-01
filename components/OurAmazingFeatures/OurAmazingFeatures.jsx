@@ -35,12 +35,12 @@ const OurAmazingFeatures = () => {
 
   return (
     <div className='w-full bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-950'>
-      <div className='container mx-auto px-4'>
+      <div className='container  px-4'>
       <div className="relative py-10 px-7 overflow-hidden ">
         {/* Background Gradients */}
-        <div className="absolute inset-0 " />
+        {/* <div className="absolute inset-0 " />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.1),transparent_50%)]" /> */}
 
         <div className="container relative px-8 py-16 md:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

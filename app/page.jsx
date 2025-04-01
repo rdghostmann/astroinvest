@@ -26,7 +26,7 @@ export default async function Home() {
       <Stats />
       <AboutAstroInvest />
       <OurAmazingFeatures />
-      <Fiat />
+      {/* <Fiat /> */}
       <CallToAction />
       <AchieveMore />
       <InvestorsActivity />

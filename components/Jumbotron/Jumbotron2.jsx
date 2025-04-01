@@ -11,9 +11,9 @@ import { AnimatedShinyText } from '../magicui/animated-shiny-text';
 const Hero1 = () => {
 
   return (
-    <section className="py-10 px-7">
+    <section className="py-10 px-7 ">
       <div className="container">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
+        <div className="grid items-center gap-8 lg:grid-cols-2 ">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="relative text-center rounded-full px-2 py-1 text-sm text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               <AnimatedShinyText className="inline-flex items-center justify-center px-3 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">

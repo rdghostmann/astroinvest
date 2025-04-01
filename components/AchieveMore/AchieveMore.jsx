@@ -6,7 +6,7 @@ import { ChartNoAxesColumn, RefreshCw } from 'lucide-react';
 
 const AchieveMore = () => {
   return (
-    <section className='w-full bg-gray-100'>
+    <section className='w-full bg-gray-400'>
       <div className="py-12 ">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-5">

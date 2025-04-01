@@ -16,7 +16,7 @@ const AboutAstroInvest = () => {
                 src={About1}
                 alt="Analytics Dashboard"
                 width={408}
-                height={386}
+                height={186}
                 className="border rounded-lg w-full h-auto"
               />
             </div>
