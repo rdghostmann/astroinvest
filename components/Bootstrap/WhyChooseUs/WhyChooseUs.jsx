@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowRight } from "lucide-react"
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { FcCalendar, FcSafe, FcCurrencyExchange, FcBriefcase } from "react-icons/fc";
+import { FcCalendar, FcSafe, FcCurrencyExchange, FcBriefcase, FcPrivacy } from "react-icons/fc";
 
 const WhyChooseUs = () => {
   const features = [
@@ -12,24 +12,24 @@ const WhyChooseUs = () => {
       description: "Start investing in under 10 minutes.",
       bgColor: "bg-blue-100",
     },
-    {
-      icon: <FcCalendar className="w-8 h-8 text-blue-400" />,
-      title: "Corporate Calendar",
-      description: "All data is encrypted to secure your passwords & personal data.",
-      bgColor: "bg-indigo-100",
-    },
-    {
-      icon: <FcCurrencyExchange className="w-8 h-8 text-blue-400" />,
-      title: "Sustainability",
-      description: "Quickly add & withdraw funds to your bank account.",
-      bgColor: "bg-blue-100",
-    },
-    {
-      icon: <FcSafe className="w-8 h-8 text-blue-400" />,
-      title: "Annual Reporting",
-      description: "World-class security features ensure your investments are safe.",
-      bgColor: "bg-blue-100",
-    },
+  {
+       icon: <FcPrivacy className="w-8 h-8 text-blue-400" />,
+       title: "Deep Encryption",
+       description: "All data is encrypted to secure your passwords & personal data.",
+       bgColor: "bg-indigo-500/10",
+     },
+      {
+          icon: <FcCurrencyExchange className="w-8 h-8 text-blue-400" />,
+          title: "Easy Deposit & Withdrawals",
+          description: "Quickly add & withdraw funds to your bank account.",
+          bgColor: "bg-blue-500/10",
+        },
+        {
+          icon: <FcSafe className="w-8 h-8 text-blue-400" />,
+          title: "Safe and Secure",
+          description: "World-class security features ensure your investments are safe.",
+          bgColor: "bg-blue-500/10",
+        },
   ];
 
   return (
@@ -45,7 +45,7 @@ const WhyChooseUs = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className="space-y-6">
-                <span className="inline-block text-sm text-blue-400 font-medium">WHY CHOOSE US</span>
+                <span className="inline-block text-sm text-blue-600 font-medium">WHY CHOOSE US</span>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
                   Why Should You
                   <br />

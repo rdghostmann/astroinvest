@@ -9,12 +9,15 @@ const RequestCallbackForm = () => {
   return (
     <div className="callback-form w-full bg-gray-100 py-12" id="contactus">
       <div className="container mx-auto px-4">
+        <span className="text-sm mx-auto text-blue-600 uppercase" >
+          TRY OUR SERVICE
+        </span>
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-800">
             Request a <span className="text-blue-600">call back</span>
           </h2>
           <span className="text-gray-600">
-            Etiam suscipit ante a odio consequat
+          The investment team has a unique mixture of technology and operating expertise in the distributed ledger systems as well as financial and capital markets experience – this unique skill set allows for sophisticated technical and valuation analysis within the portfolio construction process.
           </span>
         </div>
         <div className="w-full md:w-10/12 lg:w-9/12 mx-auto bg-blue-600 shadow-md rounded-lg p-6">

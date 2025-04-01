@@ -114,15 +114,15 @@ export default function TestimonialCarousel() {
   const [emblaRef2, emblaApi2] = useEmblaCarousel({ loop: true }, [AutoScroll({ direction: "forward", speed: 1 })])
 
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="w-full py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
 
         {/* First row - scrolling left */}
-        <div className="overflow-hidden mb-8" ref={emblaRef1}>
+        <div className="overflow-hidden mb-8 max-w-6xl mx-auto" ref={emblaRef1}>
           <div className="flex">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="flex-none min-w-[300px] md:min-w-[350px] px-4">
+              <div key={testimonial.id} className="flex-none min-w-[250px] md:min-w-[350px] px-4">
                 <div className="bg-white rounded-lg shadow-lg p-6 h-full">
                   <div className="flex items-center mb-4">
                     <div className="mr-4">
@@ -147,10 +147,10 @@ export default function TestimonialCarousel() {
         </div>
 
         {/* Second row - scrolling right */}
-        <div className="overflow-hidden" ref={emblaRef2}>
+        <div className="overflow-hidden max-w-6xl mx-auto" ref={emblaRef2}>
           <div className="flex">
             {moreTestimonials.map((testimonial) => (
-              <div key={testimonial.id} className="flex-none min-w-[300px] md:min-w-[350px] px-4">
+              <div key={testimonial.id} className="flex-none min-w-[250px] md:min-w-[350px] px-4">
                 <div className="bg-white rounded-lg shadow-lg p-6 h-full">
                   <div className="flex items-center mb-4">
                     <div className="mr-4">
