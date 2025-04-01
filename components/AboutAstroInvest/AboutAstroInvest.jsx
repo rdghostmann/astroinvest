@@ -21,7 +21,7 @@ const AboutAstroInvest = () => {
               />
             </div>
             <div className="w-full space-y-4">
-              <span className="text-md bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 px-3 rounded-full" >
+              <span className="text-sm text-blue-600 uppercase" >
                 About AstroInvest
               </span>
               <h2 className="mt-3 text-2xl md:text-3xl font-bold text-blue-700">
@@ -39,10 +39,7 @@ const AboutAstroInvest = () => {
                 AstroInvest is a modern investment company that combines the
                 most advanced projects in its work.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                We worked hard to develop a multifunctional cryptocurrency investment space where people from the whole
-                globe can earn on digital currencies.
-              </p>
+            
               <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

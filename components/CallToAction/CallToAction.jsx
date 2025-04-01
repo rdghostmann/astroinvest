@@ -8,7 +8,7 @@ export default function CallToAction() {
   return (
     <section className="py-16 bg-black w-full">
       <div className="container mx-auto px-4">
-        <div className="relative isolate bg-gray-900 rounded-2xl overflow-hidden">
+        <div className="max-w-6xl mx-auto relative isolate bg-gray-900 rounded-2xl overflow-hidden">
           {/* Background SVG */}
           <svg
             viewBox="0 0 1024 1024"
