@@ -36,7 +36,7 @@ const ROIPlan = () => {
 
   return (
     <section className="plans w-full py-24">
-    
+
       {/* Investment Plans */}
       <div className="container mx-auto">
         <div className="text-center mb-8">
@@ -45,12 +45,12 @@ const ROIPlan = () => {
             Choose a plan that suits your investment goals.
           </p>
         </div>
-        <div className="w-full grid grid-cols-1 p-2">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 p-2">
           <Splide
             options={{
               type: "loop",
               perPage: 2,
-              gap: "2rem",
+              gap: "0.4rem",
               drag: "free",
               autoScroll: {
                 speed: 1,
@@ -126,25 +126,27 @@ const ROIPlan = () => {
         </div>
       </div>
 
+      {/* Buttons to Choose Plan */}
+      <div className="px-4 py-6  w-fit mx-auto flex items-center gap-5">
+        <p className="">Choose a Plan:</p>
+        {plans.map((plan) => (
+          <button
+            type="button"
+            key={plan.type}
+            onClick={() => handlePlanSelection(plan)}
+            className={`p-2 text-xs rounded-lg font-bold ${selectedPlan.type === plan.type
+              ? "bg-[#FFD700] text-black"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
+          >
+            {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
+          </button>
+        ))}
+      </div>
+
       {/* Investment Calculator */}
       <div className="container mx-auto mt-4">
-        {/* Buttons to Choose Plan */}
-        <div className="p-4 w-full flex items-center gap-5">
-          <p className="">Choose a Plan:</p>
-          {plans.map((plan) => (
-            <button
-              type="button"
-              key={plan.type}
-              onClick={() => handlePlanSelection(plan)}
-              className={`p-2 text-xs rounded-lg font-bold ${selectedPlan.type === plan.type
-                ? "bg-[#FFD700] text-black"
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
-            >
-              {plan.type.charAt(0).toUpperCase() + plan.type.slice(1)} Plan
-            </button>
-          ))}
-        </div>
+
 
         <div className="grid grid-cols-1">
           <div className="mt-4 relative overflow-hidden snap-center shrink-0 w-full mx-auto">
