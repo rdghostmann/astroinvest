@@ -17,23 +17,24 @@ const FinancialService = () => {
       image: service_01,
       title: "Digital Currency",
       description:
-        "Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.",
+        "Explore the world of digital assets and cryptocurrencies. Our platform provides secure and efficient digital currency solutions.",
     },
     {
       id: 2,
       image: service_02,
       title: "Market Analysis",
       description:
-        "Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.",
+        "Stay ahead with in-depth market insights. We offer real-time data and expert analysis to help you make informed financial decisions.",
     },
     {
       id: 3,
       image: service_03,
       title: "Historical Data",
       description:
-        "Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.",
+        "Access detailed historical data to track market trends and make strategic investment choices with confidence.",
     },
   ];
+  
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
