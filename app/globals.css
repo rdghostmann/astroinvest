@@ -6,6 +6,19 @@
   font-family: Arial, Helvetica, sans-serif;
 } */
 
+:root {
+  --sky: #87CEEB; /* Sky Blue */
+  --pool: #68A0B0; /* Pool Blue */
+  --blue: #0000FF; /* Standard Blue */
+  --oxford-blue: #002147; /* Dark Oxford Blue */
+  --chagall: #475FA5; /* Deep Blue with a hint of purple */
+  --marine: #013E6A; /* Deep Marine Blue */
+  --midnight: #191970; /* Midnight Blue */
+  --magpie: #006175; /* Teal-Blue Shade */
+  --cornflower: #6495ED; /* Cornflower Blue */
+  --icicle: #D6EAF8; /* Very Light Blue */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

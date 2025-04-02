@@ -17,7 +17,7 @@ export default function Page() {
       >
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center text-center text-white">
-            <h1 className="text-4xl font-bold">About Us</h1>
+            <h1 className="text-4xl font-bold text-pool">About Us</h1>
             <span className="mt-2 text-lg">We have over 20 years of experience</span>
           </div>
         </div>

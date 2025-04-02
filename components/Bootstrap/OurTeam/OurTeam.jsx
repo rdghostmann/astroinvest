@@ -1,31 +1,31 @@
 import Link from "next/link";
 import React from "react";
+import team01 from "@/public/images/team_01.jpg";
+import team02 from "@/public/images/team_02.jpg";
+import team03 from "@/public/images/team_03.jpg";
+import Image from "next/image";
 
 const OurTeam = () => {
   const teamMembers = [
     {
       name: "Samantha Reynolds",
       role: "Marketing Manager",
-      image:
-        "https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg",
+      image: team01
     },
     {
       name: "Benjamin Martinez",
       role: "Sales Executive",
-      image:
-        "https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar2.jpg",
+      image: team02
     },
     {
       name: "Emily Turner",
       role: "Customer Support",
-      image:
-        "https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar5.jpg",
+      image: team03
     },
     {
       name: "Jason Anderson",
       role: "Development Engineer",
-      image:
-        "https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar24.jpg",
+      image: team01
     }
   ];
 
@@ -34,7 +34,7 @@ const OurTeam = () => {
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-semibold text-gray-800">
+          <h1 className="text-2xl md:text-3xl font-semibold text-oxfordblue">
             Our Executive Team
           </h1>
           <p className="text-lg text-gray-600 mt-2">
@@ -51,9 +51,11 @@ const OurTeam = () => {
               className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition"
             >
               <div className="mb-4 relative shrink-0 rounded-lg overflow-hidden w-36 h-36">
-                <img
+                <Image
                   src={member.image}
                   alt={`${member.name} avatar`}
+                  width={370}
+                  height={250}
                   className="w-full h-full object-cover"
                 />
               </div>

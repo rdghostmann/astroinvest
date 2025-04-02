@@ -31,7 +31,9 @@ const AboutAstroInvest = () => {
                 About AstroInvest
               </span>
               <h2 className="text-2xl md:text-3xl font-bold text-blue-700">
-                Stable Earnings With a guaranteed
+                Stable Earnings
+                <br />
+                 With a guaranteed
                 <br />
                 floating rate
               </h2>

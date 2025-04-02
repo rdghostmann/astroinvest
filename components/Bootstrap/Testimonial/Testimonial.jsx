@@ -1,7 +1,10 @@
 "use client"
 import useEmblaCarousel from "embla-carousel-react"
 import AutoScroll from "embla-carousel-auto-scroll"
-import Image from "next/image"
+import team01 from "@/public/images/team_01.jpg";
+import team02 from "@/public/images/team_02.jpg";
+import team03 from "@/public/images/team_03.jpg";
+import Image from "next/image";
 
 // Sample testimonial data
 const testimonials = [
@@ -11,7 +14,7 @@ const testimonials = [
     role: "Marketing Director",
     content:
       "Working with this team has transformed our business. The attention to detail and creative solutions have exceeded our expectations.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 2,
@@ -19,7 +22,7 @@ const testimonials = [
     role: "CEO, TechStart",
     content:
       "Incredible service and support. They've been instrumental in helping us achieve our goals and scale our operations.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 3,
@@ -27,7 +30,7 @@ const testimonials = [
     role: "Product Manager",
     content:
       "The team's expertise and dedication have made all the difference. They're not just vendors, they're partners in our success.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 4,
@@ -35,7 +38,7 @@ const testimonials = [
     role: "CTO, InnovateCorp",
     content:
       "We've seen remarkable results since we started working together. Their strategic approach has helped us navigate complex challenges.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 5,
@@ -43,7 +46,7 @@ const testimonials = [
     role: "Operations Manager",
     content:
       "Responsive, reliable, and results-driven. I couldn't ask for a better team to work with on our critical projects.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 6,
@@ -51,7 +54,7 @@ const testimonials = [
     role: "Finance Director",
     content:
       "Their insights have been invaluable to our growth strategy. The ROI on our partnership has been exceptional.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
 ]
 
@@ -63,7 +66,7 @@ const moreTestimonials = [
     role: "HR Director",
     content:
       "The level of professionalism and expertise is outstanding. They've helped us build a stronger, more cohesive team.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 8,
@@ -71,7 +74,7 @@ const moreTestimonials = [
     role: "Creative Director",
     content:
       "Their creative approach and technical skills have elevated our brand presence significantly in the market.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 9,
@@ -79,14 +82,14 @@ const moreTestimonials = [
     role: "Sales Manager",
     content:
       "Since implementing their strategies, we've seen a 40% increase in conversion rates. The results speak for themselves.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 10,
     name: "Robert Taylor",
     role: "IT Director",
     content: "Their technical knowledge and problem-solving abilities have saved us countless hours and resources.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 11,
@@ -94,7 +97,7 @@ const moreTestimonials = [
     role: "Customer Success",
     content:
       "Our customers have noticed the difference in quality and service since we started working with this amazing team.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
   {
     id: 12,
@@ -102,7 +105,7 @@ const moreTestimonials = [
     role: "Strategy Consultant",
     content:
       "Strategic, thoughtful, and effective. They've become an essential part of our long-term business planning.",
-    avatar: "/placeholder.svg?height=80&width=80",
+    avatar: team01,
   },
 ]
 
@@ -116,7 +119,8 @@ export default function TestimonialCarousel() {
   return (
     <div className="w-full py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+        <h6 className="text-sm text-blue-600 text-center">TESTIMONIAL</h6>
+        <h2 className="text-3xl font-bold text-indigo-900 text-center mb-12">What Our Clients Say</h2>
 
         {/* First row - scrolling left */}
         <div className="overflow-hidden mb-8 max-w-6xl mx-auto" ref={emblaRef1}>
