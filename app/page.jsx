@@ -13,7 +13,7 @@ import AffiliateProgram from "@/components/AffliateProgram/improved-affiliate-pr
 import AchieveMore from "@/components/AchieveMore/AchieveMore";
 import TrustPilot from "@/components/TrustPilot/TrustPilot";
 import Header from "@/components/Bootstrap/Header/Header";
-import { Navbar1 } from "@/components/Bootstrap/Nav/Nav";
+import Navbar1 from "@/components/Bootstrap/Nav/Nav";
 import FinancialService from "@/components/Bootstrap/Financial-Service/FinancialService";
 import Banner from "@/components/Bootstrap/Banner/Banner";
 import WhoWeAre from "@/components/Bootstrap/WhoWeAre/WhoWeAre";
@@ -26,6 +26,7 @@ import WhyChooseUs from "@/components/Bootstrap/WhyChooseUs/WhyChooseUs";
 import ROIPlan from "@/components/ROIPlan/ROIPlan";
 import OurTeam from "@/components/Bootstrap/OurTeam/OurTeam";
 import Stats8 from "@/components/OurStats/Stats8";
+import Stats2 from "@/components/OurStats/Stats2";
 
 export default async function Home() {
 
@@ -41,10 +42,11 @@ export default async function Home() {
       <Navbar1 />
       {/* <Hero1 /> */}
       {/* <Stats /> */}
-      <Stats8 />
+      {/* <Stats8 /> */}
+      <Stats2 />
       <FinancialService slides={SLIDES} options={OPTIONS} />
       {/* Why CHoose Us */}
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <OurSolution />
       <WhoWeAre />
       <HowItWorks />

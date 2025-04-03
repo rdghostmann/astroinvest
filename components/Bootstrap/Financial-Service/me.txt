@@ -62,9 +62,11 @@ const AboutAstroInvest = () => {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
             {/* Text Section */}
             <div className="w-full lg:w-1/2 space-y-6">
-
+              <span className="text-sm text-blue-600 uppercase">
+                Our Solid Background on Finance
+              </span>
               <h2 className="text-2xl md:text-3xl font-bold text-blue-700">
-                Get to know about <span>our company</span>
+                Get to know about <em>our company</em>
               </h2>
               <p className="text-gray-600 leading-relaxed">
                 Fusce nec ultrices lectus. Duis nec scelerisque risus. Ut id

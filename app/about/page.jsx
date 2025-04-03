@@ -5,6 +5,7 @@ import OurAmazingFeatures from "@/components/OurAmazingFeatures/OurAmazingFeatur
 import { CircleArrowRight, Files, Settings } from "lucide-react";
 
 import PageHeadingImg from "@/public/images/page-heading-bg.jpg";
+import AboutSection from "./AboutSection";
 
 export default function Page() {
   return (
@@ -22,6 +23,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* <AboutSection /> */}
       <AboutAstroInvest />
       <OurAmazingFeatures />
       <OurSolution />

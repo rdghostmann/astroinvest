@@ -1,25 +1,4 @@
- {/* Social Media Section */}
-//  <div className="border-b border-gray-200 dark:border-gray-700 py-6">
-//  <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4">
-//    <div className="mb-4 lg:mb-0">
-//      <span>Get connected with us on social networks:</span>
-//    </div>
-//    <div className="flex space-x-6">
-//      <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-//        <FaFacebook className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400" size={20} />
-//      </Link>
-//      <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-//        <FaTwitter className="text-gray-600 hover:text-blue-400 dark:text-gray-300 dark:hover:text-blue-400" size={20} />
-//      </Link>
-//      <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-//        <FaInstagram className="text-gray-600 hover:text-pink-500 dark:text-gray-300 dark:hover:text-pink-400" size={20} />
-//      </Link>
-//      <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-//        <FaLinkedin className="text-gray-600 hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-500" size={20} />
-//      </Link>
-//    </div>
-//  </div>
-// </div>
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaPinterest } from "react-icons/fa";
@@ -51,7 +30,7 @@ const Footer = () => {
                 <li>
                   <i className="fas fa-envelope"></i> Email:{" "}
                   <Link href="mailto:support@bnbinvest.ltd" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    support@bnbinvest.ltd
+                    support@investfolio.ltd
                   </Link>
                 </li>
               </ul>
@@ -144,7 +123,7 @@ const Footer = () => {
       {/* Footer Bottom Section */}
       <div className="px-5  bg-gray-100 text-gray-500 dark:bg-neutral-700 py-4 text-center">
         <p className="text-sm">
-          © 2023 Binance Investment. All rights reserved.
+          © 2023 InvestFolio Investment. All rights reserved.
         </p>
       </div>
     </footer>
