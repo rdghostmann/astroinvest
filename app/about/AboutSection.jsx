@@ -28,14 +28,14 @@ export default function AboutSection() {
 
         <div className="w-full lg:w-1/2 space-y-6">
           <p className="text-slate-700 text-lg">
-          At <b>InvestFolio</b>, we specialize in delivering customized investment solutions designed to empower individuals and businesses on their journey to financial growth. With a strong focus on innovation and strategic foresight, 
-          we stay ahead of market trends and evolving opportunities to ensure our clients receive consistent, high-value results.
+            At <b>InvestFolio</b>, we specialize in delivering customized investment solutions designed to empower individuals and businesses on their journey to financial growth. With a strong focus on innovation and strategic foresight,
+            we stay ahead of market trends and evolving opportunities to ensure our clients receive consistent, high-value results.
           </p>
 
           <p className="text-slate-700 text-lg">
-          Our mission is centered on providing the tools and insights necessary for success in today’s dynamic financial landscape.
-           We are committed to building portfolios that not only reflect each client's unique goals and risk appetite but also capture the 
-           true essence of smart, forward-thinking investment strategies. At InvestFolio, your financial future is our top priority.
+            Our mission is centered on providing the tools and insights necessary for success in today’s dynamic financial landscape.
+            We are committed to building portfolios that not only reflect each client's unique goals and risk appetite but also capture the
+            true essence of smart, forward-thinking investment strategies. At InvestFolio, your financial future is our top priority.
 
           </p>
 

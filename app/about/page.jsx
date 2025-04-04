@@ -54,30 +54,30 @@ const Nav = ({
               </h3>
               {/* Navigation Links */}
               <div className="flex items-center gap-6">
-                <Link
+                {/* <Link
                   href="/"
-                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
+                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:opacity-65 transition"
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
-                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
+                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:opacity-65 transition"
                 >
                   About
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                   href="/investment-plans"
-                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
+                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:opacity-65 transition"
                 >
                   Investment Plans
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                   href="/service"
-                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
+                  className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:opacity-65 transition"
                 >
                   Service
-                </Link>
+                </Link> */}
               </div>
             </div>
             {/* Auth Buttons */}
@@ -95,7 +95,7 @@ const Nav = ({
           <div className="block lg:hidden w-full">
             <div className="flex items-center justify-between">
               {/* Logo */}
-              <Link href={logo.url} className="text-blue-500 flex items-center gap-2">
+              <Link href={logo.url} className="text-white flex items-center gap-2">
                 <div className="text-lg align-middle font-semibold tracking-tighter pb-2">
                   {logo.title}
                 </div>
@@ -104,7 +104,7 @@ const Nav = ({
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline" size="icon">
-                    <CiMenuFries className="size-4 text-blue-500" />
+                    <CiMenuFries className="size-4 text-black" />
                   </Button>
                 </SheetTrigger>
                 <SheetContent className="overflow-y-auto">
@@ -122,22 +122,22 @@ const Nav = ({
                       className="flex w-full flex-col gap-4"
                     >
                       <AccordionItem value="home" className="border-b-0">
-                        <AccordionTrigger className="text-md py-0 font-semibold text-blue-500 hover:text-blue-600 hover:underline">
+                        <AccordionTrigger className="text-md py-0 font-semibold text-black hover:opacity-65 hover:underline">
                           Home
                         </AccordionTrigger>
                       </AccordionItem>
                       <AccordionItem value="about" className="border-b-0">
-                        <AccordionTrigger className="text-md py-0 font-semibold text-blue-500 hover:text-blue-600 hover:underline">
+                        <AccordionTrigger className="text-md py-0 font-semibold text-black hover:opacity-65 hover:underline">
                           About
                         </AccordionTrigger>
                       </AccordionItem>
                       <AccordionItem value="investment-plans" className="border-b-0">
-                        <AccordionTrigger className="text-md py-0 font-semibold text-blue-500 hover:text-blue-600 hover:underline">
+                        <AccordionTrigger className="text-md py-0 font-semibold text-black hover:opacity-65 hover:underline">
                           Investment Plans
                         </AccordionTrigger>
                       </AccordionItem>
                       <AccordionItem value="service" className="border-b-0">
-                        <AccordionTrigger className="text-md py-0 font-semibold text-blue-500 hover:text-blue-600 hover:underline">
+                        <AccordionTrigger className="text-md py-0 font-semibold text-black hover:opacity-65 hover:underline">
                           Service
                         </AccordionTrigger>
                       </AccordionItem>
@@ -147,13 +147,13 @@ const Nav = ({
                       <Button
                         asChild
                         variant="outline"
-                        className="text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white"
+                        className="text-black border-black hover:bg-black hover:text-white"
                       >
                         <Link href={auth.login.url}>{auth.login.title}</Link>
                       </Button>
                       <Button
                         asChild
-                        className="bg-blue-500 text-white hover:bg-blue-600"
+                        className="bg-black text-white hover:bg-blue-600"
                       >
                         <Link href={auth.signup.url}>{auth.signup.title}</Link>
                       </Button>
@@ -186,6 +186,9 @@ export default function Page() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center text-center text-white">
             <h1 className="text-4xl font-bold text-pool">About Us</h1>
+            <p className="text-[#fff] leading-relaxed">
+              Home - About
+            </p>
           </div>
         </div>
       </div>
@@ -222,7 +225,7 @@ export default function Page() {
 
             {/* CTA Button */}
             <div className="flex justify-center lg:justify-start">
-              <button className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2 hover:bg-blue-500 transition duration-300">
+              <button className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2 hover:bg-black transition duration-300">
                 Start Making Money →
               </button>
             </div>
