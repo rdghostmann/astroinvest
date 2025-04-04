@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import About1 from "@/public/aboutX.png";
+import About1 from "@/public/person-holding-silver-iphone-6.png";
 import AboutImg from "@/public/images/about-image.jpg";
 
 const AboutAstroInvest = () => {
@@ -39,7 +39,7 @@ const AboutAstroInvest = () => {
                 floating rate
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                There has always been a demand for quality investment services.
+                There has always been a demand for quality investment services.<br className="hidden md:block" />
                 In an attempt to satisfy this demand, the idea of creating an
                 InvestFolio company came up.
               </p>
@@ -67,18 +67,21 @@ const AboutAstroInvest = () => {
                 Get to know about <span>our company</span>
               </h2>
               <p className="text-gray-600 leading-relaxed">
-              InvestFolio is built on a foundation of trust, transparency, and strategic growth. Our firm is committed to helping investors make informed decisions by offering diversified portfolios, risk-managed opportunities, and consistent returns. 
+                InvestFolio is built on a foundation of trust, transparency, and strategic growth. Our firm is committed to helping investors make informed decisions by offering diversified portfolios, risk-managed opportunities, and consistent returns.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-              We focus on delivering stable earnings through a guaranteed floating rate model, ensuring that your investments adapt to market trends while maintaining profitability.
+              <p className="text-gray-600 leading-relaxed mb-5">
+                We focus on delivering stable earnings through a guaranteed floating rate model, ensuring that your investments adapt to market trends while maintaining profitability.
               </p>
-              <Link
-                href="/about"
-                className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition text-white" >
-                Read More
-              </Link>
+              <div>
+                <Link href="/about" className="mt-7">
+                  <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white">
+                    Read More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+
             </div>
-                
+
 
             {/* Image Section */}
             <div className="w-full lg:w-1/2">

@@ -34,7 +34,7 @@ const FinancialService = () => {
         "Access detailed historical data to track market trends and make strategic investment choices with confidence.",
     },
   ];
-  
+
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -53,12 +53,15 @@ const FinancialService = () => {
     <div className="w-full py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         {/* Section Heading */}
-        <div className="text-center mb-8">
+        <div className="text-center space-y-4 mb-8">
           <h2 className="text-3xl font-bold text-gray-800">
             Financial <span className="text-blue-600">Services</span>
           </h2>
-          <p className="text-gray-600">
-            Aliquam id urna imperdiet libero mollis hendrerit
+          {/* <p className="w-9/12 mx-auto text-gray-600">
+            We offer comprehensive financial solutions designed to help you manage, grow, and protect your wealth. 
+          </p> */}
+          <p className="w-9/12 mx-auto text-gray-600">
+          Our services include investment advice, retirement planning, and risk management to ensure financial security for individuals and businesses alike.
           </p>
         </div>
 
@@ -107,9 +110,8 @@ const FinancialService = () => {
               <DotButton
                 key={index}
                 onClick={() => onDotButtonClick(index)}
-                className={`embla__dot ${
-                  index === selectedIndex ? "embla__dot--selected" : ""
-                }`}
+                className={`embla__dot ${index === selectedIndex ? "embla__dot--selected" : ""
+                  }`}
               />
             ))}
           </div>

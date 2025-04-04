@@ -33,7 +33,7 @@ const Banner = () => {
       subtitle: "Accounting & Management",
       description:
         "Take advantage of our limited-time promotions and exclusive deals.",
-      buttonText: "Shop Now",
+      buttonText: "Get Started",
     },
     {
       id: 3,
@@ -92,9 +92,11 @@ const Banner = () => {
                     <p className="text-sm md:text-lg lg:text-xl max-w-lg mb-6">
                       {slide.description}
                     </p>
-                    <button className="w-fit px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                   <Link href="/login">
+                   <button className="w-fit px-4 py-2 md:px-6 md:py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
                       {slide.buttonText}
                     </button>
+                   </Link>
                   </div>
                 </div>
               </div>

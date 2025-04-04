@@ -10,21 +10,21 @@ const deposits = [
   {
     id: "1",
     name: "Lewis Lee",
-    date: "Nov-3-2021",
+    date: "Apr-1-2025",
     amount: 3600,
     currency: "SOL",
   },
   {
     id: "2",
     name: "Sarah Chen",
-    date: "Nov-3-2021",
+    date: "Mar-15-2025",
     amount: 5200,
     currency: "BTC",
   },
   {
     id: "3",
     name: "Michael Brown",
-    date: "Nov-3-2021",
+    date: "Feb-20-2025",
     amount: 2800,
     currency: "ETH",
   },
@@ -34,23 +34,23 @@ const withdrawals = [
   {
     id: "1",
     name: "Emma Wilson",
-    date: "Nov-3-2021",
+    date: "Apr-2-2025",
     amount: 1500,
-    currency: "SOL"
+    currency: "SOL",
   },
   {
     id: "2",
     name: "James Rodriguez",
-    date: "Nov-3-2021",
+    date: "Mar-10-2025",
     amount: 4200,
-    currency: "BTC"
+    currency: "BTC",
   },
   {
     id: "3",
     name: "Lisa Wang",
-    date: "Nov-3-2021",
+    date: "Feb-25-2025",
     amount: 3100,
-    currency: "ETH"
+    currency: "ETH",
   },
 ];
 

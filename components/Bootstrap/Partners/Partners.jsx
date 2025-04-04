@@ -16,7 +16,7 @@ const Partners = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
           {partners.map((partner) => (
-            <div key={partner.id} className="partner-item flex justify-center">
+            <div key={partner.id} className="border partner-item flex justify-center">
               <Image
                 src={partner.src}
                 alt={partner.alt}
