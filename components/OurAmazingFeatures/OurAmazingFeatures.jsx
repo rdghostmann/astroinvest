@@ -25,13 +25,13 @@ const OurAmazingFeatures = () => {
     {
       icon: <FcCurrencyExchange className="w-8 h-8 text-blue-400" />,
       title: "Easy Deposit & Withdrawals",
-      description: "Quickly add & withdraw funds to your bank account.",
+      description: "Quickly add & withdraw funds to your Wallet/bank account.",
       bgColor: "bg-blue-500/10",
     },
     {
       icon: <FcSafe className="w-8 h-8 text-blue-400" />,
       title: "Safe and Secure",
-      description: "World-class security features ensure your investments are safe.",
+      description: "World-class security features ensure your investments and credential safety.",
       bgColor: "bg-blue-500/10",
     },
 
@@ -39,8 +39,8 @@ const OurAmazingFeatures = () => {
 
   return (
     <div className='w-full relative bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-950'>
-        <Image src={wallpaperImg} width={3000} height={2000} alt='' className='absolute top-0 left-0 w-full h-full opacity-20 object-contain' />
-     
+      <Image src={wallpaperImg} width={3000} height={2000} alt='' className='absolute top-0 left-0 w-full h-full opacity-20 object-contain' />
+
       <div className='w-full relative bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-950'>
         {/* Background Gradients */}
 

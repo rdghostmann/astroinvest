@@ -6,12 +6,12 @@ import AboutImg from "@/public/images/about-image.jpg";
 export default function AboutSection() {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
+      {/* <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-800">About Us</h2>
         <p className="text-lg text-slate-600 max-w-3xl mx-auto">
           As a Web Development Services We are Committed to Building Custom Web Solutions that Drive Business Success.
         </p>
-      </div>
+      </div> */}
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
         <div className="w-full lg:w-1/2">
@@ -28,25 +28,23 @@ export default function AboutSection() {
 
         <div className="w-full lg:w-1/2 space-y-6">
           <p className="text-slate-700 text-lg">
-            At our web development agency, we specialize in crafting bespoke online solutions tailored to elevate
-            businesses toward their digital objectives. Committed to continuous evolution, we remain abreast of
-            cutting-edge web technologies and trends, ensuring a constant delivery of unparalleled excellence.
+          At <b>InvestFolio</b>, we specialize in delivering customized investment solutions designed to empower individuals and businesses on their journey to financial growth. With a strong focus on innovation and strategic foresight, 
+          we stay ahead of market trends and evolving opportunities to ensure our clients receive consistent, high-value results.
           </p>
 
           <p className="text-slate-700 text-lg">
-            Our ethos is rooted in equipping clients with the essential tools for triumph in the digital realm.
-            Committed to continuous evolution, we remain abreast of cutting-edge web technologies and trends, ensuring a
-            constant delivery of unparalleled excellence. We firmly believe in furnishing every business with a digital
-            presence that authentically embodies their brand essence and effectively resonates with their target
-            demographic.
+          Our mission is centered on providing the tools and insights necessary for success in today’s dynamic financial landscape.
+           We are committed to building portfolios that not only reflect each client's unique goals and risk appetite but also capture the 
+           true essence of smart, forward-thinking investment strategies. At InvestFolio, your financial future is our top priority.
+
           </p>
 
           <div className="pt-4">
             <Link
-              href="/contact"
+              href="/register"
               className="inline-block px-8 py-3 border-2 border-slate-800 rounded-md text-slate-800 font-medium hover:bg-slate-800 hover:text-white transition-colors"
             >
-              Get in Touch
+              Start Now
             </Link>
           </div>
         </div>

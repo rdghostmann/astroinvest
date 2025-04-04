@@ -20,7 +20,8 @@ const Footer = () => {
               </figure>
               <div className="text mb-4">
                 <p>
-                  An investment company that provides services with a secure and fast transaction infrastructure developed by world standards, governed by an expert team and experienced advisory board.
+                  An investment company that provides services with a secure and fast transaction infrastructure developed by world standards, 
+                  governed by an expert team and experienced advisory board.
                 </p>
               </div>
               <ul className="info-list space-y-2">
@@ -30,11 +31,11 @@ const Footer = () => {
                 <li>
                   <i className="fas fa-envelope"></i> Email:{" "}
                   <Link href="mailto:support@bnbinvest.ltd" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    support@investfolio.ltd
+                    support@investfolio.com
                   </Link>
                 </li>
               </ul>
-              <ul className="social-links flex space-x-4 mt-4">
+              {/* <ul className="social-links flex space-x-4 mt-4">
                 <li>
                   <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                     <FaTwitter className="text-gray-600 hover:text-blue-400 dark:text-gray-300 dark:hover:text-blue-400" size={20} />
@@ -60,7 +61,7 @@ const Footer = () => {
                     <FaPinterest className="text-gray-600 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400" size={20} />
                   </Link>
                 </li>
-              </ul>
+              </ul> */}
             </div>
 
             {/* Useful Links */}
@@ -78,7 +79,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-blue-600 dark:hover:text-blue-400">
+                  <Link href="#faq" className="hover:text-blue-600 dark:hover:text-blue-400">
                     FAQ
                   </Link>
                 </li>
@@ -95,17 +96,17 @@ const Footer = () => {
               <h4 className="text-lg font-semibold mb-4">What We Do</h4>
               <ul className="list space-y-2">
                 <li>
-                  <Link href="/team" className="hover:text-blue-600 dark:hover:text-blue-400">
+                  <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">
                     Team
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terms" className="hover:text-blue-600 dark:hover:text-blue-400">
+                  <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">
                     Terms
                   </Link>
                 </li>
                 <li>
-                  <Link href="/signup" className="hover:text-blue-600 dark:hover:text-blue-400">
+                  <Link href="/register" className="hover:text-blue-600 dark:hover:text-blue-400">
                     Sign Up
                   </Link>
                 </li>

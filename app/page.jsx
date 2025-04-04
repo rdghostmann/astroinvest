@@ -43,7 +43,8 @@ export default async function Home() {
       {/* <Hero1 /> */}
       {/* <Stats /> */}
       {/* <Stats8 /> */}
-      <Stats2 />
+      {/* <Stats2 /> */}
+      <Partners />
       <FinancialService slides={SLIDES} options={OPTIONS} />
       {/* Why CHoose Us */}
       {/* <WhyChooseUs /> */}
@@ -54,7 +55,6 @@ export default async function Home() {
       <CallToAction />
       <Testimonial />
       <RequestCallbackForm />
-      <Partners />
       <TrustPilot />
       <ROIPlan />
       <Fiat />

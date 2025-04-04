@@ -4,7 +4,7 @@ import FaQImg from "../../public/faqImg.png"
 import Image from "next/image";
 const FAQ = () => {
   return (
-    <div className=" bg--white text-gray-600 px-4 md:p-8">
+    <div id='faq' className=" bg--white text-gray-600 px-4 md:p-8">
       <div className="max-w-6xl mx-auto my-12 grid md:grid-cols-2 gap-8 items-center">
         {/* Left side - Image */}
         <div className="hidden md:block">

@@ -41,10 +41,10 @@ const AboutAstroInvest = () => {
               <p className="text-gray-600 leading-relaxed">
                 There has always been a demand for quality investment services.
                 In an attempt to satisfy this demand, the idea of creating an
-                AstroInvest company came up.
+                InvestFolio company came up.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                AstroInvest is a modern investment company that combines the
+                InvestFolio is a modern investment company that combines the
                 most advanced projects in its work.
               </p>
 
@@ -67,18 +67,18 @@ const AboutAstroInvest = () => {
                 Get to know about <span>our company</span>
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                Fusce nec ultrices lectus. Duis nec scelerisque risus. Ut id
-                tempor turpis, ac dignissim ipsum. Nulla ullamcorper, ipsum vel
-                condimentum congue, mi odio vehicula tellus, sit amet malesuada
-                justo sem.
+              InvestFolio is built on a foundation of trust, transparency, and strategic growth. Our firm is committed to helping investors make informed decisions by offering diversified portfolios, risk-managed opportunities, and consistent returns. 
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+              We focus on delivering stable earnings through a guaranteed floating rate model, ensuring that your investments adapt to market trends while maintaining profitability.
               </p>
               <Link
                 href="/about"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition"
-              >
+                className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition text-white" >
                 Read More
               </Link>
             </div>
+                
 
             {/* Image Section */}
             <div className="w-full lg:w-1/2">

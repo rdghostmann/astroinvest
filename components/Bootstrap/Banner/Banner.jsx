@@ -132,7 +132,7 @@ const Banner = () => {
       </div>
 
       {/* Request Form Section */}
-      <div className="request-form bg-blue-600 py-8">
+      <div className="request-form hidden md:block bg-blue-600 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
