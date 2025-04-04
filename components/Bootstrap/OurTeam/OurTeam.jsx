@@ -22,11 +22,6 @@ const OurTeam = () => {
       role: "Customer Support",
       image: team03
     },
-    {
-      name: "Jason Anderson",
-      role: "Development Engineer",
-      image: team01
-    }
   ];
 
   return (
@@ -34,7 +29,7 @@ const OurTeam = () => {
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-semibold text-oxfordblue">
+          <h1 className="text-2xl md:text-3xl font-semibold text-blue-900">
             Our Executive Team
           </h1>
           <p className="text-lg text-gray-600 mt-2">

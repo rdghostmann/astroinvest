@@ -38,12 +38,12 @@ const OurSolution = () => {
 
           {/* Right Content */}
           <div className="grid grid-cols-2 gap-6">
-            {/* <div className="text-center">
+            <div className="text-center">
               <div className="text-4xl font-bold text-white">
               <CountUp end={954} duration={20} />
               </div>
               <div className="text-gray-300">Work Hours</div>
-            </div> */}
+            </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-white">
                 <CountUp end={68} duration={30} />K
@@ -67,6 +67,12 @@ const OurSolution = () => {
                 <CountUp end={178} duration={30} />
               </div>
               <div className="text-gray-300">Support Countries</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-white">
+                <CountUp end={48} duration={30} />K
+              </div>
+              <div className="text-gray-300">Total Withdrawals</div>
             </div>
 
           </div>
