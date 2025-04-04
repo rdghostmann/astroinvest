@@ -43,30 +43,30 @@ const Navbar1 = ({
               </h3>
               {/* Navigation Links */}
               <div className="flex items-center gap-6">
-                <Link
+                {/* <Link
                   href="/"
                   className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
                 >
                   Home
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                   href="/about"
                   className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
                 >
                   About
-                </Link>
-                <Link
-                  href="/investment-plans"
+                </Link> */}
+                {/* <Link
+                  href="#investment-plans"
                   className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
                 >
                   Investment Plans
-                </Link>
-                <Link
+                </Link> */}
+                {/* <Link
                   href="/service"
                   className="text-white text-sm font-medium hover:border-b-2 border-blue-600 hover:text-blue-600 transition"
                 >
                   Service
-                </Link>
+                </Link> */}
               </div>
             </div>
             {/* Auth Buttons */}

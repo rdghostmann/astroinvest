@@ -35,7 +35,7 @@ const ROIPlan = () => {
   const totalProfit = (amount * selectedPlan.roi) / 100; // Calculate total profit
 
   return (
-    <section className="plans w-full py-24">
+    <section id="investment-plans" className="plans w-full py-24">
 
       {/* Investment Plans */}
       <div className="container mx-auto">
