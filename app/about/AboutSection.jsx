@@ -39,14 +39,11 @@ export default function AboutSection() {
 
           </p>
 
-          <div className="pt-4">
-            <Link
-              href="/register"
-              className="inline-block px-8 py-3 border-2 border-slate-800 rounded-md text-slate-800 font-medium hover:bg-slate-800 hover:text-white transition-colors"
-            >
-              Start Now
-            </Link>
-          </div>
+          <div className="flex justify-center lg:justify-start">
+              <button className="border border-blue-600 text-blue-600 font-semibold py-3 px-6 rounded-lg flex items-center gap-2 hover:bg-black transition duration-300">
+                Start Now →
+              </button>
+            </div>
         </div>
       </div>
     </section>
