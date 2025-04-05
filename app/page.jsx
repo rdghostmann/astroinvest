@@ -27,6 +27,7 @@ import ROIPlan from "@/components/ROIPlan/ROIPlan";
 import OurTeam from "@/components/Bootstrap/OurTeam/OurTeam";
 import Stats8 from "@/components/OurStats/Stats8";
 import Stats2 from "@/components/OurStats/Stats2";
+import InvestmentPlans from "@/components/Investment-Plans/Investment-Plans";
 
 export default async function Home() {
 
@@ -37,7 +38,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
-      <Header />
+      {/* <Header /> */}
       <CoinPriceMarqueeWidget />
       <Navbar1 />
       {/* <Hero1 /> */}
@@ -54,7 +55,8 @@ export default async function Home() {
       <Testimonial />
       <RequestCallbackForm />
       <TrustPilot />
-      <ROIPlan />
+      <InvestmentPlans />
+      {/* <ROIPlan /> */}
       <Fiat />
       <AboutAstroInvest />
       <OurAmazingFeatures />

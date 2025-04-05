@@ -24,9 +24,9 @@ const Fiat = () => {
       <h3 className='capitalize text-indigo-900 text-center text-lg md:text-3xl font-semibold mb-5'>We accept payment methods</h3>
       <div className='grid grid-cols-3 md:grid-cols-6 lg:grid-cols-3 items-center justify-center gap-5'>
         {cryptos.map((crypto) => (
-          <div key={crypto.id} className='border w-24 md:w-32 flex flex-col items-center justify-center text-center rounded-xl p-3'>
-            <Image src={crypto.path} alt={crypto.name} width={50} height={50} priority/>
-            <p>{crypto.name}</p>
+          <div key={crypto.id} className='border w-20 lg:w-24  flex flex-col items-center justify-center text-center rounded-xl p-3 lg:p2'>
+            <Image className='' src={crypto.path} alt={crypto.name} width={50} height={50} priority/>
+            <p className='block text-xs sm:text-sm lg:hidden'>{crypto.name}</p>
           </div>
         ))}
       </div>

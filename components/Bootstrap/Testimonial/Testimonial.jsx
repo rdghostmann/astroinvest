@@ -6,6 +6,11 @@ import team02 from "@/public/images/team_02.jpg";
 import team03 from "@/public/images/team_03.jpg";
 import Image from "next/image";
 
+// import MapImg from "@/public/png-clipart-world-map-illustration-world-map-dot-distribution-map-beautiful-world-map-miscellaneous-world.png"
+// import MapImg2 from "@/public/map-of-the-world-2401458_1280.jpg"
+import MapImg2 from "@/public/360_F_192499522_CIWxRvKRlBmxaEcsqJjgugqUpBZCJRDM.jpg"
+
+
 // Sample testimonial data
 const testimonials = [
   {
@@ -117,64 +122,61 @@ export default function TestimonialCarousel() {
   const [emblaRef2, emblaApi2] = useEmblaCarousel({ loop: true }, [AutoScroll({ direction: "forward", speed: 1 })])
 
   return (
-    <div className="w-full py-12 bg-gray-50">
+    <div className="relative mx-auto h-fit py-10 w-full shadow-lg" >
+
       <div className="container mx-auto px-4">
         <h6 className="text-sm text-blue-600 text-center">TESTIMONIAL</h6>
         <h2 className="text-3xl font-bold text-indigo-900 text-center mb-12">What Our Clients Say</h2>
 
-        {/* First row - scrolling left */}
-        <div className="overflow-hidden mb-8 max-w-6xl mx-auto" ref={emblaRef1}>
-          <div className="flex">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="flex-none min-w-[250px] md:min-w-[350px] px-4">
-                <div className="bg-white rounded-lg shadow-lg p-6 h-full">
-                  <div className="flex items-center mb-4">
-                    <div className="mr-4">
-                      <Image
-                        src={testimonial.avatar || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        width={50}
-                        height={50}
-                        className="rounded-full"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg">{testimonial.name}</h3>
-                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 italic">&ldquo;{testimonial.content}&rdquo;</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="relative  mx-auto  py-10 w-full bg-fixed bg-cover bg-center bg-no-repeat shadow-lg"
+          style={{ backgroundImage: `url(${MapImg2.src})` }}>
 
-        {/* Second row - scrolling right */}
-        <div className="overflow-hidden max-w-6xl mx-auto" ref={emblaRef2}>
-          <div className="flex">
-            {moreTestimonials.map((testimonial) => (
-              <div key={testimonial.id} className="flex-none min-w-[250px] md:min-w-[350px] px-4">
-                <div className="bg-white rounded-lg shadow-lg p-6 h-full">
+          {/* First row - scrolling left */}
+          <div className="overflow-hidden mb-8 max-w-6xl mx-auto" ref={emblaRef1}>
+            <div className="flex">
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="flex-none w-[280px] border border-gray-200 bg-white rounded-lg p-6 mx-2">
                   <div className="flex items-center mb-4">
-                    <div className="mr-4">
-                      <Image
-                        src={testimonial.avatar || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        width={50}
-                        height={50}
-                        className="rounded-full"
-                      />
-                    </div>
+                    <Image
+                      src={testimonial.avatar || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="rounded-full mr-3"
+                    />
                     <div>
-                      <h3 className="font-semibold text-lg">{testimonial.name}</h3>
-                      <p className="text-gray-600 text-sm">{testimonial.role}</p>
+                      <h3 className="font-medium text-base">{testimonial.name}</h3>
+                      <p className="text-gray-500 text-sm">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700 italic">&ldquo;{testimonial.content}&rdquo;</p>
+                  <p className="text-gray-700 text-sm">{testimonial.content}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Second row - scrolling right */}
+          <div className="overflow-hidden max-w-6xl mx-auto" ref={emblaRef2}>
+            <div className="flex">
+              {moreTestimonials.map((testimonial) => (
+                <div key={testimonial.id} className="flex-none w-[280px] border border-gray-200 bg-white rounded-lg p-6 mx-2">
+                  <div className="flex items-center mb-4">
+                    <Image
+                      src={testimonial.avatar || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="rounded-full mr-3"
+                    />
+                    <div>
+                      <h3 className="font-medium text-base">{testimonial.name}</h3>
+                      <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 text-sm">{testimonial.content}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

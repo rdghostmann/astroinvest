@@ -32,7 +32,15 @@ const WhoWeAre = () => {
                 We worked hard to develop a multifunctional cryptocurrency investment space where people from the whole
                 globe can earn on digital currencies.
               </p>
-             
+              <p className="text-gray-600 leading-relaxed">
+                InvestFolio is a dynamic, cutting-edge investment platform that empowers individuals and institutions to grow their wealth and achieve their financial goals.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+             With a team of experienced professionals and a commitment to excellence, we strive to deliver exceptional value and growth for our clients.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                We are dedicated to providing innovative solutions, personalized service, and a transparent investment process that builds trust and confidence.
+              </p>             
               <Link
                 href="/about"
                 className="px-6 py-3 rounded inline-block bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white transition">

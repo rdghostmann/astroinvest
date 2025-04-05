@@ -23,15 +23,16 @@ const AchieveMore = () => {
                   <Image src={Award} alt="Best CCT Broker" width={45} height={42} />
                   <div>
                     <h5 className="font-semibold">Best CCT Broker</h5>
-                    <small className="text-gray-500">Crypto-Crypto Trading 2020</small>
+                    <small className="text-gray-500">Industry Consensus 2020</small>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Image src={Award} alt="Best Execution Broker" width={45} height={42} />
                   <div>
                     <h5 className="font-semibold">Best Execution Broker</h5>
-                    <small className="text-gray-500">Forex EXPO Dubai 2020</small> <br />
+                    {/* <small className="text-gray-500">Forex EXPO Dubai 2020</small> <br /> */}
                     <small className="text-gray-500">Professional Traders 2020	</small>
+                    {/* <small className="text-gray-500">TradingView Broker Awards 2023	</small> */}
 
                   </div>
                 </div>

@@ -19,9 +19,8 @@ const Footer = () => {
                 </Link>
               </figure>
               <div className="text mb-4">
-                <p>
-                  An investment company that provides services with a secure and fast transaction infrastructure developed by world standards, 
-                  governed by an expert team and experienced advisory board.
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+              InvestFolio is a leading global investment company, providing clients with access to the most innovative and diversified investment opportunities.
                 </p>
               </div>
               <ul className="info-list space-y-2">
@@ -35,87 +34,7 @@ const Footer = () => {
                   </Link>
                 </li>
               </ul>
-              {/* <ul className="social-links flex space-x-4 mt-4">
-                <li>
-                  <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <FaTwitter className="text-gray-600 hover:text-blue-400 dark:text-gray-300 dark:hover:text-blue-400" size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <FaFacebook className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400" size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="text-gray-600 hover:text-pink-500 dark:text-gray-300 dark:hover:text-pink-400" size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="text-gray-600 hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-500" size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
-                    <FaPinterest className="text-gray-600 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400" size={20} />
-                  </Link>
-                </li>
-              </ul> */}
-            </div>
-
-            {/* Useful Links */}
-            <div className="footer-widget links-widget">
-              <h4 className="text-lg font-semibold mb-4">Useful Links</h4>
-              <ul className="list space-y-2">
-                <li>
-                  <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#faq" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* What We Do */}
-            <div className="footer-widget links-widget">
-              <h4 className="text-lg font-semibold mb-4">What We Do</h4>
-              <ul className="list space-y-2">
-                <li>
-                  <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Terms
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/register" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Sign Up
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/login" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    Login
-                  </Link>
-                </li>
-              </ul>
+        
             </div>
           </div>
         </div>
