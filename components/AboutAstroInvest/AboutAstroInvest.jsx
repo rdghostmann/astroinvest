@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import About1 from "@/public/person-holding-silver-iphone-6.png";
 import AboutImg from "@/public/images/about-image.jpg";
+import About1 from "@/public/person-holding-silver-iphone-6.png";
 
 const AboutAstroInvest = () => {
   return (
