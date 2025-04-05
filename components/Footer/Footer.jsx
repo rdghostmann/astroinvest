@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo-white.png"; // Update the path to your logo
+import { Mail, MapPinned } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -18,19 +19,23 @@ const Footer = () => {
                 </Link>
               </figure>
               <div className="text mb-4">
-                <p className="text-sm text-white ">
+                <p className="text-sm text-white w-1/2 mx-auto ">
                   InvestFolio is a leading global investment company, providing clients with access to the most innovative and diversified investment opportunities.
                 </p>
               </div>
-              <ul className="info-list space-y-2">
+              <ul className="info-list space-y-2 text-sm">
                 <li>
-                  <i className="fas fa-map-marker-alt"></i> 6th floor, South Bank House, Barrow Street, 4 Dublin, Ireland
+                  <span className="flex space-x-2"><MapPinned /> <p>6th floor, South Bank House, Barrow Street, 4 Dublin, Ireland</p></span>
                 </li>
                 <li>
-                  <i className="fas fa-envelope"></i> Email:{" "}
-                  <Link href="mailto:support@bnbinvest.ltd" className="hover:text-blue-600 dark:hover:text-blue-400">
-                    support@investfolio.com
-                  </Link>
+                  <span className="flex space-x-2"> 
+                  <Mail /> <p>
+                  Email:
+                    <Link href="mailto:support@bnbinvest.ltd" className="hover:text-blue-600 dark:hover:text-blue-400">
+                      support@investfolio.com
+                    </Link>
+                  </p>
+                  </span>
                 </li>
               </ul>
             </div>
