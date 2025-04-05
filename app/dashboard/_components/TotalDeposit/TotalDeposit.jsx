@@ -9,9 +9,9 @@ const TotalDeposit = async () => {
 
   if (!session || !session.user) {
     return (
-      <div className="bg-amber-800/50 p-3 rounded-lg">
+      <div className="bg-gray-100 p-3 rounded-lg  shadow-black shadow-md">
         <p className="text-lg font-semibold">$0.00</p>
-        <p className="text-xs text-amber-200">Total Deposits</p>
+        <p className="text-xs text-green-400">Total Deposits</p>
       </div>
     );
   }
@@ -20,9 +20,9 @@ const TotalDeposit = async () => {
   const totalDeposit = await getTotalDeposit(session.user.id);
 
   return (
-    <div className="bg-amber-800/50 p-3 rounded-lg">
+    <div className="bg-gray-100 p-3 rounded-lg  shadow-black shadow-md">
       <p className="text-lg font-semibold">${totalDeposit || "0.00"}</p>
-      <p className="text-xs text-amber-200">Total Deposits</p>
+      <p className="text-xs text-green-400">Total Deposits</p>
     </div>
   );
 };
