@@ -5,7 +5,7 @@ import { FaClock, FaPhone, FaFacebook, FaTwitter, FaLinkedin, FaBehance } from "
 const Header = () => {
   return (
     // <div className="w-full bg-blue-600 py-2 hidden md:block">
-    <div className="w-full bg-blue-600 py-2 sticky ">
+    <div className="w-full bg-blue-600 py-2 hidden lg:block  ">
       <div className="container mx-auto px-4">
         <div className="flex flex-col justify-between items-center sm:flex-row ">
           {/* Left Info */}
