@@ -122,13 +122,13 @@ export default function TestimonialCarousel() {
   const [emblaRef2, emblaApi2] = useEmblaCarousel({ loop: true }, [AutoScroll({ direction: "forward", speed: 1 })])
 
   return (
-    <div className="relative mx-auto h-fit py-10 w-full shadow-lg" >
+    <div id="testimonial" className="relative mx-auto h-fit py-10 w-full shadow-lg" >
 
       <div className="container mx-auto px-4">
         <h6 className="text-sm text-blue-600 text-center">TESTIMONIAL</h6>
         <h2 className="text-3xl font-bold text-indigo-900 text-center mb-12">What Our Clients Say</h2>
 
-        <div className="relative  mx-auto  py-10 w-full bg-fixed bg-cover bg-center bg-no-repeat shadow-lg"
+        <div className="relative  mx-auto  py-10 w-full bg-fixed bg-cover bg-center bg-no-repeat "
           style={{ backgroundImage: `url(${MapImg2.src})` }}>
 
           {/* First row - scrolling left */}

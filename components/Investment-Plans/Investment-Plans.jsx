@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import Link from "next/link"
 
 export default function InvestmentPlans() {
   const [activePlan, setActivePlan] = useState("standard")
@@ -46,7 +47,7 @@ export default function InvestmentPlans() {
 
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div id="investment-plans" className="container mx-auto px-4 py-12">
       <h3 className="text-3xl font-bold text-gray-800 text-center">
         Investment  <span className="text-blue-600 ">Plans</span>
       </h3>
@@ -73,15 +74,17 @@ export default function InvestmentPlans() {
               {/* <p>PRINCIPAL INCLUDED</p> */}
             </CardContent>
             <CardFooter className="p-0 bg-[#2A2D33]">
-              <Button
-                className={`w-full rounded-none py-6 ${activePlan === plan.id
+              <Link href="/register" className="w-full">
+                <Button
+                  className={`w-full rounded-none py-6 ${activePlan === plan.id
                     ? "bg-[#E5C234] hover:bg-[#d4b32f] text-black"
                     : "bg-transparent border border-[#E5C234] text-[#E5C234] hover:bg-[#E5C234] hover:text-black"
-                  }`}
-                onClick={() => setActivePlan(plan.id)}
-              >
-                DEPOSIT NOW
-              </Button>
+                    }`}
+                  onClick={() => setActivePlan(plan.id)}
+                >
+                  DEPOSIT NOW
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}

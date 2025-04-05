@@ -148,7 +148,7 @@ const Banner = () => {
             </div>
             <div>
               <Link
-                href="/contact"
+                href="#contact"
                 className="inline-block border-2 border-white bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition"
               >
                 Contact Us

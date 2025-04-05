@@ -29,7 +29,6 @@ import Stats8 from "@/components/OurStats/Stats8";
 import Stats2 from "@/components/OurStats/Stats2";
 import InvestmentPlans from "@/components/Investment-Plans/Investment-Plans";
 import InfiniteLogoCarousel from "@/components/LogoCarousel/Infinite-logo-carousel";
-import LogoClouds from "@/components/LogoClouds/LogoClouds";
 
 export default async function Home() {
 
@@ -62,7 +61,7 @@ export default async function Home() {
       <InvestmentPlans />
       {/* <ROIPlan /> */}
       <Fiat />
-      <AboutAstroInvest />
+      {/* <AboutAstroInvest /> */}
       <OurAmazingFeatures />
       <AchieveMore />
       <InvestorsActivity />
