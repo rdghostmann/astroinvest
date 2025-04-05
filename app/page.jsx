@@ -34,7 +34,7 @@ export default async function Home() {
   const OPTIONS = { align: 'start' }
   const SLIDE_COUNT = 6
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
-  
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
       <Header />
@@ -42,8 +42,6 @@ export default async function Home() {
       <Navbar1 />
       {/* <Hero1 /> */}
       {/* <Stats /> */}
-      {/* <Stats8 /> */}
-      {/* <Stats2 /> */}
       <Partners />
       <FinancialService slides={SLIDES} options={OPTIONS} />
       {/* Why CHoose Us */}
