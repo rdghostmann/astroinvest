@@ -1,9 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-
 
 export default function InfiniteLogoCarousel({
   logos = [
@@ -17,14 +16,9 @@ export default function InfiniteLogoCarousel({
   speed = 20,
   direction = "left",
   pauseOnHover = true,
-} ) {
-  // Duplicate logos to create seamless infinite effect
-  const [duplicatedLogos, setDuplicatedLogos] = useState([])
-
-  useEffect(() => {
-    // Duplicate the logos array to create a seamless loop
-    setDuplicatedLogos([...logos, ...logos])
-  }, [logos])
+}) {
+  // Memoize duplicated logos to avoid infinite re-renders
+  const duplicatedLogos = useMemo(() => [...logos, ...logos], [logos])
 
   return (
     <div className="w-full overflow-hidden py-10 bg-background">
@@ -45,12 +39,8 @@ export default function InfiniteLogoCarousel({
             repeat: Number.POSITIVE_INFINITY,
             repeatType: "loop",
             ease: "linear",
-            repeatDelay: 0,
           }}
-          {...(pauseOnHover && {
-            whileHover: { animationPlayState: "paused" },
-            style: { animationPlayState: "running" },
-          })}
+          whileHover={pauseOnHover ? { x: direction === "right" ? "-100%" : "0%" } : {}}
         >
           {duplicatedLogos.map((logo, index) => (
             <motion.div
@@ -75,4 +65,3 @@ export default function InfiniteLogoCarousel({
     </div>
   )
 }
-

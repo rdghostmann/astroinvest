@@ -28,6 +28,8 @@ import OurTeam from "@/components/Bootstrap/OurTeam/OurTeam";
 import Stats8 from "@/components/OurStats/Stats8";
 import Stats2 from "@/components/OurStats/Stats2";
 import InvestmentPlans from "@/components/Investment-Plans/Investment-Plans";
+import InfiniteLogoCarousel from "@/components/LogoCarousel/Infinite-logo-carousel";
+import LogoClouds from "@/components/LogoClouds/LogoClouds";
 
 export default async function Home() {
 
@@ -43,7 +45,9 @@ export default async function Home() {
       <Navbar1 />
       {/* <Hero1 /> */}
       {/* <Stats /> */}
-      <Partners />
+      {/* <Partners /> */}
+      {/* <LogoClouds /> */}
+      <InfiniteLogoCarousel />
       <FinancialService slides={SLIDES} options={OPTIONS} />
       {/* Why CHoose Us */}
       {/* <WhyChooseUs /> */}
