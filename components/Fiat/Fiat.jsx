@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import bitcoinImage from '../../public/crypto/btc.png';
+import bitcoinImage from '../../public/crypto/bitcoin.png';
 import ethereumImage from '../../public/crypto/eth.png';
 import solanaImage from '../../public/crypto/sol.png';
 import xrpImage from '../../public/crypto/xrp.png';

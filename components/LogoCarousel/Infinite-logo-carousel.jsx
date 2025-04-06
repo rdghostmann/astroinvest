@@ -2,7 +2,7 @@
 
 import { useMemo } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
 import binance from "@/public/company/binance-logo.png"
 import bybit from "@/public/company/bybit-logo.png"
 import coinbase from "@/public/company/coinbase-logo.png"
